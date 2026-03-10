@@ -1,39 +1,74 @@
 <!DOCTYPE html>
 <html>
+    
 <head>
-  <title>Discovering Anson</title>
+<title>Discovering Anson</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-    }
+<style>
 
-    section {
-      margin-bottom: 50px;
-    }
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  display:flex;
+}
 
-    h1 {
-      margin-bottom: 40px;
-    }
+/* Sidebar navigation */
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  height:100vh;
+  width:200px;
+  background:#111;
+  padding-top:20px;
+}
 
-    h2 {
-      color: #003366;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
-    }
+.sidebar a{
+  display:block;
+  color:white;
+  padding:15px;
+  text-decoration:none;
+}
 
-    h3 {
-      margin-top: 15px;
-    }
-  </style>
+.sidebar a:hover{
+  background:#444;
+}
+
+/* Main content */
+.content{
+  margin-left:220px;
+  padding:40px;
+}
+
+section{
+  margin-bottom:80px;
+}
+
+h1{
+  margin-bottom:40px;
+}
+
+h2{
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+</style>
 </head>
 
 <body>
 
+<div class="sidebar">
+  <a href="#transit">Transit</a>
+  <a href="#food">Duke Campus Food</a>
+  <a href="#projects">Personal Projects</a>
+</div>
+
+<div class="content">
+
 <h1>Discovering Anson</h1>
 
-<section>
+<section id="transit">
   <h2>Transit</h2>
 
   <h3>Bicycles</h3>
@@ -46,7 +81,8 @@
   <p>My Personal Takes Regarding Transit</p>
 </section>
 
-<section>
+
+<section id="food">
   <h2>Duke Campus Food</h2>
 
   <h3>Main Meals</h3>
@@ -56,10 +92,11 @@
   <p>Food To Grab Between Classes</p>
 
   <h3>Other</h3>
-  <p>Other Options Such As Off Campus os Foodtrucks </p>
+  <p>Other Options Such As Off Campus or Foodtrucks</p>
 </section>
 
-<section>
+
+<section id="projects">
   <h2>Personal Projects</h2>
 
   <h3>Web Projects</h3>
@@ -71,6 +108,8 @@
   <h3>Experiments</h3>
   <p>Random projects and prototypes.</p>
 </section>
+
+</div>
 
 </body>
 </html>
