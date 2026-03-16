@@ -377,10 +377,10 @@ export default function Home() {
         </section>
 
         <section
-  id="wu-food"
-  ref={(el) => (sectionsRef.current[5] = el)}
-  className="min-h-screen py-20 sm:py-32 opacity-0"
->
+        id="wu-food"
+        ref={(el) => (sectionsRef.current[5] = el)}
+        className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
   <div className="space-y-12 sm:space-y-16">
     {/* Header */}
     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
@@ -393,13 +393,12 @@ export default function Home() {
       {/* Mock food stats */}
       {(() => {
         const foodStats = [
-          { restaurant: "Bella Union", count: 5 },
-          { restaurant: "Pitchfork's", count: 8 },
-          { restaurant: "The Skillet", count: 3 },
-          { restaurant: "Sprout", count: 4 },
-          { restaurant: "The Farmstead", count: 6 },
-          { restaurant: "Twinnies", count: 2 },
-          { restaurant: "Cafe", count: 7 },
+          { restaurant: "Ginger and Soy", count: 7 },
+          { restaurant: "Devil's Krafthouse", count: 3 },
+          { restaurant: "Pitchfork's", count: 3 },
+          { restaurant: "J.B.'s Roast & Chops", count: 2 },
+          { restaurant: "Il Forno", count: 1 },
+          { restaurant: "It's Thyme", count: 1 },
         ]
         const totalMeals = foodStats.reduce((sum, f) => sum + f.count, 0)
         const maxCount = Math.max(...foodStats.map((f) => f.count))
@@ -482,8 +481,8 @@ export default function Home() {
                 {[
                   { name: "LinkedIn", handle: "ansonstine", url: "#" },
                   { name: "Instagram", handle: "@anson.s05", url: "#" },
-                  { name: "HubSpot Community", handle: "@felixmacaspac", url: "#" },
-                  { name: "LinkedIn", handle: "felixmacaspac", url: "#" },
+                  { name: "HubSpot Community", handle: "@", url: "#" },
+                  { name: "LinkedIn", handle: "_", url: "#" },
                 ].map((social) => (
                   <Link
                     key={social.name}
