@@ -16,7 +16,7 @@ const meals: Meal[] = [
     item: "Salmon Poke Bowl",
     rating: 7.5,
     notes: "The crunch balls were not the best addition to the dish and there was less salmon than was expected, but overall the bowl tasted great",
-    photoUrl: "Salmon-Poke-Bowl.png", // place your images in public/mock-images
+    photoUrl: "Salmon-Poke-Bowl.png",
   },
   {
     id: 2,
