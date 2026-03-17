@@ -19,7 +19,7 @@ const meals: Meal[] = [
     rating: 9,
     notes: "While the filling was somewhat spare and the sauerkraut lacked a bit, the filling was incredible and the bread was perfectly crispy.",
     guest: "Ben Palmer",
-    photoUrl: "/images/mortys_reuben.png"
+    photoUrl: "/temp-images/mortys_reuben.png"
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const meals: Meal[] = [
   },
   {
     id: 7,
-    restaurant: "The Devil's Krafthouse",
+    restaurant: "Devil's Krafthouse",
     item: "Brie and Bacon Jam Burger",
     rating: 7,
     notes: "Great sweet and savory combination. Bun was good but fries were soggy and the burger lacked a wow factor.",
