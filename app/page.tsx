@@ -40,7 +40,7 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["intro", "work", "research", "volunteering", "thoughts", "wu-food", "connect"].map((section) => (
+          {["intro", "work", "research", "volunteering", "thoughts", "wu-food", "media", "life", "connect", "changelog"].map((section) => (
             <button
               key={section}
               onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
@@ -81,7 +81,7 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    Available for Work
+                    Available for Discussion
                   </div>
                   <div className="hidden sm:block">|</div>
                   <div>Based in Durham, NC</div>
@@ -130,21 +130,21 @@ export default function Home() {
             <div className="space-y-8 sm:space-y-12">
               {[
                 {
-                  year: "February 2026",
+                  year: "February 2026 - Present",
                   role: "Gap Year Planner and Researcher",
                   company: "Duke Gap Year Program",
                   description: "Compiling resources and advising students on meaningful gap year opportunities",
                   tech: ["React", "TypeScript", "Next.js"],
                 },
                 {
-                  year: "September 2025",
+                  year: "September 2025 - Present",
                   role: "Senator",
                   company: "Duke University Student Government",
                   description: "Evaluate constituent feedback from 6,500 undergraduate students, testimonials, student groups, and campus datasets to develop evidence-based recommendations shaping campus-wide funding and governance outcome",
                   tech: ["React", "GraphQL", "Framer Motion"],
                 },
                 {
-                  year: "September 2025",
+                  year: "September 2025 - Present",
                   role: "Founder and Co-Owner",
                   company: "Duke Community Cycle Share",
                   description: "Developed payment infrastructure and merchant-facing dashboard features.",
@@ -313,26 +313,26 @@ export default function Home() {
             <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
               {[
                 {
-                  title: "The Future of Web Development",
-                  excerpt: "Exploring how AI and automation are reshaping the way we build for the web.",
+                  title: "Why College Campuses Should Adpot Bicycle Infrastructure",
+                  excerpt: "See Below",
                   date: "Dec 2024",
                   readTime: "5 min",
                 },
                 {
-                  title: "Design Systems at Scale",
-                  excerpt: "Lessons learned from building and maintaining design systems across multiple products.",
+                  title: "Exploring E-Bike Payment Systems",
+                  excerpt: "See Below",
                   date: "Nov 2024",
                   readTime: "8 min",
                 },
                 {
-                  title: "Performance-First Development",
-                  excerpt: "Why performance should be a first-class citizen in your development workflow.",
+                  title: "Bus Rapid Transit Review",
+                  excerpt: "See Below",
                   date: "Oct 2024",
                   readTime: "6 min",
                 },
                 {
-                  title: "The Art of Code Review",
-                  excerpt: "Building better software through thoughtful and constructive code reviews.",
+                  title: "Factors Preventing Transit Adpotion",
+                  excerpt: "See Below",
                   date: "Sep 2024",
                   readTime: "4 min",
                 },
@@ -445,7 +445,91 @@ export default function Home() {
   </div>
 </section>
 
-        <section id="connect" ref={(el) => (sectionsRef.current[6] = el)} className="py-20 sm:py-32 opacity-0">
+      <section
+        id="media"
+        ref={(el) => (sectionsRef.current[6] = el)}
+        className="min-h-screen py-20 sm:py-32 opacity-0">
+        <div className="space-y-12 sm:space-y-16">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <h2 className="text-3xl sm:text-4xl font-light">Media Consumed</h2>
+          </div>
+
+          {/* Optional preview content */}
+          <div className="text-muted-foreground max-w-lg">
+            Books, movies, music, and other media I’ve engaged with recently.
+          </div>
+
+          {/* Button to full media page */}
+          <div className="pt-8">
+            <Link href="/media">
+              <button className="px-4 py-2 border rounded hover:bg-gray-200 transition-colors duration-300">
+                View Media
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="life"
+        ref={(el) => (sectionsRef.current[7] = el)}
+        className="min-h-screen py-20 sm:py-32 opacity-0"
+      >
+        <div className="space-y-12 sm:space-y-16">
+
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <h2 className="text-3xl sm:text-4xl font-light">Life Log</h2>
+          </div>
+
+          {/* Description */}
+          <div className="text-muted-foreground max-w-lg">
+            A timeline of experiences, projects, and moments that have shaped who I am.
+          </div>
+
+          {/* Button */}
+          <div className="pt-8">
+            <Link href="/life">
+              <button className="px-4 py-2 border rounded hover:bg-gray-200 transition-colors duration-300">
+                View Life Log
+              </button>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      <section
+          id="changelog"
+          ref={(el) => (sectionsRef.current[8] = el)}
+          className="min-h-screen py-20 sm:py-32 opacity-0"
+        >
+          <div className="space-y-12 sm:space-y-16">
+
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-3xl sm:text-4xl font-light">Changelog</h2>
+            </div>
+
+            {/* Description */}
+            <div className="text-muted-foreground max-w-lg">
+              A record of how I’ve changed, grown, and evolved over time — my shifts in thinking, priorities, and perspective.
+            </div>
+
+            {/* Button */}
+            <div className="pt-8">
+              <Link href="/changelog">
+                <button className="px-4 py-2 border rounded hover:bg-gray-200 transition-colors duration-300">
+                  View My Changelog
+                </button>
+              </Link>
+            </div>
+
+          </div>
+        </section>
+
+        <section id="connect" ref={(el) => (sectionsRef.current[9] = el)} className="py-20 sm:py-32 opacity-0">
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
