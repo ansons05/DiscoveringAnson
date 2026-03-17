@@ -436,7 +436,7 @@ export default function Home() {
 
     {/* Link to full food page */}
     <div className="pt-8">
-      <Link href="/food">
+      <Link href="app/food/page.tsx">
         <button className="px-4 py-2 border rounded hover:bg-gray-200 transition-colors duration-300">
           View Food
         </button>
@@ -462,7 +462,7 @@ export default function Home() {
 
           {/* Button to full media page */}
           <div className="pt-8">
-            <Link href="/media">
+            <Link href="app/media/page.tsx">
               <button className="px-4 py-2 border rounded hover:bg-gray-200 transition-colors duration-300">
                 View Media
               </button>
@@ -490,7 +490,7 @@ export default function Home() {
 
           {/* Button */}
           <div className="pt-8">
-            <Link href="/life">
+            <Link href="app/life/page.tsx">
               <button className="px-4 py-2 border rounded hover:bg-gray-200 transition-colors duration-300">
                 View Life Log
               </button>
@@ -519,7 +519,7 @@ export default function Home() {
 
             {/* Button */}
             <div className="pt-8">
-              <Link href="/changelog">
+              <Link href="app/changelog/page.tsx">
                 <button className="px-4 py-2 border rounded hover:bg-gray-200 transition-colors duration-300">
                   View My Changelog
                 </button>
