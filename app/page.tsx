@@ -151,10 +151,10 @@ export default function Home() {
                   tech: ["Ruby", "React", "PostgreSQL"],
                 },
                 {
-                  year: "2019",
-                  role: "Software Engineer",
-                  company: "Airbnb",
-                  description: "Created booking flow optimizations and host management tools.",
+                  year: "September 2025 - Present",
+                  role: "Sustinability Ambassador",
+                  company: "Duke University",
+                  description: "Attend bi-weekly meetings to discuss and implement sustainability initiatives on campus, including waste reduction, energy conservation, and sustainable transportation programs.",
                   tech: ["React", "Node.js", "MySQL"],
                 },
               ].map((job, index) => (
@@ -313,7 +313,7 @@ export default function Home() {
             <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
               {[
                 {
-                  title: "Why College Campuses Should Adpot Bicycle Infrastructure",
+                  title: "Music Has and Will Remain Central to My Life",
                   excerpt: "See Below",
                   date: "Dec 2024",
                   readTime: "5 min",
