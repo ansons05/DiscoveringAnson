@@ -43,7 +43,6 @@ const meals: Meal[] = [
   { id: 33, restaurant: "Ginger and Soy", item: "Tokyo Bowl", rating: 6.5, notes: "Edamame and sweet potato didn't fit, rice bland but tasty sauce.", photoUrl: "/images/tokyo_bowl.png" },
   { id: 34, restaurant: "The Devil's Krafthouse", item: "Queso Burger", rating: 6.5, notes: "Bun dominated, minimal cheese, patty cooked well.", photoUrl: "/images/queso_burger.png" },
   { id: 35, restaurant: "Pitchfork's", item: "Vanilla Cheesecake", rating: 6, notes: "Very sweet, stiff texture.", photoUrl: "/images/vanilla_cheesecake.png" },
-  { id: 36, restaurant: "Saladelia at Sanford", item: "Hot Cocoa", rating: 6, notes: "Sweet but watered down.", photoUrl: "/images/hot_cocoa.png" },
   { id: 37, restaurant: "Gothic Grill", item: "Double Patty Melt", rating: 9, notes: "Crispy bread, juicy patties, onions soft, sauce tasty.", photoUrl: "/images/double_patty_melt.png" }
 ];
 
