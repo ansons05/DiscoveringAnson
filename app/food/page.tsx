@@ -23,7 +23,6 @@ const meals: Meal[] = [
   { id: 9, restaurant: "Ginger and Soy", item: "Tune Poke Bowl", rating: 8.5, notes: "Similar to other poke bowls, tuna worked well, less crunch balls than salmon bowl.", photoUrl: "/images/tuna_poke_bowl.png" },
   { id: 10, restaurant: "Pitchfork's", item: "Tiramisu", rating: 8.5, notes: "Slightly creamy filling, overall excellent dessert.", photoUrl: "/images/tiramisu.png" },
   { id: 11, restaurant: "Pitchfork's", item: "Chicken Tenders", rating: 8.5, notes: "Crispy, warm, fries also crispy and warm.", photoUrl: "/images/chicken_tenders.png" },
-  { id: 13, restaurant: "The Devil's Krafthouse", item: "DKH Quesadilla", rating: 8.5, notes: "Warm, gooey, slightly less filling than expected.", photoUrl: "/images/dkh_quesadilla.png" },
   { id: 14, restaurant: "The Devil's Krafthouse", item: "Dilly Burger", rating: 8.5, notes: "Juicy patty, soft bun, crispy pickles, lettuce slightly overpowering.", photoUrl: "/images/dilly_burger.png" },
   { id: 15, restaurant: "Ginger and Soy", item: "Tteokbokki", rating: 8, notes: "Unique textures and flavors, dumpling and egg a great addition.", photoUrl: "/images/tteokbokki.png" },
   { id: 17, restaurant: "Il Forno", item: "Stinger Pizza", rating: 8, notes: "Soft and crunchy crust, jalapeño heat balanced with honey.", photoUrl: "/images/stinger_pizza.png" },
