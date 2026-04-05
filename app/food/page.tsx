@@ -19,7 +19,7 @@ const meals: Meal[] = [
     rating: 9,
     notes: "While the filling was somewhat spare and the sauerkraut lacked a bit, the filling was incredible and the bread was perfectly crispy.",
     guest: "Ben Palmer",
-    photoUrl: "public/images/mortys_reuben.png"
+    photoUrl: "/images/mortys_reuben.png"
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const meals: Meal[] = [
     rating: 7.5,
     notes: "The crunch balls were not the best addition and there was less salmon than expected, but overall the bowl tasted great.",
     guest: null,
-    photoUrl: "/images/salmon-poke-bowl.png"
+    photoUrl: "/images/salmon_poke_bowl.png"
   },
   {
     id: 5,
