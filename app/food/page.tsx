@@ -19,7 +19,7 @@ const meals: Meal[] = [
     rating: 9,
     notes: "While the filling was somewhat spare and the sauerkraut lacked a bit, the filling was incredible and the bread was perfectly crispy.",
     guest: "Ben Palmer",
-    photoUrl: "/temp-images/mortys_reuben.png"
+    photoUrl: "public/images/mortys_reuben.png"
   },
   {
     id: 3,
