@@ -393,13 +393,17 @@ export default function Home() {
       {/* Mock food stats */}
       {(() => {
         const foodStats = [
-          { restaurant: "Ginger and Soy", count: 7 },
-          { restaurant: "Devil's Krafthouse", count: 3 },
-          { restaurant: "Pitchfork's", count: 3 },
-          { restaurant: "J.B.'s Roast & Chops", count: 2 },
-          { restaurant: "Il Forno", count: 1 },
+          { restaurant: "Ginger and Soy", count: 9 },
+          { restaurant: "The Devil's Krafthouse", count: 11 },
+          { restaurant: "Pitchfork's", count: 5 },
+          { restaurant: "J.B.'s Roast & Chops", count: 3 },
+          { restaurant: "Il Forno", count: 3 },
           { restaurant: "It's Thyme", count: 1 },
-        ]
+          { restaurant: "Cafe", count: 1 },
+          { restaurant: "Farmstead", count: 1 },
+          { restaurant: "Saladelia at Sanford", count: 1 },
+          { restaurant: "Sazon", count: 1 },
+        ];
         const totalMeals = foodStats.reduce((sum, f) => sum + f.count, 0)
         const maxCount = Math.max(...foodStats.map((f) => f.count))
         return (
