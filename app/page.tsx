@@ -393,8 +393,8 @@ export default function Home() {
       {/* Mock food stats */}
       {(() => {
         const foodStats = [
-          { restaurant: "Ginger and Soy", count: 9 },
           { restaurant: "The Devil's Krafthouse", count: 11 },
+          { restaurant: "Ginger and Soy", count: 9 },
           { restaurant: "Pitchfork's", count: 5 },
           { restaurant: "J.B.'s Roast & Chops", count: 3 },
           { restaurant: "Il Forno", count: 3 },
