@@ -134,28 +134,24 @@ export default function Home() {
                   role: "Gap Year Planner and Researcher",
                   company: "Duke Gap Year Program",
                   description: "Compiling resources and advising students on meaningful gap year opportunities",
-                  tech: ["React", "TypeScript", "Next.js"],
                 },
                 {
                   year: "September 2025 - Present",
                   role: "Senator",
                   company: "Duke University Student Government",
                   description: "Evaluate constituent feedback from 6,500 undergraduate students, testimonials, student groups, and campus datasets to develop evidence-based recommendations shaping campus-wide funding and governance outcome",
-                  tech: ["React", "GraphQL", "Framer Motion"],
                 },
                 {
                   year: "September 2025 - Present",
                   role: "Founder and Co-Owner",
                   company: "Duke Community Cycle Share",
                   description: "Developed payment infrastructure and merchant-facing dashboard features.",
-                  tech: ["Ruby", "React", "PostgreSQL"],
                 },
                 {
                   year: "September 2025 - Present",
                   role: "Sustinability Ambassador",
                   company: "Duke University",
                   description: "Attend bi-weekly meetings to discuss and implement sustainability initiatives on campus, including waste reduction, energy conservation, and sustainable transportation programs.",
-                  tech: ["React", "Node.js", "MySQL"],
                 },
               ].map((job, index) => (
                 <div
@@ -210,7 +206,6 @@ export default function Home() {
                   role: "Student Researcher",
                   company: "Johns Hopkins University - The Cullen",
                   description: "Supported development of a murine physiological model by collecting, structuring, and analyzing vestibular and ocular datasets",
-                  tech: ["React", "TypeScript", "Next.js"],
                 },
               ].map((job, index) => (
                 <div
@@ -265,7 +260,6 @@ export default function Home() {
                   role: "Bike Mechanic",
                   company: "The Durham Bike Co-op",
                   description: "Work 5+ hours/week on Saturdays and Sundays to repair community members’ bikes as well as deconstruct older bikes for parts to use in new projects",
-                  tech: ["React", "TypeScript", "Next.js"],
                 },
               ].map((job, index) => (
                 <div
