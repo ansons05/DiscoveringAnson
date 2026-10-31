@@ -100,8 +100,17 @@ input:focus{border-color:var(--accent)}
 .confirmation{display:none;max-width:520px;margin:10vh auto;padding:24px 20px 48px}.confirmation .card{text-align:center}.confirmation .check{margin:0 auto 18px}.dashboard{display:none;max-width:560px;margin:0 auto;padding:24px 20px 48px}
 .dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
 .dash-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0}
-.dash-muted{color:var(--mute);font-size:14px}.dash-actions{display:flex;gap:10px;flex-wrap:wrap}
+.dash-card h2{font-size:23px;margin:0}
+.dash-card-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.dash-muted{color:var(--mute);font-size:14px}.dash-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.dash-actions .btn{width:auto;flex:1;min-width:180px;margin-top:0}
 .profile-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.status-pill,.count-pill{display:inline-flex;align-items:center;white-space:nowrap;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:600}
+.status-pill{background:var(--soft);color:var(--accent)}.count-pill{background:var(--bg);border:1px solid var(--line);color:var(--mute)}
+.upcoming-empty{border:1px dashed var(--line);background:var(--bg);border-radius:13px;padding:15px;color:var(--mute);font-size:14px;line-height:1.55}
+.availability-meta{font-size:12px;color:var(--mute);margin:12px 0 0}
+#backToDashboard{padding:0;font-size:13px;margin:0;white-space:nowrap}
+@media(max-width:420px){.dash-card-heading{flex-wrap:wrap}.dash-actions .btn{min-width:100%}}
 .profile-tag{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:7px 11px;color:var(--mute);font-size:13px}
 .availability-intro{color:var(--mute);font-size:14px;margin:-2px 0 14px}
 .availability-month{margin:14px 0 0}.availability-month:first-child{margin-top:0}
@@ -177,16 +186,29 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
 </section>
 <section class="dashboard" id="dashboard">
   <div class="dash-top"><div class="logo">Four<span>Course</span></div><button class="link" id="logoutBtn" type="button">Log out</button></div>
-  <h1 id="welcomeTitle">Your FourCourse profile.</h1><p class="sub">A simple snapshot of the dates that work for you.</p>
-  <div class="dash-card"><h2 style="font-size:23px">Your details</h2><div id="profileDetails" class="profile-quick">Loading profile…</div><div class="dash-actions"><button class="btn" id="joinDinnerBtn" type="button">Update my availability →</button></div></div>
-  <div class="dash-card"><h2 style="font-size:23px">Your availability</h2><p class="availability-intro">These are the dates you've told us you can make dinner.</p><div id="availabilityDetails" class="dash-muted">Loading your dates…</div></div>
+  <h1 id="welcomeTitle">Welcome to FourCourse.</h1><p class="sub">Your dinners, availability, and preferences—all in one place.</p>
+  <div class="dash-card upcoming-card">
+    <div class="dash-card-heading"><h2>Upcoming dinners</h2><span class="status-pill" id="dinnerStatus">Not matched yet</span></div>
+    <div id="upcomingDinnerDetails" class="upcoming-empty">You don't have a dinner assignment yet. Once you're matched, your dinner date, restaurant, and group details will appear here. We'll also email you the invitation.</div>
+  </div>
+  <div class="dash-card">
+    <div class="dash-card-heading"><div><h2>Your availability</h2><p class="availability-intro">The dates you've told us work for dinner.</p></div><span class="count-pill" id="availabilityCount">0 dates</span></div>
+    <div id="availabilityDetails" class="dash-muted">Loading your dates…</div>
+    <p class="availability-meta" id="availabilityMeta"></p>
+    <div class="dash-actions"><button class="btn" id="joinDinnerBtn" type="button">Edit available dates →</button></div>
+  </div>
+  <div class="dash-card">
+    <div class="dash-card-heading"><h2>Your profile</h2></div>
+    <div id="profileDetails" class="profile-quick">Loading profile…</div>
+    <div class="dash-actions"><button class="btn secondary" id="editProfileBtn" type="button">Edit profile & preferences</button></div>
+  </div>
   <p class="fine">Need help? Contact four.course.dining@gmail.com</p>
 </section>
 
 <div class="wrap" id="dinnerApp" style="display:none">
   <header>
     <div class="logo">Four<span>Course</span></div>
-    <div class="hint-top">Free for students</div>
+    <div style="display:flex;align-items:center;gap:14px"><button class="link" id="backToDashboard" type="button" hidden>← Dashboard</button><div class="hint-top">Free for students</div></div>
   </header>
 
   <div class="progress" id="progress" hidden><i></i><i></i><i></i><i></i><i></i></div>
@@ -234,8 +256,9 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
       <div class="cal-nav"><button type="button" id="calPrev" aria-label="Previous month">‹</button><strong id="calMonth"></strong><button type="button" id="calNext" aria-label="Next month">›</button></div>
       <div class="cal-head"><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div>
       <div class="cal" id="cal"></div>
-      <div class="count" id="count">Tap the days you’re free.</div>
+      <div class="count" id="count">Tap every date that works for you. Selected dates are highlighted.</div>
       <button class="btn" id="go1" disabled>Continue →</button>
+      <button class="btn secondary" id="saveAvailabilityOnly" type="button" hidden>Save availability changes</button>
       <button class="link" data-back>← Back</button>
     </div>
   </section>
@@ -297,6 +320,7 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
       <div id="summary2"></div>
       <p class="receipt-note">We’ll use your availability to find a dinner that fits. Keep an eye on your inbox for your invitation.</p>
     </div>
+    <button class="btn" id="doneDashboardBtn" type="button">Back to my dashboard</button>
   </section>
 </div>
 
@@ -309,7 +333,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_5kBTFCLBvaoIGE7_MKf9mg_QnNYAWKL';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let authMode='signup', currentUser=null, cur=0, pendingEmail='';
+let authMode='signup', currentUser=null, cur=0, pendingEmail='', editingMode='new', activeProfile=null;
 const S={school:'',days:new Set(),gender:'No preference',groupPreference:'No preference',participantGender:'',genderSelfDescribe:'',size:'4',answers:[]};
 const authShell=$('#authShell'),dashboard=$('#dashboard'),app=$('#dinnerApp'),confirmationView=$('#confirmationView'),emailPendingView=$('#emailPendingView');
 function showView(which){
@@ -415,25 +439,139 @@ $('#resendVerification').onclick=async()=>{
 };
 $('#pendingBackToLogin').onclick=()=>{showView('auth');setAuthMode('login');$('#authEmail').value=pendingEmail;};
 async function ensureProfile(){if(!currentUser)return;const {error}=await supabase.from('profiles').upsert({id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||''},{onConflict:'id'});if(error)throw error;}
+function normalizeAvailability(profileDates, legacyDaysFree){
+ // Current records store dates as a Postgres date[] on profiles. Older signups
+ // stored the same ISO dates as a comma-separated string in dinner_signups.days_free.
+ const fromProfile=Array.isArray(profileDates)?profileDates:[];
+ const fromLegacy=typeof legacyDaysFree==='string'?legacyDaysFree.split(',').map(x=>x.trim()):[];
+ const source=fromProfile.length?fromProfile:fromLegacy;
+ return [...new Set(source.map(x=>String(x||'').trim().slice(0,10)).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x)))].sort();
+}
 function renderAvailability(dates){
- const unique=[...new Set((dates||[]).filter(Boolean).map(x=>String(x).slice(0,10)))].sort();
- if(!unique.length)return '<div class="availability-empty">You haven’t selected any dinner dates yet. Choose “Update my availability” to get started.</div>';
+ const unique=normalizeAvailability(dates, null);
+ if(!unique.length)return '<div class="availability-empty">No dates have been saved yet. Select the dates that work for you and save your availability.</div>';
  const groups=new Map();
- unique.forEach(key=>{const parts=key.split('-').map(Number);if(parts.length!==3||!parts[0]||!parts[1]||!parts[2])return;const d=new Date(parts[0],parts[1]-1,parts[2],12);const month=d.toLocaleDateString('en-US',{month:'long',year:'numeric'});if(!groups.has(month))groups.set(month,[]);groups.get(month).push(d);});
- if(!groups.size)return '<div class="availability-empty">No available dates to display yet.</div>';
+ unique.forEach(key=>{const parts=key.split('-').map(Number);if(parts.length!==3||!parts[0]||!parts[1]||!parts[2])return;const d=new Date(parts[0],parts[1]-1,parts[2],12);if(Number.isNaN(d.getTime()))return;const month=d.toLocaleDateString('en-US',{month:'long',year:'numeric'});if(!groups.has(month))groups.set(month,[]);groups.get(month).push(d);});
+ if(!groups.size)return '<div class="availability-empty">No saved dates could be displayed. Please edit and save your availability again.</div>';
  return [...groups.entries()].map(([month,days])=>'<div class="availability-month"><h3>'+esc(month)+'</h3><div class="availability-days">'+days.map(d=>'<div class="availability-chip"><strong>'+d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}).replace(',', '')+'</strong><span>Available for dinner</span></div>').join('')+'</div></div>').join('');
 }
-async function openDashboard(){
+function dateCount(dates){return normalizeAvailability(dates,null).length;}
+function formatSavedDate(value){if(!value)return 'Not updated yet';const d=new Date(value);return Number.isNaN(d.getTime())?'Not updated yet':'Last updated '+d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+async function getLatestSignupDates(){
+ const {data,error}=await supabase.from('dinner_signups').select('days_free,created_at').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
+ if(error)throw error;
+ return data||null;
+}
+async function openDashboard(message=''){
  showView('dashboard');
  $('#welcomeTitle').textContent='Welcome, '+(currentUser.user_metadata?.full_name?.split(' ')[0]||'back')+'.';
- const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_preference,availability,updated_at').eq('id',currentUser.id).maybeSingle();
- if(error){$('#profileDetails').textContent='Could not load your profile.';$('#availabilityDetails').textContent='Could not load your availability.';return;}
- const tags=[profile?.school,profile?.gender_preference].filter(Boolean);
- $('#profileDetails').innerHTML=tags.length?tags.map(x=>'<span class="profile-tag">'+esc(x)+'</span>').join(''):'<span class="profile-tag">Your profile is ready</span>';
- $('#availabilityDetails').innerHTML=renderAvailability(profile?.availability);
+ $('#profileDetails').textContent='Loading profile…';
+ $('#availabilityDetails').textContent='Loading your dates…';
+ $('#availabilityMeta').textContent='';
+ try{
+  const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_self_description,gender_preference,questionnaire_answers,availability,updated_at').eq('id',currentUser.id).maybeSingle();
+  if(error)throw error;
+  activeProfile=profile||{};
+  let dates=normalizeAvailability(profile?.availability,null);
+  let latestSignup=null;
+  // Backfill display from older signup records when the profile availability array
+  // is empty. This is important for accounts created before availability was added.
+  if(!dates.length){
+   try{latestSignup=await getLatestSignupDates();dates=normalizeAvailability(null,latestSignup?.days_free);}
+   catch(signupError){console.warn('Could not read legacy dinner signup dates:',signupError);}
+  }
+  const tags=[profile?.school,profile?.participant_gender,profile?.gender_preference].filter(Boolean);
+  $('#profileDetails').innerHTML=[profile?.email,...tags].filter(Boolean).map(x=>'<span class="profile-tag">'+esc(x)+'</span>').join('')||'<span class="profile-tag">Your profile is ready</span>';
+  $('#availabilityCount').textContent=dates.length+' '+(dates.length===1?'date':'dates');
+  $('#availabilityDetails').innerHTML=renderAvailability(dates);
+  $('#availabilityMeta').textContent=formatSavedDate(profile?.updated_at||latestSignup?.created_at)+(message?' · '+message:'');
+  const hasAvailability=dates.length>0;
+  $('#joinDinnerBtn').textContent=hasAvailability?'Edit available dates →':'Set my availability →';
+  $('#upcomingDinnerDetails').textContent='You don’t have a dinner assignment yet. Once you’re matched, your dinner date, restaurant, and group details will appear here. We’ll also email you the invitation.';
+  $('#dinnerStatus').textContent='Awaiting match';
+ }catch(error){
+  console.error('FourCourse dashboard load failed:',error);
+  $('#profileDetails').textContent='We could not load your profile. Please refresh the page or log in again.';
+  $('#availabilityDetails').innerHTML='<div class="availability-empty">We could not load your saved dates. Please refresh the page. If the problem continues, contact FourCourse support.</div>';
+  $('#availabilityMeta').textContent='';
+ }
+}
+function parseSavedAnswers(raw){
+ if(!Array.isArray(raw))return [];
+ return raw.map((item,index)=>{
+  if(item===null||item===undefined)return null;
+  if(typeof item==='number'){
+   const q=QUESTIONS[index];return q?{id:q.id,value:item,mode:q.mode,weight:q.weight}:null;
+  }
+  if(typeof item==='object'&&item.id&&typeof item.value==='number'){
+   const q=QUESTIONS.find(q=>q.id===Number(item.id));return q?{id:q.id,value:item.value,mode:q.mode,weight:q.weight}:null;
+  }
+  return null;
+ }).filter(Boolean);
+}
+function selectOption(containerSelector,value){
+ const group=$(containerSelector);if(!group)return;
+ group.querySelectorAll('.opt').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.v===value)));
+}
+async function loadProfileIntoForm(){
+ const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_self_description,gender_preference,questionnaire_answers,availability').eq('id',currentUser.id).maybeSingle();
+ if(error)throw error;
+ activeProfile=profile||{};
+ let savedDates=normalizeAvailability(profile?.availability,null);
+ if(!savedDates.length){const legacy=await getLatestSignupDates();savedDates=normalizeAvailability(null,legacy?.days_free);}
+ S.school=profile?.school||'';S.days=new Set(savedDates);
+ S.participantGender=profile?.participant_gender||'';S.genderSelfDescribe=profile?.gender_self_description||'';
+ S.groupPreference=profile?.gender_preference||'No preference';S.gender=S.groupPreference;
+ S.answers=parseSavedAnswers(profile?.questionnaire_answers);
+ qi=0;school.value=S.school;$('#genderSelfDescribe').value=S.genderSelfDescribe;
+ $('#genderOtherWrap').hidden=S.participantGender!=='Another identity';
+ selectOption('#participantGender',S.participantGender);
+ selectOption('[data-key="groupPreference"]',S.groupPreference);
+ $('#go0').disabled=S.school.trim().length<2;
+ $('#go1').disabled=S.days.size===0;
+ const count=S.days.size;$('#count').innerHTML=count?'<b>'+count+' date'+(count===1?'':'s')+'</b> selected — tap dates to add or remove them.':'Tap every date that works for you.';
+ renderCalendar();
+}
+async function openApp(mode='profile'){
+ editingMode=mode;
+ try{await loadProfileIntoForm();}catch(error){alert('We could not load your saved preferences: '+error.message);return;}
+ const hasExistingProfile=!!(S.school||S.days.size||S.answers.length||S.participantGender);
+ if(mode==='availability'&&!hasExistingProfile)mode='profile';
+ editingMode=mode;
+ $('#backToDashboard').hidden=false;
+ $('#saveAvailabilityOnly').hidden=mode!=='availability';
+ showView('app');
+ show(mode==='availability'?2:0);
+}
+async function syncCurrentDinnerSignup(payload){
+ const {data:existing,error:findError}=await supabase.from('dinner_signups').select('id').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
+ if(findError)throw findError;
+ if(existing?.id){
+  const {error}=await supabase.from('dinner_signups').update(payload).eq('id',existing.id);
+  if(error)throw error;
+ }else{
+  const {error}=await supabase.from('dinner_signups').insert(payload);
+  if(error)throw error;
+ }
+}
+async function saveAvailabilityOnly(){
+ const btn=$('#saveAvailabilityOnly');btn.disabled=true;btn.textContent='Saving…';
+ try{
+  const dates=[...S.days].sort();
+  const {error:pErr}=await supabase.from('profiles').update({availability:dates,updated_at:new Date().toISOString()}).eq('id',currentUser.id);
+  if(pErr)throw pErr;
+  const signupPayload={user_id:currentUser.id,school:activeProfile?.school||S.school||null,days_free:dates.join(', '),participant_gender:activeProfile?.participant_gender||S.participantGender||null,gender_self_description:activeProfile?.gender_self_description||S.genderSelfDescribe||null,gender_preference:activeProfile?.gender_preference||S.groupPreference||'No preference',questionnaire_answers:activeProfile?.questionnaire_answers||[]};
+  await syncCurrentDinnerSignup(signupPayload);
+  await openDashboard('Availability saved');
+ }catch(error){alert('We could not update your availability: '+error.message);}
+ finally{btn.disabled=false;btn.textContent='Save availability changes';}
 }
 $('#logoutBtn').onclick=async()=>{await supabase.auth.signOut();currentUser=null;setAuthMode('login');showView('auth');};
-$('#joinDinnerBtn').onclick=()=>openApp();
+$('#joinDinnerBtn').onclick=()=>openApp('availability');
+$('#editProfileBtn').onclick=()=>openApp('profile');
+$('#backToDashboard').onclick=()=>openDashboard();
+$('#saveAvailabilityOnly').onclick=saveAvailabilityOnly;
+$('#doneDashboardBtn').onclick=()=>openDashboard('Your preferences are saved');
 async function boot(){
  if(!configured){showView('auth');$('#authError').textContent='Setup required: add your Supabase project URL and publishable/anon key to this file, then run the included SQL setup.';return;}
  const {data:{session}}=await supabase.auth.getSession();
@@ -484,7 +622,7 @@ function renderCalendar(){
   b.type='button';b.setAttribute('aria-pressed',String(S.days.has(k)));b.setAttribute('aria-label',fmt(d));
   b.innerHTML='<small>'+(day===1?d.toLocaleDateString('en-US',{month:'short'}):'')+'</small>'+day;
   const dow=d.getDay();if(d<firstAllowed||d>lastAllowed||(dow>=1&&dow<=4))b.disabled=true;
-  b.onclick=()=>{if(S.days.has(k))S.days.delete(k);else S.days.add(k);b.setAttribute('aria-pressed',String(S.days.has(k)));const n=S.days.size;$('#count').innerHTML=n?'<b>'+n+' day'+(n>1?'s':'')+'</b> selected'+(n===1?' — add more to match faster':''):'Tap the days you’re free.';$('#go1').disabled=!n;};
+  b.onclick=()=>{if(S.days.has(k))S.days.delete(k);else S.days.add(k);b.setAttribute('aria-pressed',String(S.days.has(k)));const n=S.days.size;$('#count').innerHTML=n?'<b>'+n+' date'+(n===1?'':'s')+'</b> selected — tap dates to add or remove them.':'Tap every date that works for you.';$('#go1').disabled=!n;};
   cal.appendChild(b);
  }
 }
@@ -497,9 +635,22 @@ $('#go2').onclick=()=>{if(!S.participantGender){alert('Please select your gender
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function summary(){const days=[...S.days].sort().map(k=>fmt(new Date(k+'T12:00:00')));const dayTxt=days.length>3?days.slice(0,3).join(', ')+' +'+(days.length-3)+' more':days.join(', ');const genderLabel=S.participantGender==='Another identity'&&S.genderSelfDescribe?'Another identity — '+S.genderSelfDescribe:S.participantGender;return [['School',S.school],['Free on',dayTxt],['Your gender',genderLabel],['Group preference',S.groupPreference+' · 4 people']].map(r=>'<div class="sumrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>').join('');}
 function availabilityReceipt(){const groups=new Map();[...S.days].sort().forEach(key=>{const [y,m,d]=key.split('-').map(Number);const date=new Date(y,m-1,d,12);const month=date.toLocaleDateString('en-US',{month:'long',year:'numeric'});if(!groups.has(month))groups.set(month,[]);groups.get(month).push(date);});if(!groups.size)return '<div class="availability-empty">No dates selected.</div>';return [...groups.entries()].map(([month,days])=>'<div class="availability-month"><h3>'+esc(month)+'</h3><div class="availability-days">'+days.map(d=>'<div class="availability-chip"><strong>'+d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}).replace(',', '')+'</strong><span>Available for dinner</span></div>').join('')+'</div></div>').join('');}
-async function submit(){const btn=$('#go3');btn.disabled=true;btn.textContent='Saving…';try{const values=Array(20).fill(null);S.answers.forEach(a=>{values[a.id-1]=a.value});const {error:pErr}=await supabase.from('profiles').upsert({id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||'',school:S.school,participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values,availability:[...S.days].sort()},{onConflict:'id'});if(pErr)throw pErr;const {error:dErr}=await supabase.from('dinner_signups').insert({user_id:currentUser.id,school:S.school,days_free:[...S.days].sort().join(', '),participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values});if(dErr)throw dErr;show(5);}catch(e){alert('We could not save your preferences: '+e.message);}finally{btn.disabled=false;btn.textContent='Save my dinner preferences';}}
+async function submit(){
+ const btn=$('#go3');btn.disabled=true;btn.textContent='Saving…';
+ try{
+  const values=Array(20).fill(null);S.answers.forEach(a=>{values[a.id-1]=a.value});
+  const profilePayload={id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||activeProfile?.full_name||'',school:S.school,participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values,availability:[...S.days].sort(),updated_at:new Date().toISOString()};
+  const {error:pErr}=await supabase.from('profiles').upsert(profilePayload,{onConflict:'id'});if(pErr)throw pErr;
+  const signupPayload={user_id:currentUser.id,school:S.school,days_free:[...S.days].sort().join(', '),participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values};
+  await syncCurrentDinnerSignup(signupPayload);
+  activeProfile={...activeProfile,...profilePayload};
+  $('#doneMsg').textContent='Your preferences are saved. You can update these dates or your profile any time from your dashboard.';
+  $('#summary2').innerHTML=availabilityReceipt();
+  show(5);
+ }catch(e){alert('We could not save your preferences: '+e.message);}
+ finally{btn.disabled=false;btn.textContent='Save my dinner preferences';}
+}
 $('#go3').onclick=submit;
-async function openApp(){S.school='';S.days.clear();S.gender='No preference';S.groupPreference='No preference';S.participantGender='';S.genderSelfDescribe='';S.answers=[];qi=0;school.value='';$('#genderSelfDescribe').value='';$('#genderOtherWrap').hidden=true;$$('.opts .opt').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v==='No preference')));$('#go1').disabled=true;$('#count').textContent='Tap the days you’re free.';renderCalendar();showView('app');show(0);}
 await boot();
 </script>
 </body>
