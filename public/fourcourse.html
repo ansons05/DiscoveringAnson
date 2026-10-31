@@ -101,6 +101,24 @@ input:focus{border-color:var(--accent)}
 .dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
 .dash-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0}
 .dash-muted{color:var(--mute);font-size:14px}.dash-actions{display:flex;gap:10px;flex-wrap:wrap}
+.profile-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.profile-tag{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:7px 11px;color:var(--mute);font-size:13px}
+.availability-intro{color:var(--mute);font-size:14px;margin:-2px 0 14px}
+.availability-month{margin:14px 0 0}.availability-month:first-child{margin-top:0}
+.availability-month h3{font:600 16px Fraunces,Georgia,serif;margin:0 0 9px;color:var(--ink)}
+.availability-days{display:flex;flex-wrap:wrap;gap:8px}
+.availability-chip{min-width:82px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:9px 11px;text-align:center}
+.availability-chip strong{display:block;font-size:15px;color:var(--ink);font-weight:600}
+.availability-chip span{display:block;font-size:11px;color:var(--mute);margin-top:1px}
+.availability-empty{padding:14px;border:1px dashed var(--line);border-radius:12px;color:var(--mute);font-size:14px}
+.receipt-title{font:600 17px Fraunces,Georgia,serif;margin:0 0 12px}
+.receipt-note{font-size:13px;color:var(--mute);margin:12px 0 0}
+.email-pending{display:none;max-width:520px;margin:7vh auto;padding:24px 20px 48px}
+.email-pending .card{text-align:center}
+.email-pending .mail-icon{width:58px;height:58px;border-radius:50%;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-size:27px;margin:0 auto 18px}
+.email-pending .pending-address{font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+.email-pending .pending-actions{margin-top:18px}
+.email-pending .btn.secondary{margin-top:10px}
 .btn.secondary{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
 input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
 @media(max-width:500px){.auth-shell{margin:3vh auto}}
@@ -124,6 +142,21 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
     <p class="auth-note">Use your university email. Your password is securely managed by our authentication provider; FourCourse never sees or stores it.</p>
   </div>
 </section>
+<section class="email-pending" id="emailPendingView" aria-live="polite">
+  <div class="auth-brand">Four<span>Course</span></div>
+  <div class="card">
+    <div class="mail-icon" aria-hidden="true">✉</div>
+    <h1 style="font-size:36px">Check your email.</h1>
+    <p class="sub">We sent a verification link to:</p>
+    <p class="pending-address" id="pendingEmail"></p>
+    <p class="auth-note" style="font-size:15px;line-height:1.6">You must click the link in that email to verify your university address before you can log in or join a dinner. After verifying, return to FourCourse and log in.</p>
+    <div class="pending-actions">
+      <button class="btn" id="resendVerification" type="button">Resend verification email</button>
+      <button class="btn secondary" id="pendingBackToLogin" type="button">Back to log in</button>
+      <p class="auth-note" id="pendingNote">Check your inbox and spam folder. The link will bring you back to FourCourse.</p>
+    </div>
+  </div>
+</section>
 <section class="confirmation" id="confirmationView">
   <div class="auth-brand">Four<span>Course</span></div>
   <div class="card">
@@ -136,9 +169,9 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
 </section>
 <section class="dashboard" id="dashboard">
   <div class="dash-top"><div class="logo">Four<span>Course</span></div><button class="link" id="logoutBtn" type="button">Log out</button></div>
-  <h1 id="welcomeTitle">Your FourCourse profile.</h1><p class="sub">Your account and dinner activity, all in one place.</p>
-  <div class="dash-card"><h2 style="font-size:23px">Your profile</h2><div id="profileDetails" class="dash-muted">Loading profile…</div><div class="dash-actions"><button class="btn" id="joinDinnerBtn" type="button">Find a dinner →</button></div></div>
-  <div class="dash-card"><h2 style="font-size:23px">Your dinners</h2><div id="dinnerDetails" class="dash-muted">Your dinner registrations will appear here.</div></div>
+  <h1 id="welcomeTitle">Your FourCourse profile.</h1><p class="sub">A simple snapshot of the dates that work for you.</p>
+  <div class="dash-card"><h2 style="font-size:23px">Your details</h2><div id="profileDetails" class="profile-quick">Loading profile…</div><div class="dash-actions"><button class="btn" id="joinDinnerBtn" type="button">Update my availability →</button></div></div>
+  <div class="dash-card"><h2 style="font-size:23px">Your availability</h2><p class="availability-intro">These are the dates you've told us you can make dinner.</p><div id="availabilityDetails" class="dash-muted">Loading your dates…</div></div>
   <p class="fine">Need help? Contact four.course.dining@gmail.com</p>
 </section>
 
@@ -252,8 +285,9 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
     <h2>You’re on the list.</h2>
     <p class="sub" id="doneMsg"></p>
     <div class="card">
+      <p class="receipt-title">The dates you’re available</p>
       <div id="summary2"></div>
-      <p class="fine" style="text-align:left;margin-top:16px">Check your inbox (and spam) for a note from FourCourse. You can cancel anytime before the dinner.</p>
+      <p class="receipt-note">We’ll use your availability to find a dinner that fits. Keep an eye on your inbox for your invitation.</p>
     </div>
   </section>
 </div>
@@ -267,32 +301,120 @@ const SUPABASE_ANON_KEY = 'sb_publishable_5kBTFCLBvaoIGE7_MKf9mg_QnNYAWKL';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let authMode='signup', currentUser=null, cur=0;
+let authMode='signup', currentUser=null, cur=0, pendingEmail='';
 const S={school:'',days:new Set(),gender:'No preference',groupPreference:'No preference',participantGender:'',genderSelfDescribe:'',size:'4',answers:[]};
-const authShell=$('#authShell'),dashboard=$('#dashboard'),app=$('#dinnerApp'),confirmationView=$('#confirmationView');
-function showView(which){authShell.style.display=which==='auth'?'block':'none';dashboard.style.display=which==='dashboard'?'block':'none';app.style.display=which==='app'?'block':'none';confirmationView.style.display=which==='confirmation'?'block':'none';}
+const authShell=$('#authShell'),dashboard=$('#dashboard'),app=$('#dinnerApp'),confirmationView=$('#confirmationView'),emailPendingView=$('#emailPendingView');
+function showView(which){
+ authShell.style.display=which==='auth'?'block':'none';
+ dashboard.style.display=which==='dashboard'?'block':'none';
+ app.style.display=which==='app'?'block':'none';
+ confirmationView.style.display=which==='confirmation'?'block':'none';
+ emailPendingView.style.display=which==='pending'?'block':'none';
+}
 function setAuthMode(mode){authMode=mode;$('#tabSignup').classList.toggle('active',mode==='signup');$('#tabLogin').classList.toggle('active',mode==='login');$('#nameField').style.display=mode==='signup'?'block':'none';$('#authName').required=mode==='signup';$('#authPassword').autocomplete=mode==='signup'?'new-password':'current-password';$('#authTitle').textContent=mode==='signup'?'Your table is waiting.':'Welcome back.';$('#authSubtitle').textContent=mode==='signup'?'Create an account to join FourCourse dinners and keep your profile in one place.':'Log in to see your profile and dinner activity.';$('#authSubmit').textContent=mode==='signup'?'Create account':'Log in';$('#authError').textContent='';}
+function verificationRedirectUrl(){
+ const url=new URL(window.location.href);
+ url.search='';url.searchParams.set('fourcourse-confirmed','1');url.hash='';
+ return url.toString();
+}
+function showEmailPending(email,note){
+ pendingEmail=(email||'').trim().toLowerCase();
+ $('#pendingEmail').textContent=pendingEmail;
+ $('#pendingNote').textContent=note||'Check your inbox and spam folder. The link will bring you back to FourCourse.';
+ showView('pending');
+}
 $('#tabSignup').onclick=()=>setAuthMode('signup');$('#tabLogin').onclick=()=>setAuthMode('login');
 function validStudentEmail(email){return /^[^@\s]+@[^@\s]+\.edu$/i.test(email)}
-$('#authForm').addEventListener('submit',async e=>{e.preventDefault();$('#authSubmit').disabled=true;$('#authSubmit').textContent='Please wait…';$('#authError').textContent='';try{
- if(!configured)throw new Error('The website still needs to be connected to your Supabase project. Follow the setup guide included with this package.');
- const email=$('#authEmail').value.trim().toLowerCase(),password=$('#authPassword').value;
- if(!validStudentEmail(email))throw new Error('Please use your university .edu email address.');
- if(authMode==='signup'){
-  const redirectUrl=new URL(window.location.href);redirectUrl.search='?fourcourse-confirmed=1';redirectUrl.hash='';const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:redirectUrl.toString(),data:{full_name:$('#authName').value.trim()}}});if(error)throw error;
-  if(data.session){currentUser=data.user;await ensureProfile();await openApp();}else{$('#authError').style.color='var(--ok)';$('#authError').textContent='Account created. Check your email for a verification link, then return here to log in.';setAuthMode('login');}
- }else{const {data,error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;currentUser=data.user;await ensureProfile();await openDashboard();}
- }catch(err){$('#authError').style.color='#c2410c';$('#authError').textContent=err.message||'Something went wrong. Please try again.';}finally{$('#authSubmit').disabled=false;$('#authSubmit').textContent=authMode==='signup'?'Create account':'Log in';}});
+$('#authForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('#authSubmit').disabled=true;$('#authSubmit').textContent='Please wait…';$('#authError').textContent='';
+ try{
+  if(!configured)throw new Error('The website still needs to be connected to your Supabase project. Follow the setup guide included with this package.');
+  const email=$('#authEmail').value.trim().toLowerCase(),password=$('#authPassword').value;
+  if(!validStudentEmail(email))throw new Error('Please use your university .edu email address.');
+  if(authMode==='signup'){
+   const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:verificationRedirectUrl(),data:{full_name:$('#authName').value.trim()}}});
+   if(error)throw error;
+   const isVerified=!!(data.user?.email_confirmed_at||data.user?.confirmed_at);
+   if(!isVerified){
+    // Never let a session created during signup bypass the email-verification gate.
+    if(data.session)await supabase.auth.signOut();
+    currentUser=null;
+    showEmailPending(email,'A verification email has been requested. You must click its link before logging in. If it does not arrive, check spam or use Resend verification email below.');
+   }else if(data.session){
+    currentUser=data.user;await ensureProfile();await openDashboard();
+   }else{
+    setAuthMode('login');$('#authError').style.color='var(--ok)';$('#authError').textContent='This email is already verified. You can log in.';
+   }
+  }else{
+   const {data,error}=await supabase.auth.signInWithPassword({email,password});
+   if(error){
+    if(error.code==='email_not_confirmed'||/email not confirmed/i.test(error.message||'')){
+     showEmailPending(email,'This account has not been verified yet. Click the verification link before logging in, or request a new one below.');
+     return;
+    }
+    throw error;
+   }
+   const isVerified=!!(data.user?.email_confirmed_at||data.user?.confirmed_at);
+   if(!isVerified){await supabase.auth.signOut();currentUser=null;showEmailPending(email,'This account has not been verified yet. Click the verification link before logging in, or request a new one below.');return;}
+   currentUser=data.user;await ensureProfile();await openDashboard();
+  }
+ }catch(err){$('#authError').style.color='#c2410c';$('#authError').textContent=err.message||'Something went wrong. Please try again.';}
+ finally{$('#authSubmit').disabled=false;$('#authSubmit').textContent=authMode==='signup'?'Create account':'Log in';}
+});
+$('#resendVerification').onclick=async()=>{
+ const btn=$('#resendVerification');btn.disabled=true;btn.textContent='Sending…';$('#pendingNote').textContent='Requesting a new verification email…';
+ try{
+  const {error}=await supabase.auth.resend({type:'signup',email:pendingEmail,options:{emailRedirectTo:verificationRedirectUrl()}});
+  if(error)throw error;
+  $('#pendingNote').textContent='A new verification email has been requested. Check your inbox and spam folder.';
+ }catch(error){$('#pendingNote').textContent=error.message||'We could not resend the email. Please try again shortly.';}
+ finally{btn.disabled=false;btn.textContent='Resend verification email';}
+};
+$('#pendingBackToLogin').onclick=()=>{showView('auth');setAuthMode('login');$('#authEmail').value=pendingEmail;};
 async function ensureProfile(){if(!currentUser)return;const {error}=await supabase.from('profiles').upsert({id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||''},{onConflict:'id'});if(error)throw error;}
-async function openDashboard(){showView('dashboard');$('#welcomeTitle').textContent='Welcome, '+(currentUser.user_metadata?.full_name?.split(' ')[0]||'back')+'.';const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_self_description,gender_preference,updated_at').eq('id',currentUser.id).maybeSingle();if(error)$('#profileDetails').textContent='Could not load your profile.';else{$('#profileDetails').innerHTML=[['Name',profile?.full_name],['Email',profile?.email],['School',profile?.school],['Gender',profile?.participant_gender],['Additional gender description',profile?.gender_self_description],['Group preference',profile?.gender_preference]].filter(x=>x[1]).map(x=>`<div class="sumrow"><span>${esc(x[0])}</span><span>${esc(x[1])}</span></div>`).join('')||'Your profile is ready. Complete your first dinner registration to add your preferences.';}
- const {data:dinners,error:de}=await supabase.from('dinner_signups').select('school,days_free,gender_preference,participant_gender,created_at').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(10);$('#dinnerDetails').innerHTML=de?'Could not load dinner activity.':(dinners?.length?dinners.map(d=>`<div class="sumrow"><span>${new Date(d.created_at).toLocaleDateString()}</span><span>${esc(d.school||'Dinner signup')} · ${esc(d.days_free||'')} · ${esc(d.gender_preference||'')}</span></div>`).join(''):'No dinner registrations yet.');}
+function renderAvailability(dates){
+ const unique=[...new Set((dates||[]).filter(Boolean).map(x=>String(x).slice(0,10)))].sort();
+ if(!unique.length)return '<div class="availability-empty">You haven’t selected any dinner dates yet. Choose “Update my availability” to get started.</div>';
+ const groups=new Map();
+ unique.forEach(key=>{const parts=key.split('-').map(Number);if(parts.length!==3||!parts[0]||!parts[1]||!parts[2])return;const d=new Date(parts[0],parts[1]-1,parts[2],12);const month=d.toLocaleDateString('en-US',{month:'long',year:'numeric'});if(!groups.has(month))groups.set(month,[]);groups.get(month).push(d);});
+ if(!groups.size)return '<div class="availability-empty">No available dates to display yet.</div>';
+ return [...groups.entries()].map(([month,days])=>'<div class="availability-month"><h3>'+esc(month)+'</h3><div class="availability-days">'+days.map(d=>'<div class="availability-chip"><strong>'+d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}).replace(',', '')+'</strong><span>Available for dinner</span></div>').join('')+'</div></div>').join('');
+}
+async function openDashboard(){
+ showView('dashboard');
+ $('#welcomeTitle').textContent='Welcome, '+(currentUser.user_metadata?.full_name?.split(' ')[0]||'back')+'.';
+ const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_preference,availability,updated_at').eq('id',currentUser.id).maybeSingle();
+ if(error){$('#profileDetails').textContent='Could not load your profile.';$('#availabilityDetails').textContent='Could not load your availability.';return;}
+ const tags=[profile?.school,profile?.gender_preference].filter(Boolean);
+ $('#profileDetails').innerHTML=tags.length?tags.map(x=>'<span class="profile-tag">'+esc(x)+'</span>').join(''):'<span class="profile-tag">Your profile is ready</span>';
+ $('#availabilityDetails').innerHTML=renderAvailability(profile?.availability);
+}
 $('#logoutBtn').onclick=async()=>{await supabase.auth.signOut();currentUser=null;setAuthMode('login');showView('auth');};
 $('#joinDinnerBtn').onclick=()=>openApp();
-async function boot(){if(!configured){showView('auth');$('#authError').textContent='Setup required: add your Supabase project URL and publishable/anon key to this file, then run the included SQL setup.';return;}const {data:{session}}=await supabase.auth.getSession();const isEmailConfirmation=new URLSearchParams(window.location.search).get('fourcourse-confirmed')==='1';if(isEmailConfirmation){if(session){currentUser=session.user;showView('confirmation');}else{showView('auth');$('#authError').textContent='Your email link was opened, but we could not establish a session. Please log in to continue.';setAuthMode('login');}}else if(session){currentUser=session.user;try{await ensureProfile();await openDashboard()}catch(e){showView('auth');$('#authError').textContent=e.message}}else showView('auth');supabase.auth.onAuthStateChange((_event,session)=>{if(!session){currentUser=null;if(!isEmailConfirmation)showView('auth');}});}
+async function boot(){
+ if(!configured){showView('auth');$('#authError').textContent='Setup required: add your Supabase project URL and publishable/anon key to this file, then run the included SQL setup.';return;}
+ const {data:{session}}=await supabase.auth.getSession();
+ const isEmailConfirmation=new URLSearchParams(window.location.search).get('fourcourse-confirmed')==='1';
+ if(isEmailConfirmation){
+  if(session&&(session.user?.email_confirmed_at||session.user?.confirmed_at)){currentUser=session.user;showView('confirmation');}
+  else{if(session)await supabase.auth.signOut();currentUser=null;showView('auth');setAuthMode('login');$('#authError').textContent='We could not verify this link. It may have expired or already been used. Request a new verification email and try again.';}
+ }else if(session){
+  const isVerified=!!(session.user?.email_confirmed_at||session.user?.confirmed_at);
+  if(!isVerified){await supabase.auth.signOut();currentUser=null;showView('auth');setAuthMode('login');}
+  else{currentUser=session.user;try{await ensureProfile();await openDashboard()}catch(e){showView('auth');$('#authError').textContent=e.message;}}
+ }else showView('auth');
+ supabase.auth.onAuthStateChange(async(event,newSession)=>{
+  if(event==='SIGNED_OUT'){currentUser=null;if(!isEmailConfirmation&&!pendingEmail)showView('auth');}
+  if(event==='SIGNED_IN'&&newSession){
+   const verified=!!(newSession.user?.email_confirmed_at||newSession.user?.confirmed_at);
+   if(!verified){await supabase.auth.signOut();currentUser=null;showView('auth');$('#authError').textContent='Please verify your university email before logging in.';}
+  }
+ });
+}
 $('#continueAfterConfirm').onclick=async()=>{try{const {data:{session}}=await supabase.auth.getSession();if(session){currentUser=session.user;await ensureProfile();await openDashboard();}else{showView('auth');setAuthMode('login');$('#authError').textContent='Your email is confirmed. Please log in to continue.';}}catch(e){$('#confirmationNote').textContent='Your email is confirmed, but we could not load your profile: '+e.message;}};
 
 // Existing FourCourse dinner questionnaire and availability flow.
-function show(n){cur=n;$$('.step').forEach(el=>el.classList.toggle('active',+el.dataset.step===n));const p=$('#progress');p.hidden=(n===0||n===5);$$('#progress i').forEach((i,k)=>i.classList.toggle('on',k<=n));window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQ();if(n===4)$('#summary').innerHTML=summary();if(n===5){$('#summary2').innerHTML=summary();$('#doneMsg').textContent='Your dinner preferences have been saved to your FourCourse account. We’ll contact you at '+currentUser.email+' when your table is arranged.';}}
+function show(n){cur=n;$$('.step').forEach(el=>el.classList.toggle('active',+el.dataset.step===n));const p=$('#progress');p.hidden=(n===0||n===5);$$('#progress i').forEach((i,k)=>i.classList.toggle('on',k<=n));window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQ();if(n===4)$('#summary').innerHTML=summary();if(n===5){$('#summary2').innerHTML=availabilityReceipt();$('#doneMsg').textContent='Your preferences are saved. We’ll use these dates to find a dinner that works for you.';}}
 $$('[data-back]').forEach(b=>b.onclick=()=>show(cur-1));
 const school=$('#school'),go0=$('#go0');school.addEventListener('input',()=>{S.school=school.value.trim();go0.disabled=S.school.length<2});school.addEventListener('keydown',e=>{if(e.key==='Enter'&&!go0.disabled)show(1)});go0.onclick=()=>show(1);
 const QUESTIONS=[
@@ -331,6 +453,7 @@ $('#genderSelfDescribe').addEventListener('input',e=>S.genderSelfDescribe=e.targ
 $('#go2').onclick=()=>{if(!S.participantGender){alert('Please select your gender, or choose “Prefer not to say.”');return;}show(4);};
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function summary(){const days=[...S.days].sort().map(k=>fmt(new Date(k+'T12:00:00')));const dayTxt=days.length>3?days.slice(0,3).join(', ')+' +'+(days.length-3)+' more':days.join(', ');const genderLabel=S.participantGender==='Another identity'&&S.genderSelfDescribe?'Another identity — '+S.genderSelfDescribe:S.participantGender;return [['School',S.school],['Free on',dayTxt],['Your gender',genderLabel],['Group preference',S.groupPreference+' · 4 people']].map(r=>'<div class="sumrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>').join('');}
+function availabilityReceipt(){const groups=new Map();[...S.days].sort().forEach(key=>{const [y,m,d]=key.split('-').map(Number);const date=new Date(y,m-1,d,12);const month=date.toLocaleDateString('en-US',{month:'long',year:'numeric'});if(!groups.has(month))groups.set(month,[]);groups.get(month).push(date);});if(!groups.size)return '<div class="availability-empty">No dates selected.</div>';return [...groups.entries()].map(([month,days])=>'<div class="availability-month"><h3>'+esc(month)+'</h3><div class="availability-days">'+days.map(d=>'<div class="availability-chip"><strong>'+d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}).replace(',', '')+'</strong><span>Available for dinner</span></div>').join('')+'</div></div>').join('');}
 async function submit(){const btn=$('#go3');btn.disabled=true;btn.textContent='Saving…';try{const values=Array(20).fill(null);S.answers.forEach(a=>{values[a.id-1]=a.value});const {error:pErr}=await supabase.from('profiles').upsert({id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||'',school:S.school,participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values,availability:[...S.days].sort()},{onConflict:'id'});if(pErr)throw pErr;const {error:dErr}=await supabase.from('dinner_signups').insert({user_id:currentUser.id,school:S.school,days_free:[...S.days].sort().join(', '),participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values});if(dErr)throw dErr;show(5);}catch(e){alert('We could not save your preferences: '+e.message);}finally{btn.disabled=false;btn.textContent='Save my dinner preferences';}}
 $('#go3').onclick=submit;
 async function openApp(){S.school='';S.days.clear();S.gender='No preference';S.groupPreference='No preference';S.participantGender='';S.genderSelfDescribe='';S.answers=[];qi=0;school.value='';$('#genderSelfDescribe').value='';$('#genderOtherWrap').hidden=true;$$('.opts .opt').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v==='No preference')));$('#go1').disabled=true;$('#count').textContent='Tap the days you’re free.';renderCalendar();showView('app');show(0);}
