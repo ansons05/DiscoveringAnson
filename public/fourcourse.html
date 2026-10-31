@@ -133,11 +133,97 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
 .verification-code{text-align:center;letter-spacing:.32em;font-size:25px!important;font-weight:600;font-variant-numeric:tabular-nums}
 @media(max-width:500px){.auth-shell{margin:3vh auto}}
 
+
+/* Shared appearance control: available on every screen */
+.auth-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:26px}
+.auth-topbar .auth-brand{margin:0}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:38px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:600 12px Inter,sans-serif;white-space:nowrap;cursor:pointer;transition:background .18s,border-color .18s,transform .12s}
+.theme-toggle:hover{border-color:var(--accent);background:var(--soft)}
+.theme-toggle:active{transform:scale(.97)}
+.theme-toggle:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 38%,transparent);outline-offset:2px}
+.theme-icon{font-size:16px;line-height:1}
+body{transition:background-color .2s ease,color .2s ease}
+.card,.dash-card,.availability-stat{transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease}
+
+/* Refined student dashboard */
+.dashboard{display:none;max-width:1120px;margin:0 auto;padding:28px 28px 52px}
+.dashboard-header{display:flex;align-items:center;justify-content:space-between;padding:4px 0 30px;border-bottom:1px solid var(--line);margin-bottom:34px}
+.dashboard-header-right{display:flex;align-items:center;gap:14px}
+.app-header-actions{display:flex;align-items:center;gap:14px}
+.dashboard-nav-active{font-size:14px;color:var(--ink);font-weight:600;padding:9px 0;border-bottom:2px solid var(--accent)}
+.logout-button{border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--mute);font:500 13px Inter,sans-serif;padding:9px 14px;cursor:pointer}
+.logout-button:hover{border-color:var(--accent);color:var(--ink)}
+.dashboard-welcome{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px}
+.dashboard-welcome h1{margin:0 0 10px;font-size:clamp(38px,5vw,54px)}
+.dash-eyebrow{font-size:10px;line-height:1.2;letter-spacing:.13em;font-weight:700;color:var(--mute);margin:0 0 9px}
+.dashboard-lede{margin:0;color:var(--mute);font-size:16px}
+.availability-stat{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;min-width:205px;box-shadow:0 8px 24px -22px rgba(60,30,10,.4)}
+.stat-mark{width:38px;height:38px;border-radius:12px;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-size:22px}
+.availability-stat strong{display:block;font:600 24px/1.05 Fraunces,Georgia,serif;color:var(--ink)}
+.availability-stat span{display:block;font-size:11px;color:var(--mute);margin-top:3px}
+.dashboard-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(285px,.85fr);gap:18px;align-items:start}
+.dashboard-main,.dashboard-aside{display:grid;gap:18px;min-width:0}
+.dashboard .dash-card{margin:0;padding:23px;border-radius:18px;box-shadow:0 10px 32px -26px rgba(60,30,10,.5)}
+.dashboard .dash-card h2{font-size:23px;margin:0}
+.dashboard .dash-card-heading{margin-bottom:17px;align-items:center}
+.dashboard .dash-card-heading>div{min-width:0}
+.dashboard .dash-eyebrow+.dash-card-heading{margin-top:0}
+.next-dinner-card{border-top:3px solid var(--accent)!important}
+.next-dinner-empty{display:flex;align-items:flex-start;gap:14px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:17px}
+.next-dinner-icon{flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-size:21px}
+.next-dinner-empty strong{display:block;font-size:14px;font-weight:650;margin:1px 0 4px}
+.next-dinner-empty p{font-size:13px;line-height:1.55;color:var(--mute);margin:0}
+.dashboard .status-pill{background:var(--soft);color:var(--accent);font-size:11px;padding:6px 10px}
+.dashboard .count-pill{font-size:11px;padding:6px 10px}
+.dashboard .availability-intro{font-size:13px;margin:5px 0 0}
+.availability-card-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+.availability-card-footer .availability-meta{margin:0;min-height:16px;font-size:11px}
+.dashboard .dash-actions{margin-top:0}
+.dashboard .btn{width:auto;margin:0;padding:11px 15px;font-size:13px;border-radius:10px}
+.dashboard .btn span{margin-left:6px}
+.dashboard .btn.secondary{background:var(--bg)}
+.profile-heading{display:flex;align-items:center;gap:12px;padding:2px 0 17px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.profile-avatar{width:44px;height:44px;flex:0 0 44px;border-radius:50%;background:var(--soft);color:var(--accent);display:grid;place-items:center;font:600 17px Fraunces,Georgia,serif}
+.profile-heading strong{display:block;font-size:14px;font-weight:650}
+.profile-heading span{display:block;font-size:11px;color:var(--mute);overflow-wrap:anywhere;margin-top:2px}
+.profile-details{display:grid;gap:0}
+.profile-detail-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}
+.profile-detail-row:last-child{border-bottom:0}
+.profile-detail-row span:first-child{color:var(--mute)}
+.profile-detail-row span:last-child{text-align:right;font-weight:600;max-width:62%;overflow-wrap:anywhere}
+.profile-edit-button{width:100%!important;margin-top:15px!important;text-align:center}
+.how-card h2{font-size:21px!important;margin-bottom:18px!important}
+.how-steps{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.how-steps li{display:flex;gap:11px;align-items:flex-start}
+.how-steps li>span{width:25px;height:25px;flex:0 0 25px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--accent)}
+.how-steps strong{display:block;font-size:12px;margin:2px 0 3px}
+.how-steps p{margin:0;font-size:11px;line-height:1.5;color:var(--mute)}
+.dashboard-footer{display:flex;justify-content:space-between;gap:15px;border-top:1px solid var(--line);padding-top:17px;margin-top:26px;color:var(--mute);font-size:11px}
+.dashboard-footer a{color:var(--accent);text-decoration:none}
+.dashboard-footer a:hover{text-decoration:underline}
+.dashboard .availability-month h3{font-size:15px}
+.dashboard .availability-chip{min-width:76px;border-radius:11px;padding:9px 10px}
+.dashboard .availability-chip strong{font-size:13px}
+.dashboard .availability-chip span{font-size:10px}
+@media(max-width:760px){.dashboard{padding:19px 16px 38px}.dashboard-header{margin-bottom:25px;padding-bottom:20px}.dashboard-welcome{align-items:flex-start;flex-direction:column;margin-bottom:20px}.availability-stat{width:100%;min-width:0}.dashboard-layout{grid-template-columns:1fr}.dashboard-aside{grid-template-columns:1fr 1fr}.dashboard-footer{flex-direction:column;gap:6px}}
+@media(max-width:520px){.dashboard-aside{grid-template-columns:1fr}.dashboard .dash-card{padding:18px}.dashboard-header-right{gap:10px}.dashboard-nav-active{font-size:12px}.dashboard-welcome h1{font-size:39px}.availability-card-footer{align-items:flex-start;flex-direction:column}.availability-card-footer .btn{width:100%}.dashboard-footer{font-size:10px}.theme-toggle{width:38px;min-width:38px;height:38px;padding:0;gap:0}.theme-label{display:none}.app-header-actions{gap:9px}.auth-shell,.email-pending,.confirmation{padding-left:16px;padding-right:16px}}
 </style>
+<script>
+(function(){
+  var theme = 'light';
+  try {
+    var saved = localStorage.getItem('fourcourse-theme');
+    theme = saved === 'light' || saved === 'dark' ? saved : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  } catch (e) {
+    theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
 </head>
 <body>
 <section class="auth-shell" id="authShell">
-  <div class="auth-brand">Four<span>Course</span></div>
+  <div class="auth-topbar"><div class="auth-brand">Four<span>Course</span></div><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button></div>
   <h1 id="authTitle">Your table is waiting.</h1>
   <p class="sub" id="authSubtitle">Create an account to join FourCourse dinners and keep your profile in one place.</p>
   <div class="card">
@@ -153,7 +239,7 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
   </div>
 </section>
 <section class="email-pending" id="emailPendingView" aria-live="polite">
-  <div class="auth-brand">Four<span>Course</span></div>
+  <div class="auth-topbar"><div class="auth-brand">Four<span>Course</span></div><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button></div>
   <div class="card">
     <div class="mail-icon" aria-hidden="true">✉</div>
     <h1 style="font-size:36px">Check your email.</h1>
@@ -175,7 +261,7 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
   </div>
 </section>
 <section class="confirmation" id="confirmationView">
-  <div class="auth-brand">Four<span>Course</span></div>
+  <div class="auth-topbar"><div class="auth-brand">Four<span>Course</span></div><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button></div>
   <div class="card">
     <div class="check">✓</div>
     <h1 style="font-size:38px">Your email is confirmed.</h1>
@@ -185,30 +271,83 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
   </div>
 </section>
 <section class="dashboard" id="dashboard">
-  <div class="dash-top"><div class="logo">Four<span>Course</span></div><button class="link" id="logoutBtn" type="button">Log out</button></div>
-  <h1 id="welcomeTitle">Welcome to FourCourse.</h1><p class="sub">Your dinners, availability, and preferences—all in one place.</p>
-  <div class="dash-card upcoming-card">
-    <div class="dash-card-heading"><h2>Upcoming dinners</h2><span class="status-pill" id="dinnerStatus">Not matched yet</span></div>
-    <div id="upcomingDinnerDetails" class="upcoming-empty">You don't have a dinner assignment yet. Once you're matched, your dinner date, restaurant, and group details will appear here. We'll also email you the invitation.</div>
+  <header class="dashboard-header">
+    <div class="logo">Four<span>Course</span></div>
+    <div class="dashboard-header-right">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button>
+      <span class="dashboard-nav-active">Dashboard</span>
+      <button class="logout-button" id="logoutBtn" type="button">Log out <span aria-hidden="true">↗</span></button>
+    </div>
+  </header>
+
+  <div class="dashboard-welcome">
+    <div>
+      <p class="dash-eyebrow">YOUR FOURCOURSE ACCOUNT</p>
+      <h1 id="welcomeTitle">Welcome to FourCourse.</h1>
+      <p class="dashboard-lede">A good dinner starts with an open date. Here's where everything stands.</p>
+    </div>
+    <div class="availability-stat" aria-live="polite">
+      <div class="stat-mark" aria-hidden="true">✳</div>
+      <div><strong id="summaryDateCount">0</strong><span>dates that work for you</span></div>
+    </div>
   </div>
-  <div class="dash-card">
-    <div class="dash-card-heading"><div><h2>Your availability</h2><p class="availability-intro">The dates you've told us work for dinner.</p></div><span class="count-pill" id="availabilityCount">0 dates</span></div>
-    <div id="availabilityDetails" class="dash-muted">Loading your dates…</div>
-    <p class="availability-meta" id="availabilityMeta"></p>
-    <div class="dash-actions"><button class="btn" id="joinDinnerBtn" type="button">Edit available dates →</button></div>
+
+  <div class="dashboard-layout">
+    <main class="dashboard-main">
+      <section class="dash-card next-dinner-card">
+        <div class="dash-card-heading">
+          <div><p class="dash-eyebrow">UP NEXT</p><h2>Your next dinner</h2></div>
+          <span class="status-pill" id="dinnerStatus">Not matched yet</span>
+        </div>
+        <div id="upcomingDinnerDetails" class="next-dinner-empty">
+          <div class="next-dinner-icon" aria-hidden="true">✦</div>
+          <div><strong>No dinner assigned just yet</strong><p>Once dinner groups are arranged, your date, restaurant, and table details will appear here. We'll let you know by email.</p></div>
+        </div>
+      </section>
+
+      <section class="dash-card availability-card">
+        <div class="dash-card-heading">
+          <div><p class="dash-eyebrow">YOUR SCHEDULE</p><h2>Your availability</h2><p class="availability-intro">The dates you've told us work for dinner.</p></div>
+          <span class="count-pill" id="availabilityCount">0 dates</span>
+        </div>
+        <div id="availabilityDetails" class="dash-muted">Loading your dates…</div>
+        <div class="availability-card-footer">
+          <p class="availability-meta" id="availabilityMeta"></p>
+          <button class="btn" id="joinDinnerBtn" type="button">Edit available dates <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="dashboard-aside">
+      <section class="dash-card profile-card">
+        <div class="dash-card-heading"><div><p class="dash-eyebrow">AT A GLANCE</p><h2>Your profile</h2></div></div>
+        <div class="profile-heading">
+          <div class="profile-avatar" id="profileAvatar" aria-hidden="true">FC</div>
+          <div><strong id="profileName">Your account</strong><span id="profileEmail">Loading profile…</span></div>
+        </div>
+        <div id="profileDetails" class="profile-details"></div>
+        <button class="btn secondary profile-edit-button" id="editProfileBtn" type="button">Edit profile & preferences <span aria-hidden="true">→</span></button>
+      </section>
+
+      <section class="dash-card how-card">
+        <p class="dash-eyebrow">HOW IT WORKS</p>
+        <h2>Good dinners, made simple.</h2>
+        <ol class="how-steps">
+          <li><span>1</span><div><strong>Share your dates</strong><p>Tell us when you're free to meet.</p></div></li>
+          <li><span>2</span><div><strong>We'll arrange the table</strong><p>We use your availability and preferences to plan groups.</p></div></li>
+          <li><span>3</span><div><strong>Meet over dinner</strong><p>Your dinner details will appear here when assigned.</p></div></li>
+        </ol>
+      </section>
+    </aside>
   </div>
-  <div class="dash-card">
-    <div class="dash-card-heading"><h2>Your profile</h2></div>
-    <div id="profileDetails" class="profile-quick">Loading profile…</div>
-    <div class="dash-actions"><button class="btn secondary" id="editProfileBtn" type="button">Edit profile & preferences</button></div>
-  </div>
-  <p class="fine">Need help? Contact four.course.dining@gmail.com</p>
+
+  <footer class="dashboard-footer"><span>Good dinners. New perspectives. Real connections.</span><span>Need help? <a href="mailto:four.course.dining@gmail.com">Contact FourCourse</a></span></footer>
 </section>
 
 <div class="wrap" id="dinnerApp" style="display:none">
   <header>
     <div class="logo">Four<span>Course</span></div>
-    <div style="display:flex;align-items:center;gap:14px"><button class="link" id="backToDashboard" type="button" hidden>← Dashboard</button><div class="hint-top">Free for students</div></div>
+    <div class="app-header-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button><button class="link" id="backToDashboard" type="button" hidden>← Dashboard</button><div class="hint-top">Free for students</div></div>
   </header>
 
   <div class="progress" id="progress" hidden><i></i><i></i><i></i><i></i><i></i></div>
@@ -333,6 +472,21 @@ const SUPABASE_ANON_KEY = 'sb_publishable_5kBTFCLBvaoIGE7_MKf9mg_QnNYAWKL';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function setTheme(theme,save=true){
+ const next=theme==='dark'?'dark':'light';
+ document.documentElement.setAttribute('data-theme',next);
+ if(save){try{localStorage.setItem('fourcourse-theme',next);}catch(e){console.warn('Could not save theme preference:',e);}}
+ $$('[data-theme-toggle]').forEach(button=>{
+  const dark=next==='dark';
+  button.innerHTML=dark?'<span class="theme-icon" aria-hidden="true">☼</span><span class="theme-label">Light mode</span>':'<span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span>';
+  button.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
+  button.setAttribute('aria-pressed',String(dark));
+  button.title=dark?'Switch to light mode':'Switch to dark mode';
+ });
+}
+const initialTheme=document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';
+setTheme(initialTheme,false);
+$$('[data-theme-toggle]').forEach(button=>button.addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')));
 let authMode='signup', currentUser=null, cur=0, pendingEmail='', editingMode='new', activeProfile=null;
 const S={school:'',days:new Set(),gender:'No preference',groupPreference:'No preference',participantGender:'',genderSelfDescribe:'',size:'4',answers:[]};
 const authShell=$('#authShell'),dashboard=$('#dashboard'),app=$('#dinnerApp'),confirmationView=$('#confirmationView'),emailPendingView=$('#emailPendingView');
@@ -480,18 +634,24 @@ async function openDashboard(message=''){
    try{latestSignup=await getLatestSignupDates();dates=normalizeAvailability(null,latestSignup?.days_free);}
    catch(signupError){console.warn('Could not read legacy dinner signup dates:',signupError);}
   }
-  const tags=[profile?.school,profile?.participant_gender,profile?.gender_preference].filter(Boolean);
-  $('#profileDetails').innerHTML=[profile?.email,...tags].filter(Boolean).map(x=>'<span class="profile-tag">'+esc(x)+'</span>').join('')||'<span class="profile-tag">Your profile is ready</span>';
+  const fullName=profile?.full_name||currentUser.user_metadata?.full_name||'FourCourse student';
+  const initials=fullName.split(/\s+/).filter(Boolean).slice(0,2).map(part=>part[0]).join('').toUpperCase()||'FC';
+  $('#profileName').textContent=fullName;
+  $('#profileEmail').textContent=profile?.email||currentUser.email||'';
+  $('#profileAvatar').textContent=initials;
+  const profileRows=[['School',profile?.school],['Gender',profile?.participant_gender],['Group preference',profile?.gender_preference]].filter(row=>row[1]);
+  $('#profileDetails').innerHTML=profileRows.map(row=>'<div class="profile-detail-row"><span>'+esc(row[0])+'</span><span>'+esc(row[1])+'</span></div>').join('')||'<div class="availability-empty">Complete your profile to add your preferences.</div>';
   $('#availabilityCount').textContent=dates.length+' '+(dates.length===1?'date':'dates');
+  $('#summaryDateCount').textContent=dates.length;
   $('#availabilityDetails').innerHTML=renderAvailability(dates);
   $('#availabilityMeta').textContent=formatSavedDate(profile?.updated_at||latestSignup?.created_at)+(message?' · '+message:'');
   const hasAvailability=dates.length>0;
-  $('#joinDinnerBtn').textContent=hasAvailability?'Edit available dates →':'Set my availability →';
-  $('#upcomingDinnerDetails').textContent='You don’t have a dinner assignment yet. Once you’re matched, your dinner date, restaurant, and group details will appear here. We’ll also email you the invitation.';
-  $('#dinnerStatus').textContent='Awaiting match';
+  $('#joinDinnerBtn').innerHTML=hasAvailability?'Edit available dates <span aria-hidden="true">→</span>':'Choose available dates <span aria-hidden="true">→</span>';
+  $('#upcomingDinnerDetails').innerHTML='<div class="next-dinner-icon" aria-hidden="true">✦</div><div><strong>'+(hasAvailability?'Your dates are saved':'Your table is waiting')+'</strong><p>'+(hasAvailability?'You’re all set on availability. Once dinner groups are arranged, your date, restaurant, and table details will appear here. We’ll let you know by email.':'Choose the dates that work for you to get started. Once dinner groups are arranged, your date, restaurant, and table details will appear here.')+'</p></div>';
+  $('#dinnerStatus').textContent=hasAvailability?'Dates saved':'Getting started';
  }catch(error){
   console.error('FourCourse dashboard load failed:',error);
-  $('#profileDetails').textContent='We could not load your profile. Please refresh the page or log in again.';
+  $('#profileName').textContent='Profile unavailable';$('#profileEmail').textContent='Please refresh or log in again.';$('#profileDetails').textContent='We could not load your profile. Please refresh the page or log in again.';
   $('#availabilityDetails').innerHTML='<div class="availability-empty">We could not load your saved dates. Please refresh the page. If the problem continues, contact FourCourse support.</div>';
   $('#availabilityMeta').textContent='';
  }
