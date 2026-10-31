@@ -207,14 +207,13 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
       <div class="group">
         <label class="q" for="participantGender">How do you describe your gender?</label>
         <p class="q-help">This helps us understand your group-composition preference. You can choose not to disclose.</p>
-        <select id="participantGender" required>
-          <option value="" selected disabled>Select your gender…</option>
-          <option value="Woman">Woman</option>
-          <option value="Man">Man</option>
-          <option value="Nonbinary">Nonbinary</option>
-          <option value="Another identity">Another identity</option>
-          <option value="Prefer not to say">Prefer not to say</option>
-        </select>
+        <div class="opts gender-options" id="participantGender" data-key="participantGender" role="group" aria-label="How do you describe your gender?">
+          <button class="opt" type="button" data-v="Woman" aria-pressed="false">Woman</button>
+          <button class="opt" type="button" data-v="Man" aria-pressed="false">Man</button>
+          <button class="opt" type="button" data-v="Nonbinary" aria-pressed="false">Nonbinary</button>
+          <button class="opt" type="button" data-v="Another identity" aria-pressed="false">Another identity</button>
+          <button class="opt" type="button" data-v="Prefer not to say" aria-pressed="false">Prefer not to say</button>
+        </div>
         <div id="genderOtherWrap" hidden style="margin-top:10px">
           <label class="q" for="genderSelfDescribe">If you’d like, describe your gender</label>
           <input id="genderSelfDescribe" type="text" maxlength="80" placeholder="Optional">
@@ -327,15 +326,14 @@ function renderCalendar(){
 prevMonth.onclick=()=>{if(!prevMonth.disabled){shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()-1,1);renderCalendar()}};
 nextMonth.onclick=()=>{if(!nextMonth.disabled){shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,1);renderCalendar()}};
 renderCalendar();$('#go1').onclick=()=>show(3);
-$$('.opts').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;g.querySelectorAll('.opt').forEach(o=>o.setAttribute('aria-pressed',o===b));S[g.dataset.key]=b.dataset.v;if(g.dataset.key==='groupPreference')S.gender=b.dataset.v;}));
-$('#participantGender').addEventListener('change',e=>{S.participantGender=e.target.value;$('#genderOtherWrap').hidden=e.target.value!=='Another identity';});
+$$('.opts').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('.opt');if(!b)return;g.querySelectorAll('.opt').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));S[g.dataset.key]=b.dataset.v;if(g.dataset.key==='groupPreference')S.gender=b.dataset.v;if(g.dataset.key==='participantGender'){$('#genderOtherWrap').hidden=b.dataset.v!=='Another identity';if(b.dataset.v!=='Another identity'){$('#genderSelfDescribe').value='';S.genderSelfDescribe='';}}}));
 $('#genderSelfDescribe').addEventListener('input',e=>S.genderSelfDescribe=e.target.value.trim());
 $('#go2').onclick=()=>{if(!S.participantGender){alert('Please select your gender, or choose “Prefer not to say.”');return;}show(4);};
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function summary(){const days=[...S.days].sort().map(k=>fmt(new Date(k+'T12:00:00')));const dayTxt=days.length>3?days.slice(0,3).join(', ')+' +'+(days.length-3)+' more':days.join(', ');const genderLabel=S.participantGender==='Another identity'&&S.genderSelfDescribe?'Another identity — '+S.genderSelfDescribe:S.participantGender;return [['School',S.school],['Free on',dayTxt],['Your gender',genderLabel],['Group preference',S.groupPreference+' · 4 people']].map(r=>'<div class="sumrow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>').join('');}
 async function submit(){const btn=$('#go3');btn.disabled=true;btn.textContent='Saving…';try{const values=Array(20).fill(null);S.answers.forEach(a=>{values[a.id-1]=a.value});const {error:pErr}=await supabase.from('profiles').upsert({id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||'',school:S.school,participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values,availability:[...S.days].sort()},{onConflict:'id'});if(pErr)throw pErr;const {error:dErr}=await supabase.from('dinner_signups').insert({user_id:currentUser.id,school:S.school,days_free:[...S.days].sort().join(', '),participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values});if(dErr)throw dErr;show(5);}catch(e){alert('We could not save your preferences: '+e.message);}finally{btn.disabled=false;btn.textContent='Save my dinner preferences';}}
 $('#go3').onclick=submit;
-async function openApp(){S.school='';S.days.clear();S.gender='No preference';S.groupPreference='No preference';S.participantGender='';S.genderSelfDescribe='';S.answers=[];qi=0;school.value='';$('#participantGender').value='';$('#genderSelfDescribe').value='';$('#genderOtherWrap').hidden=true;$$('.opts .opt').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v==='No preference')));$('#go1').disabled=true;$('#count').textContent='Tap the days you’re free.';renderCalendar();showView('app');show(0);}
+async function openApp(){S.school='';S.days.clear();S.gender='No preference';S.groupPreference='No preference';S.participantGender='';S.genderSelfDescribe='';S.answers=[];qi=0;school.value='';$('#genderSelfDescribe').value='';$('#genderOtherWrap').hidden=true;$$('.opts .opt').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v==='No preference')));$('#go1').disabled=true;$('#count').textContent='Tap the days you’re free.';renderCalendar();showView('app');show(0);}
 await boot();
 </script>
 </body>
