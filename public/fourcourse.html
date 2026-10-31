@@ -334,6 +334,17 @@ $('#authForm').addEventListener('submit',async e=>{
   if(authMode==='signup'){
    const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:verificationRedirectUrl(),data:{full_name:$('#authName').value.trim()}}});
    if(error)throw error;
+   // Supabase deliberately returns an obfuscated user with an empty identities
+   // array when this email already has an account. No new confirmation email
+   // is sent for that duplicate signup. Route the student to login instead of
+   // falsely telling them to wait for an email.
+   if(Array.isArray(data.user?.identities)&&data.user.identities.length===0){
+    setAuthMode('login');
+    $('#authEmail').value=email;
+    $('#authError').style.color='var(--ok)';
+    $('#authError').textContent='An account already exists for this email address. Please log in instead. If you have not used this account before, double-check the address or contact FourCourse support.';
+    return;
+   }
    const isVerified=!!(data.user?.email_confirmed_at||data.user?.confirmed_at);
    if(!isVerified){
     // Never let a session created during signup bypass the email-verification gate.
