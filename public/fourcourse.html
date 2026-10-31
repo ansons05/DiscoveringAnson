@@ -121,6 +121,7 @@ input:focus{border-color:var(--accent)}
 .email-pending .btn.secondary{margin-top:10px}
 .btn.secondary{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
 input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.verification-code{text-align:center;letter-spacing:.32em;font-size:25px!important;font-weight:600;font-variant-numeric:tabular-nums}
 @media(max-width:500px){.auth-shell{margin:3vh auto}}
 
 </style>
@@ -147,13 +148,20 @@ input[type=password]{width:100%;font:inherit;font-size:17px;padding:15px 16px;bo
   <div class="card">
     <div class="mail-icon" aria-hidden="true">✉</div>
     <h1 style="font-size:36px">Check your email.</h1>
-    <p class="sub">We sent a verification link to:</p>
+    <p class="sub">We sent a verification code to:</p>
     <p class="pending-address" id="pendingEmail"></p>
-    <p class="auth-note" style="font-size:15px;line-height:1.6">You must click the link in that email to verify your university address before you can log in or join a dinner. After verifying, return to FourCourse and log in.</p>
+    <p class="auth-note" style="font-size:15px;line-height:1.6">Enter the 8-digit code from the email below to verify your university address. You must verify before you can log in or join a dinner.</p>
+    <form id="verificationForm" class="pending-actions">
+      <div class="auth-field">
+        <label for="verificationCode">8-digit verification code</label>
+        <input id="verificationCode" class="verification-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{8}" placeholder="00000000" aria-label="8-digit verification code" required>
+      </div>
+      <button class="btn" id="verifyCodeBtn" type="submit">Verify email address</button>
+    </form>
     <div class="pending-actions">
-      <button class="btn" id="resendVerification" type="button">Resend verification email</button>
-      <button class="btn secondary" id="pendingBackToLogin" type="button">Back to log in</button>
-      <p class="auth-note" id="pendingNote">Check your inbox and spam folder. The link will bring you back to FourCourse.</p>
+      <button class="btn secondary" id="resendVerification" type="button">Resend verification code</button>
+      <button class="link" id="pendingBackToLogin" type="button">Back to log in</button>
+      <p class="auth-note" id="pendingNote">Check your inbox and spam folder. The code expires after one hour.</p>
     </div>
   </div>
 </section>
@@ -320,7 +328,8 @@ function verificationRedirectUrl(){
 function showEmailPending(email,note){
  pendingEmail=(email||'').trim().toLowerCase();
  $('#pendingEmail').textContent=pendingEmail;
- $('#pendingNote').textContent=note||'Check your inbox and spam folder. The link will bring you back to FourCourse.';
+ $('#verificationCode').value='';
+ $('#pendingNote').textContent=note||'Check your inbox and spam folder. Enter the 8-digit code here. It expires after one hour.';
  showView('pending');
 }
 $('#tabSignup').onclick=()=>setAuthMode('signup');$('#tabLogin').onclick=()=>setAuthMode('login');
@@ -332,7 +341,7 @@ $('#authForm').addEventListener('submit',async e=>{
   const email=$('#authEmail').value.trim().toLowerCase(),password=$('#authPassword').value;
   if(!validStudentEmail(email))throw new Error('Please use your university .edu email address.');
   if(authMode==='signup'){
-   const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:verificationRedirectUrl(),data:{full_name:$('#authName').value.trim()}}});
+   const {data,error}=await supabase.auth.signUp({email,password,options:{data:{full_name:$('#authName').value.trim()}}});
    if(error)throw error;
    // Supabase deliberately returns an obfuscated user with an empty identities
    // array when this email already has an account. No new confirmation email
@@ -350,7 +359,7 @@ $('#authForm').addEventListener('submit',async e=>{
     // Never let a session created during signup bypass the email-verification gate.
     if(data.session)await supabase.auth.signOut();
     currentUser=null;
-    showEmailPending(email,'A verification email has been requested. You must click its link before logging in. If it does not arrive, check spam or use Resend verification email below.');
+    showEmailPending(email,'A verification code has been requested. Enter the 8-digit code from the email before logging in. If it does not arrive, check spam or request another code below.');
    }else if(data.session){
     currentUser=data.user;await ensureProfile();await openDashboard();
    }else{
@@ -360,26 +369,49 @@ $('#authForm').addEventListener('submit',async e=>{
    const {data,error}=await supabase.auth.signInWithPassword({email,password});
    if(error){
     if(error.code==='email_not_confirmed'||/email not confirmed/i.test(error.message||'')){
-     showEmailPending(email,'This account has not been verified yet. Click the verification link before logging in, or request a new one below.');
+     showEmailPending(email,'This account has not been verified yet. Enter the 8-digit code from your email, or request a new code below.');
      return;
     }
     throw error;
    }
    const isVerified=!!(data.user?.email_confirmed_at||data.user?.confirmed_at);
-   if(!isVerified){await supabase.auth.signOut();currentUser=null;showEmailPending(email,'This account has not been verified yet. Click the verification link before logging in, or request a new one below.');return;}
+   if(!isVerified){await supabase.auth.signOut();currentUser=null;showEmailPending(email,'This account has not been verified yet. Enter the 8-digit code from your email, or request a new code below.');return;}
    currentUser=data.user;await ensureProfile();await openDashboard();
   }
  }catch(err){$('#authError').style.color='#c2410c';$('#authError').textContent=err.message||'Something went wrong. Please try again.';}
  finally{$('#authSubmit').disabled=false;$('#authSubmit').textContent=authMode==='signup'?'Create account':'Log in';}
 });
-$('#resendVerification').onclick=async()=>{
- const btn=$('#resendVerification');btn.disabled=true;btn.textContent='Sending…';$('#pendingNote').textContent='Requesting a new verification email…';
+$('#verificationCode').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,8);});
+$('#verificationForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const btn=$('#verifyCodeBtn');const code=$('#verificationCode').value.trim();
+ if(!/^\d{8}$/.test(code)){ $('#pendingNote').textContent='Enter all 8 digits from the verification email.'; return; }
+ btn.disabled=true;btn.textContent='Verifying…';$('#pendingNote').textContent='Checking your verification code…';
  try{
-  const {error}=await supabase.auth.resend({type:'signup',email:pendingEmail,options:{emailRedirectTo:verificationRedirectUrl()}});
+  const {data,error}=await supabase.auth.verifyOtp({email:pendingEmail,token:code,type:'signup'});
   if(error)throw error;
-  $('#pendingNote').textContent='A new verification email has been requested. Check your inbox and spam folder.';
- }catch(error){$('#pendingNote').textContent=error.message||'We could not resend the email. Please try again shortly.';}
- finally{btn.disabled=false;btn.textContent='Resend verification email';}
+  const verifiedUser=data.user||data.session?.user;
+  if(!verifiedUser||!(verifiedUser.email_confirmed_at||verifiedUser.confirmed_at))throw new Error('The code was accepted, but Supabase did not return a confirmed account. Please try logging in or contact FourCourse support.');
+  currentUser=verifiedUser;
+  if(data.session){
+   $('#confirmationNote').textContent='Your university email is verified. Your FourCourse account is ready.';
+   showView('confirmation');
+  }else{
+   showView('auth');setAuthMode('login');$('#authEmail').value=pendingEmail;
+   $('#authError').style.color='var(--ok)';$('#authError').textContent='Your email is verified. You can now log in.';
+  }
+ }catch(error){$('#pendingNote').textContent=error.message||'We could not verify that code. Check the digits and try again.';}
+ finally{btn.disabled=false;btn.textContent='Verify email address';}
+});
+$('#resendVerification').onclick=async()=>{
+ const btn=$('#resendVerification');btn.disabled=true;btn.textContent='Sending…';$('#pendingNote').textContent='Requesting a new verification code…';
+ try{
+  const {error}=await supabase.auth.resend({type:'signup',email:pendingEmail});
+  if(error)throw error;
+  $('#verificationCode').value='';
+  $('#pendingNote').textContent='A new verification code has been requested. Check your inbox and spam folder.';
+ }catch(error){$('#pendingNote').textContent=error.message||'We could not resend the code. Please try again shortly.';}
+ finally{btn.disabled=false;btn.textContent='Resend verification code';}
 };
 $('#pendingBackToLogin').onclick=()=>{showView('auth');setAuthMode('login');$('#authEmail').value=pendingEmail;};
 async function ensureProfile(){if(!currentUser)return;const {error}=await supabase.from('profiles').upsert({id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||''},{onConflict:'id'});if(error)throw error;}
