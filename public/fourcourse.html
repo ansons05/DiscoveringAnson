@@ -1007,6 +1007,25 @@ input,select,textarea{color:var(--ink)}
 .scale button:focus:not(:focus-visible){outline:none;box-shadow:none}
 .scale button[aria-pressed="false"]:focus:not(:focus-visible){background:var(--bg);border-color:var(--line);color:var(--ink)}
 @media(max-width:520px){.invite-link-row{align-items:stretch;flex-direction:column}.invite-link-row .btn{width:100%}}
+
+/* Dashboard balance: one continuous sidebar panel, aligned to the full main column. */
+.dashboard-layout{align-items:stretch;grid-template-columns:minmax(0,1.58fr) minmax(300px,.92fr);gap:20px}
+.dashboard-main{align-content:stretch;grid-template-rows:auto minmax(0,1fr)}
+.dashboard-aside{display:flex;flex-direction:column;gap:0;min-width:0;align-self:stretch;padding:23px;background:var(--card);border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow)}
+.dashboard-aside>.dash-card{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;margin:0!important;overflow:visible}
+.dashboard-aside>.dash-card+.dash-card{border-top:1px solid var(--line)!important;margin-top:22px!important;padding-top:22px!important}
+.dashboard-aside>.profile-card .dash-card-heading{margin-bottom:14px}
+.dashboard-aside>.invite-card{margin-top:auto!important}
+.dashboard-aside .how-card h2{margin-bottom:17px!important}
+.dashboard-aside .how-steps{gap:15px}
+.dashboard-aside .profile-edit-button{width:100%!important}
+.dashboard-aside .invite-card .btn{width:100%!important}
+.dashboard-aside .invite-link-row{display:flex;gap:8px;align-items:center}
+.dashboard-aside .invite-link-row input{min-width:0;flex:1}
+.dashboard-main>.availability-card{min-height:100%}
+.dashboard-main>.availability-card #availabilityDetails{min-height:90px}
+@media(max-width:900px){.dashboard-layout{grid-template-columns:1fr}.dashboard-main{grid-template-rows:auto auto}.dashboard-aside{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:21px}.dashboard-aside>.dash-card+.dash-card{border-top:0!important;margin-top:0!important;padding-top:0!important}.dashboard-aside>.invite-card{margin-top:0!important}.dashboard-aside>.profile-card{border-left:1px solid var(--line)!important;padding-left:20px!important}}
+@media(max-width:620px){.dashboard-aside{display:flex;gap:0;padding:19px}.dashboard-aside>.dash-card+.dash-card{border-top:1px solid var(--line)!important;margin-top:19px!important;padding-top:19px!important}.dashboard-aside>.profile-card{border-left:0!important;padding-left:0!important}.dashboard-aside>.invite-card{margin-top:19px!important}}
 </style>
 
 </head>
@@ -1528,6 +1547,20 @@ async function getLatestSignupDates(){
  if(error)throw error;
  return data||null;
 }
+async function resolveProfileAvailability(profile){
+ // The profile array is the canonical current value whenever it contains dates.
+ const profileDates=normalizeAvailability(profile?.availability,null);
+ if(profileDates.length)return {dates:profileDates,latestSignup:null,savedAt:profile?.updated_at||null};
+ // Older submissions (and accounts created before the profile field was populated)
+ // may have dates only in dinner_signups.days_free. Also check an empty array rather
+ // than only null: PostgreSQL date[] defaults can be [] for existing accounts.
+ let latestSignup=null;
+ try{latestSignup=await getLatestSignupDates();}
+ catch(error){console.warn('Could not read previous dinner signup dates:',error);}
+ const legacyDates=normalizeAvailability(null,latestSignup?.days_free);
+ if(legacyDates.length)return {dates:legacyDates,latestSignup,savedAt:latestSignup?.created_at||profile?.updated_at||null};
+ return {dates:[],latestSignup,savedAt:profile?.updated_at||latestSignup?.created_at||null};
+}
 async function openDashboard(message=''){
  showView('dashboard');
  $('#profileDetails').textContent='Loading profile…';
@@ -1539,14 +1572,8 @@ async function openDashboard(message=''){
   activeProfile=profile||{};
   const welcomeName=(profile?.full_name||currentUser.user_metadata?.full_name||'').trim().split(/\s+/)[0]||'there';
   $('#welcomeTitle').textContent='Good to see you, '+welcomeName+'.';
-  let dates=normalizeAvailability(profile?.availability,null);
-  let latestSignup=null;
-  // Backfill display from older signup records when the profile availability array
-  // is empty. This is important for accounts created before availability was added.
-  if(profile?.availability==null){
-   try{latestSignup=await getLatestSignupDates();dates=normalizeAvailability(null,latestSignup?.days_free);}
-   catch(signupError){console.warn('Could not read legacy dinner signup dates:',signupError);}
-  }
+  const availabilityState=await resolveProfileAvailability(profile||{});
+  const dates=availabilityState.dates;
   const fullName=profile?.full_name||currentUser.user_metadata?.full_name||'FourCourse student';
   const initials=fullName.split(/\s+/).filter(Boolean).slice(0,2).map(part=>part[0]).join('').toUpperCase()||'FC';
   $('#profileName').textContent=fullName;
@@ -1557,7 +1584,7 @@ async function openDashboard(message=''){
   $('#availabilityCount').textContent=dates.length+' '+(dates.length===1?'date':'dates');
   $('#summaryDateCount').textContent=dates.length;
   $('#availabilityDetails').innerHTML=renderAvailability(dates);
-  $('#availabilityMeta').textContent=formatSavedDate(profile?.updated_at||latestSignup?.created_at)+(message?' · '+message:'');
+  $('#availabilityMeta').textContent=formatSavedDate(availabilityState.savedAt)+(message?' · '+message:'');
   const hasAvailability=dates.length>0;
   $('#joinDinnerBtn').innerHTML=hasAvailability?'Edit available dates <span aria-hidden="true">→</span>':'Choose available dates <span aria-hidden="true">→</span>';
   $('#upcomingDinnerDetails').innerHTML='<div><strong>'+(hasAvailability?'Nothing you need to do right now.':'Start by choosing a few evenings.')+'</strong><p>'+(hasAvailability?'Your dates are saved. When a dinner is arranged for one of the evenings you selected, your invitation and all the details will appear here. If your plans change, you can update your dates below.':'Pick a few dates that could work for you. When a dinner is arranged, your invitation and details will appear here.')+'</p>'+(hasAvailability?'<div class="dinner-progress"><span class="progress-dot complete"></span><span>Dates saved</span><i></i><span class="progress-dot"></span><span>Dinner invitation</span></div>':'')+'</div>';
@@ -1590,8 +1617,8 @@ async function loadProfileIntoForm(){
  const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_self_description,gender_preference,questionnaire_answers,availability').eq('id',currentUser.id).maybeSingle();
  if(error)throw error;
  activeProfile=profile||{};
- let savedDates=normalizeAvailability(profile?.availability,null);
- if(profile?.availability==null){const legacy=await getLatestSignupDates();savedDates=normalizeAvailability(null,legacy?.days_free);}
+ const availabilityState=await resolveProfileAvailability(profile||{});
+ const savedDates=availabilityState.dates;
  S.school=profile?.school||'';S.days=new Set(savedDates);
  S.participantGender=profile?.participant_gender||'';S.genderSelfDescribe=profile?.gender_self_description||'';
  S.groupPreference=profile?.gender_preference||'No preference';S.gender=S.groupPreference;
