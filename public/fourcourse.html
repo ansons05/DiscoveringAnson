@@ -717,6 +717,127 @@ body{background:var(--bg)!important}
 }
 @media(prefers-reduced-motion:reduce){.fc-motif-box::after{transition:none!important}}
 
+
+/* FourCourse master dashboard: compact disclosures and a practical availability calendar. */
+.auth-info-toggle{margin:32px auto 0;max-width:1000px;border:1px solid var(--line);border-radius:18px;background:var(--card);overflow:hidden}
+.auth-info-toggle>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 22px;cursor:pointer}
+.auth-info-toggle>summary::-webkit-details-marker{display:none}
+.auth-info-toggle>summary strong{display:block;font:600 19px Fraunces,Georgia,serif;color:var(--ink)}
+.auth-info-toggle>summary small{display:block;margin-top:3px;color:var(--mute);font-size:13px}
+.auth-info-chevron{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--accent);font-size:20px;transition:transform .18s}
+.auth-info-toggle[open] .auth-info-chevron{transform:rotate(45deg)}
+.auth-info-content{padding:0 22px 20px;border-top:1px solid var(--line)}
+.auth-info-content .auth-extra,.auth-info-content .auth-faq{margin-top:22px}
+.auth-info-content .auth-extra{padding:8px 0 0}
+.auth-info-content .auth-faq{padding:0 0 4px}
+.auth-info-content .auth-how-grid{gap:14px}
+.auth-info-content .auth-how-item{background:var(--bg);border-radius:13px;padding:16px;border:1px solid var(--line)}
+.auth-shell .auth-mantra{display:none}
+.auth-intro #authSubtitle{max-width:480px;font-size:18px;line-height:1.55}
+.profile-dropdown{position:relative}
+.profile-dropdown-trigger{list-style:none;display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);padding:5px 13px 5px 6px;cursor:pointer;font:600 13px Inter,sans-serif;white-space:nowrap}
+.profile-dropdown-trigger::-webkit-details-marker{display:none}
+.profile-dropdown-trigger:hover{border-color:var(--accent)}
+.profile-avatar.small{width:30px;height:30px;min-width:30px;margin:0;font-size:11px}
+.profile-dropdown-chevron{color:var(--mute);font-size:16px;margin-left:1px}
+.profile-dropdown-panel{position:absolute;right:0;top:calc(100% + 10px);z-index:30;width:min(340px,calc(100vw - 32px));padding:18px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 48px rgba(20,20,30,.16)}
+.profile-dropdown-panel .profile-heading{margin-bottom:12px}
+.profile-dropdown-panel .profile-edit-button{margin-top:12px}
+.dashboard-calendar-layout{grid-template-columns:minmax(0,1fr) 310px;align-items:stretch}
+.dashboard-calendar-layout .dashboard-main{display:block}
+.dashboard-calendar-layout .dashboard-aside{align-content:start}
+.calendar-dashboard-card{height:100%;display:flex;flex-direction:column}
+.calendar-next-step{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:14px 16px;background:var(--bg);margin:8px 0 17px}
+.calendar-next-step strong{display:block;font-size:15px;color:var(--ink)}
+.calendar-next-step p{margin:4px 0 0;color:var(--mute);font-size:13px;line-height:1.5}
+.calendar-next-step-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.calendar-next-step-header>strong{font-size:14px;letter-spacing:.01em}
+.calendar-progress{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);align-items:center;gap:8px;margin-top:17px;padding-top:14px;border-top:1px solid var(--line)}
+.calendar-progress-step{display:flex;align-items:center;gap:9px;min-width:0;opacity:.58}
+.calendar-progress-step.is-complete,.calendar-progress-step.is-current{opacity:1}
+.calendar-progress-number{width:27px;height:27px;flex:0 0 27px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--mute);font-size:11px;font-weight:700}
+.calendar-progress-step.is-complete .calendar-progress-number{background:var(--accent);border-color:var(--accent);color:#fff}
+.calendar-progress-step.is-current .calendar-progress-number{border:2px solid var(--accent);color:var(--accent);font-weight:800}
+.calendar-progress-step strong,.calendar-progress-step small{display:block}
+.calendar-progress-step strong{font-size:11px;line-height:1.25}
+.calendar-progress-step small{font-size:10px;color:var(--mute);line-height:1.3;margin-top:2px}
+.calendar-progress-line{height:1px;background:var(--line);width:100%}
+.calendar-setup-note{margin:8px 0 0!important;font-size:11px!important;color:var(--mute)!important}
+.calendar-summary-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.calendar-summary-row strong{display:block;font-size:14px}
+.calendar-summary-row span{display:block;color:var(--mute);font-size:12px;margin-top:2px}
+.calendar-expand-button{width:auto;min-width:144px;margin:0;padding:10px 14px;font-size:13px}
+.dashboard-calendar-panel{border-top:1px solid var(--line);padding-top:14px}
+.dashboard-calendar-panel[hidden]{display:none!important}
+.calendar-legend{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 13px;color:var(--mute);font-size:12px}
+.calendar-legend>span{display:inline-flex;align-items:center;gap:7px}
+.legend-swatch{width:12px;height:12px;border-radius:4px;display:inline-block}
+.legend-available{background:#dce9fb;border:1px solid #789bd2}
+.legend-assigned{background:#dcefe5;border:1px solid #5b9a78}
+.dashboard-calendar-grid{gap:6px}
+.dashboard-calendar-day,.dashboard-calendar-grid .calendar-blank{aspect-ratio:1;min-height:48px;border-radius:10px}
+.dashboard-calendar-day{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:1px solid transparent;background:var(--bg);color:var(--ink);font:500 14px Inter,sans-serif}
+.dashboard-calendar-day.is-available{background:#e7effd;border-color:#9bb5e3;color:#234c85}
+.dashboard-calendar-day.is-assigned{background:#e0f0e7;border-color:#78a98c;color:#205c3c;font-weight:700}
+:root[data-theme="dark"] .dashboard-calendar-day.is-available{background:#243652;border-color:#5777aa;color:#d9e7ff}
+:root[data-theme="dark"] .dashboard-calendar-day.is-assigned{background:#203a2c;border-color:#528467;color:#d9f2e2}
+.dashboard-calendar-day .calendar-day-number{font-size:14px;line-height:1}
+.dashboard-calendar-day .calendar-day-caption{font-size:9px;line-height:1.1;letter-spacing:.01em}
+.assigned-dinner-list{margin-top:18px}
+.assigned-dinner-list h3{font:600 16px Fraunces,Georgia,serif;margin:0 0 9px}
+.assigned-dinner-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.assigned-dinner-date{width:104px;flex:0 0 104px;color:var(--mute);font-size:12px}
+.assigned-dinner-copy{min-width:0;flex:1}
+.assigned-dinner-copy strong,.assigned-dinner-copy span{display:block;overflow-wrap:anywhere}
+.assigned-dinner-copy strong{font-size:13px}
+.assigned-dinner-copy span{font-size:11px;color:var(--mute);margin-top:2px}
+.assigned-status{font-size:10px;color:var(--ok);font-weight:700;white-space:nowrap}
+.assigned-dinner-empty{font-size:12px;color:var(--mute);margin:0;padding:10px 0}
+.dashboard-note-card{background:var(--soft);border-color:transparent}
+.dashboard-note-card p:last-child{font-size:13px;color:var(--mute);margin:8px 0 0}
+.availability-card-footer{margin-top:auto;padding-top:18px}
+@media(max-width:900px){.dashboard-calendar-layout{grid-template-columns:1fr}.dashboard-calendar-layout .dashboard-aside{display:grid;grid-template-columns:1fr 1fr}.dashboard-calendar-layout .dashboard-aside>.dash-card{margin:0}}
+@media(max-width:620px){.calendar-progress{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:5px}.calendar-progress-step{gap:6px}.calendar-progress-step small{font-size:9px}.calendar-progress-number{width:24px;height:24px;flex-basis:24px}.auth-info-toggle>summary{padding:16px}.auth-info-content{padding:0 16px 16px}.dashboard-calendar-layout .dashboard-aside{display:grid;grid-template-columns:1fr}.dashboard-header-right{gap:8px}.profile-dropdown-trigger{font-size:12px;padding-right:10px}.dashboard-calendar-day,.dashboard-calendar-grid .calendar-blank{min-height:38px}.calendar-legend{gap:10px}.assigned-dinner-date{width:82px;flex-basis:82px}.assigned-status{font-size:9px}}
+
+/* Profile questionnaire preferences: compact, readable, and editable in place. */
+.profile-preferences-dropdown{margin-top:13px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);overflow:hidden}
+.profile-preferences-dropdown>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 13px;cursor:pointer;font-size:12px;font-weight:650;color:var(--ink)}
+.profile-preferences-dropdown>summary::-webkit-details-marker{display:none}
+.profile-preferences-dropdown[open]>summary{border-bottom:1px solid var(--line)}
+.profile-preferences-dropdown>summary:hover{color:var(--accent)}
+.profile-preferences-intro{margin:11px 13px 8px;color:var(--mute);font-size:11px;line-height:1.5}
+.profile-preference-sliders{padding:0 13px;max-height:46vh;overflow:auto;overscroll-behavior:contain}
+.profile-preference-item{padding:12px 0 13px;border-bottom:1px solid var(--line)}
+.profile-preference-item:last-child{border-bottom:0}
+.profile-preference-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:7px}
+.profile-preference-top strong{font-size:11px;line-height:1.45;font-weight:650;color:var(--ink)}
+.profile-preference-top span{white-space:nowrap;font-size:10px;color:var(--accent);font-weight:650}
+.profile-preference-ends{display:flex;justify-content:space-between;gap:12px;color:var(--mute);font-size:10px;line-height:1.35;margin-bottom:5px}
+.profile-preference-ends span{max-width:48%}
+.profile-preference-ends span:last-child{text-align:right}
+.profile-preference-item input[type=range]{display:block;width:100%;height:18px;margin:0;accent-color:var(--accent);cursor:pointer}
+.profile-preferences-actions{padding:10px 13px 13px;border-top:1px solid var(--line)}
+.profile-preferences-actions .btn{width:100%;margin:0}
+#profilePreferencesFeedback{min-height:14px;margin:7px 0 0;color:var(--ok);font-size:10px;line-height:1.4}
+.profile-preferences-empty{padding:9px 0;color:var(--mute);font-size:11px;line-height:1.5}
+.profile-dropdown-panel{max-height:min(78vh,720px);overflow-y:auto;overscroll-behavior:contain}
+
+
+/* FourCourse organizer workspace */
+.organizer-access{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 13px;font:600 12px Inter,sans-serif;cursor:pointer}
+.organizer-panel{max-width:1160px;margin:20px auto 40px;padding:0 30px 30px}
+.organizer-panel[hidden]{display:none!important}
+.organizer-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:14px 0 22px}
+.organizer-head h2{margin:0 0 5px}.organizer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+.organizer-metric{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}.organizer-metric strong{display:block;font:600 27px Fraunces,Georgia,serif}.organizer-metric span{font-size:11px;color:var(--mute)}
+.organizer-card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:20px;margin:14px 0}.organizer-card h3{margin:0 0 12px;font:600 20px Fraunces,Georgia,serif}
+.organizer-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.organizer-form label{display:grid;gap:5px;font-size:12px;font-weight:600;color:var(--mute)}.organizer-form input,.organizer-form select{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:14px Inter,sans-serif}.organizer-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}.organizer-actions .btn{width:auto;margin:0;font-size:13px;padding:10px 14px}.organizer-note{color:var(--mute);font-size:12px;line-height:1.55;margin:10px 0 0}.organizer-status{font-size:13px;color:var(--ok);min-height:18px;margin-top:10px}.organizer-status.error{color:#c2410c}
+.organizer-table-wrap{overflow:auto}.organizer-table{width:100%;border-collapse:collapse;font-size:12px}.organizer-table th,.organizer-table td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:top}.organizer-table th{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--mute);font-weight:700}.organizer-table select{max-width:230px;min-width:150px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px;font:12px Inter,sans-serif}
+.org-group{border:1px solid var(--line);border-radius:13px;padding:14px;margin:10px 0}.org-group-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.org-group-head strong{font-size:14px}.org-chip{font-size:10px;border-radius:99px;padding:5px 8px;background:var(--soft);color:var(--accent);font-weight:700}.org-unmatched{border:1px dashed var(--line);padding:12px;border-radius:10px;color:var(--mute);font-size:12px;margin-top:12px}
+.invite-response-actions{display:flex;gap:6px;margin-left:auto}.invite-response-actions button{border:1px solid var(--line);border-radius:8px;padding:6px 9px;background:var(--card);color:var(--ink);font:600 11px Inter,sans-serif;cursor:pointer}.invite-response-actions button:first-child{background:var(--soft);border-color:var(--accent);color:var(--accent)}
+.student-feedback{max-width:1160px;margin:20px auto;padding:0 30px}.feedback-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.feedback-form label{display:grid;gap:5px;font-size:12px;color:var(--mute)}.feedback-form select,.feedback-form textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:13px Inter,sans-serif}.feedback-form textarea{grid-column:1/-1;min-height:70px;resize:vertical}.feedback-form .btn{grid-column:1/-1;width:auto;margin:0;font-size:13px;padding:10px 14px}
+@media(max-width:760px){.organizer-panel,.student-feedback{padding:0 16px 20px}.organizer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.organizer-form,.feedback-form{grid-template-columns:1fr}.organizer-head{flex-direction:column}.feedback-form textarea,.feedback-form .btn{grid-column:auto}}
+
 </style>
 <script>
 (function(){
@@ -1028,6 +1149,52 @@ input,select,textarea{color:var(--ink)}
 @media(max-width:620px){.dashboard-aside{display:flex;gap:0;padding:19px}.dashboard-aside>.dash-card+.dash-card{border-top:1px solid var(--line)!important;margin-top:19px!important;padding-top:19px!important}.dashboard-aside>.profile-card{border-left:0!important;padding-left:0!important}.dashboard-aside>.invite-card{margin-top:19px!important}}
 </style>
 
+
+<style id="fourcourse-calendar-concise-layout">
+/* Concise calendar copy and a self-sized referral card independent of calendar expansion. */
+.dashboard-calendar-layout{grid-template-columns:minmax(0,1fr) 300px;align-items:start;gap:18px}
+.dashboard-calendar-layout .dashboard-main{min-width:0;align-self:start}
+.dashboard-calendar-layout .dashboard-aside{display:block;align-self:start;align-content:start;height:max-content;min-width:0}
+.dashboard-calendar-layout .invite-card{box-sizing:border-box;align-self:start;width:100%;height:auto;min-height:0;margin:0;padding:22px;border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:16px;background:var(--card)!important;box-shadow:var(--shadow);}
+.invite-card .dash-eyebrow{margin-bottom:13px}
+.invite-card h2{font-size:22px!important;line-height:1.2;letter-spacing:-.025em;max-width:260px;margin:0 0 9px!important}
+.invite-card>p:not(.dash-eyebrow):not(.invite-feedback){font-size:13px;line-height:1.55;margin:0 0 13px;max-width:30ch}
+.invite-card .btn{width:100%;margin-top:4px}
+.invite-card .invite-link-wrap:not([hidden]){margin-top:12px}
+.invite-card .invite-link-row{display:flex;gap:7px;align-items:center}
+.invite-card .invite-link-row input{min-width:0;flex:1}
+.invite-feedback{min-height:16px;margin:8px 0 0;font-size:11px;line-height:1.4}
+.calendar-next-step{padding:12px 15px;margin:8px 0 13px}
+.calendar-next-step-header{margin-bottom:7px}
+.calendar-next-step-header>strong{font-size:13px}
+.calendar-next-step p{font-size:12px;line-height:1.45;margin-top:3px}
+.calendar-progress{margin-top:12px;padding-top:11px;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);gap:7px}
+.calendar-progress-step{gap:7px}
+.calendar-progress-step strong{font-size:11px;white-space:nowrap}
+.calendar-progress-step small{display:none!important}
+.calendar-progress-number{width:24px;height:24px;flex-basis:24px}
+.calendar-summary-row{padding:10px 0}
+.calendar-summary-row strong{font-size:13px}
+.calendar-summary-row span{font-size:11px}
+.calendar-expand-button{min-width:124px;padding:9px 12px}
+.availability-card-footer{margin-top:13px;padding-top:12px}
+.availability-card-footer .availability-meta{font-size:10px;line-height:1.4}
+.dashboard-note-card{display:none!important}
+@media(max-width:900px){
+ .dashboard-calendar-layout{grid-template-columns:minmax(0,1fr)}
+ .dashboard-calendar-layout .dashboard-aside{display:block;align-self:start;height:max-content}
+ .dashboard-calendar-layout .invite-card{width:100%;max-width:none}
+}
+@media(max-width:620px){
+ .dashboard-calendar-layout .dashboard-aside{display:block}
+ .invite-card{padding:18px!important}
+ .calendar-progress{grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr);gap:5px}
+ .calendar-progress-step{gap:5px}
+ .calendar-progress-step strong{font-size:10px}
+ .calendar-progress-number{width:22px;height:22px;flex-basis:22px}
+ .calendar-expand-button{min-width:108px}
+}
+</style>
 </head>
 <body>
 <section class="auth-shell" id="authShell">
@@ -1036,13 +1203,7 @@ input,select,textarea{color:var(--ink)}
     <div class="auth-intro">
       <p class="auth-kicker">A BETTER WAY TO MEET, ONE DINNER AT A TIME.</p>
       <h1 id="authTitle">Your campus is full of people you haven’t met yet.</h1>
-      <p class="sub" id="authSubtitle">FourCourse brings university students together for relaxed, small-group dinners. Choose evenings that work for you, share a few preferences, and make room for a conversation beyond your usual circle.</p>
-      <ul class="auth-benefits">
-        <li><span>✓</span>Small groups that make it easier to connect</li>
-        <li><span>✓</span>Choose evenings that work for you</li>
-        <li><span>✓</span>Free to create an account</li>
-      </ul>
-      <div class="auth-mantra">No swiping. No forced networking. Just a good meal and a few new faces.</div>
+      <p class="sub" id="authSubtitle">Join a small-group dinner with students from your campus. Pick the evenings that work, share a few preferences, and look out for an invitation.</p>
     </div>
     <div class="auth-card-wrap"><div class="card">
     <div class="auth-card-intro"><h2 id="authCardHeading">Save your seat.</h2><p id="authCardCopy">Create your free account, then choose the evenings that work for you.</p></div>
@@ -1059,6 +1220,12 @@ input,select,textarea{color:var(--ink)}
   </div></div>
   </div>
 
+  <details class="auth-info-toggle">
+    <summary>
+      <span><strong>A simple idea, made easy</strong><small>How it works, what to expect, and common questions</small></span>
+      <span class="auth-info-chevron" aria-hidden="true">＋</span>
+    </summary>
+    <div class="auth-info-content">
   <section class="auth-extra" aria-label="How FourCourse works">
     <div class="auth-extra-heading">
       <p class="auth-kicker">A SIMPLE IDEA, MADE EASY</p>
@@ -1083,6 +1250,9 @@ input,select,textarea{color:var(--ink)}
     </div>
   </section>
 
+    </div>
+  </details>
+
   <footer class="auth-footer"><span>Good food. New faces. A table where everyone starts as a stranger.</span><span>Questions? <a href="mailto:four.course.dining@gmail.com" style="color:var(--accent);text-decoration:none">Contact FourCourse</a></span></footer>
 </section>
 <section class="email-pending" id="emailPendingView" aria-live="polite">
@@ -1092,11 +1262,11 @@ input,select,textarea{color:var(--ink)}
     <h1 style="font-size:36px">Check your university inbox.</h1>
     <p class="sub">Your FourCourse verification code is on its way to:</p>
     <p class="pending-address" id="pendingEmail"></p>
-    <p class="auth-note" style="font-size:15px;line-height:1.6">Enter the 8-digit code below and you’ll be ready to set up your first dinner. It’s a quick check that helps keep FourCourse for university students.</p>
+    <p class="auth-note" style="font-size:15px;line-height:1.6">Enter the 6-digit code below and you’ll be ready to set up your first dinner. It’s a quick check that helps keep FourCourse for university students.</p>
     <form id="verificationForm" class="pending-actions">
       <div class="auth-field">
-        <label for="verificationCode">8-digit verification code</label>
-        <input id="verificationCode" class="verification-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{8}" placeholder="00000000" aria-label="8-digit verification code" required>
+        <label for="verificationCode">6-digit verification code</label>
+        <input id="verificationCode" class="verification-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="000000" aria-label="6-digit verification code" required>
       </div>
       <button class="btn" id="verifyCodeBtn" type="submit">Verify email address</button>
     </form>
@@ -1122,8 +1292,25 @@ input,select,textarea{color:var(--ink)}
   <header class="dashboard-header">
     <div class="logo">Four<span>Course</span></div>
     <div class="dashboard-header-right">
+      <button class="organizer-access" id="organizerAccessBtn" type="button" hidden>Organizer workspace</button>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button>
-      <span class="dashboard-nav-active">My FourCourse</span>
+      <details class="profile-dropdown" id="profileDropdown">
+        <summary class="profile-dropdown-trigger"><span class="profile-avatar small" id="profileAvatar" aria-hidden="true">FC</span><span>My Profile</span><span aria-hidden="true" class="profile-dropdown-chevron">⌄</span></summary>
+        <div class="profile-dropdown-panel">
+          <div class="profile-heading"><div class="profile-avatar" aria-hidden="true" id="profileAvatarLarge">FC</div><div><strong id="profileName">Your account</strong><span id="profileEmail">Loading profile…</span></div></div>
+          <div id="profileDetails" class="profile-details"></div>
+          <details class="profile-preferences-dropdown" id="profilePreferencesDropdown">
+            <summary><span>My questionnaire preferences</span><span class="profile-dropdown-chevron" aria-hidden="true">⌄</span></summary>
+            <p class="profile-preferences-intro">Review the answers you shared. Move a slider to change an answer, then save your updates.</p>
+            <div id="profilePreferenceSliders" class="profile-preference-sliders"><p class="availability-empty">Loading your saved answers…</p></div>
+            <div class="profile-preferences-actions">
+              <button class="btn" id="saveProfilePreferencesBtn" type="button">Save preference changes</button>
+              <p id="profilePreferencesFeedback" role="status" aria-live="polite"></p>
+            </div>
+          </details>
+          <button class="btn secondary profile-edit-button" id="editProfileBtn" type="button">Edit profile details <span aria-hidden="true">→</span></button>
+        </div>
+      </details>
       <button class="logout-button" id="logoutBtn" type="button">Log out <span aria-hidden="true">↗</span></button>
     </div>
   </header>
@@ -1132,10 +1319,10 @@ input,select,textarea{color:var(--ink)}
     <div class="welcome-copy">
       <p class="dash-eyebrow">YOUR FOURCOURSE HOME</p>
       <h1 id="welcomeTitle">Good to see you.</h1>
-      <p class="dashboard-lede">Your availability is saved. Keep it current, and we’ll let you know when a dinner is ready for you.</p>
+      <p class="dashboard-lede">Your dates and preferences, all in one place. We'll let you know when a dinner is ready for you.</p>
     </div>
     <div class="welcome-side">
-      <div class="welcome-note"><span>Good food brings people together.<br><strong>Come curious. We’ll handle the planning.</strong></span></div>
+      <div class="welcome-note"><span>Good food brings people together.<br><strong>Come curious. We'll handle the planning.</strong></span></div>
       <div class="availability-stat" aria-live="polite">
         <div class="stat-mark" aria-hidden="true">▦</div>
         <div><strong id="summaryDateCount">0</strong><span>dates that work for you</span></div>
@@ -1143,67 +1330,95 @@ input,select,textarea{color:var(--ink)}
     </div>
   </section>
 
-  <div class="dashboard-layout">
+  <div class="dashboard-layout dashboard-calendar-layout">
     <main class="dashboard-main">
-      <section class="dash-card next-dinner-card">
+      <section class="dash-card availability-card calendar-dashboard-card">
         <div class="dash-card-heading">
-          <div><p class="dash-eyebrow">WHAT’S NEXT</p><h2>Your next dinner</h2></div>
-          <span class="status-pill" id="dinnerStatus">Not matched yet</span>
-        </div>
-        <div id="upcomingDinnerDetails" class="next-dinner-empty">
-          
-          <div><strong>Nothing you need to do right now.</strong><p>Your dates are saved. When a dinner is arranged for one of the evenings you selected, your invitation and all the details will appear here.</p></div>
-        </div>
-      </section>
-
-      <section class="dash-card availability-card">
-        <div class="dash-card-heading">
-          <div><p class="dash-eyebrow">YOUR CALENDAR</p><h2>When are you free?</h2><p class="availability-intro">These are the evenings you shared with us. Add or remove dates whenever your schedule changes—nothing is final until you confirm a dinner invitation.</p></div>
+          <div><p class="dash-eyebrow">YOUR CALENDAR</p><h2>When are you free?</h2><p class="availability-intro">Choose evenings that work for you. Dinner invitations will appear here.</p></div>
           <span class="count-pill" id="availabilityCount">0 dates</span>
         </div>
-        <div id="availabilityDetails" class="dash-muted">Loading your dates…</div>
+        <div class="calendar-next-step" aria-live="polite">
+          <div class="calendar-next-step-header"><strong>Your dinner status</strong><span class="status-pill" id="dinnerStatus">Choose dates</span></div>
+          <div id="upcomingDinnerDetails"><div><strong>Choose a few evenings to get started.</strong><p>Your dates will be saved here. We'll add your invitation when a table is arranged.</p></div></div>
+          <div class="calendar-progress" id="calendarProgress" aria-label="Dinner planning progress">
+            <div class="calendar-progress-step is-current" id="calendarProgressDates"><span class="calendar-progress-number">1</span><span><strong>Dates saved</strong></span></div>
+            <span class="calendar-progress-line" aria-hidden="true"></span>
+            <div class="calendar-progress-step" id="calendarProgressInvite"><span class="calendar-progress-number">2</span><span><strong>Dinner invitation</strong></span></div>
+          </div>
+        </div>
+        <div class="calendar-summary-row">
+          <div><strong id="calendarSummaryCount">Your calendar</strong><span id="availabilityMeta">Loading your dates…</span></div>
+          <button class="btn secondary calendar-expand-button" id="toggleDashboardCalendar" type="button" aria-expanded="false" aria-controls="dashboardCalendarPanel">View calendar <span aria-hidden="true">⌄</span></button>
+        </div>
+        <div class="dashboard-calendar-panel" id="dashboardCalendarPanel" hidden>
+          <div class="calendar-legend">
+            <span><i class="legend-swatch legend-available"></i>Available</span>
+            <span><i class="legend-swatch legend-assigned"></i>Dinner invitation</span>
+          </div>
+          <div class="cal-nav dashboard-cal-nav"><button type="button" id="dashPrevMonth" aria-label="Previous month">‹</button><strong id="dashMonthLabel">Loading month…</strong><button type="button" id="dashNextMonth" aria-label="Next month">›</button></div>
+          <div class="cal-head"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+          <div class="cal dashboard-calendar-grid" id="dashboardCalendarGrid" aria-label="Your availability calendar"></div>
+          <div class="assigned-dinner-list" id="assignedDinnerList"></div>
+        </div>
         <div class="availability-card-footer">
-          <p class="availability-meta" id="availabilityMeta"></p>
-          <button class="btn" id="joinDinnerBtn" type="button">Edit available dates <span aria-hidden="true">→</span></button>
+          <p class="availability-meta" id="availabilitySavedMeta">Update your dates whenever your plans change.</p>
+          <button class="btn" id="joinDinnerBtn" type="button">Edit availability <span aria-hidden="true">→</span></button>
         </div>
       </section>
     </main>
-
     <aside class="dashboard-aside">
-      <section class="dash-card how-card">
-        <p class="dash-eyebrow">WHAT TO EXPECT</p>
-        <h2>Simple from start to dinner.</h2>
-        <ol class="how-steps">
-          <li><span>1</span><div><strong>Pick the dates that work</strong><p>Choose a few evenings when you could comfortably make dinner.</p></div></li>
-          <li><span>2</span><div><strong>Share a little about yourself</strong><p>Your preferences help us plan a table you’ll feel good joining.</p></div></li>
-          <li><span>3</span><div><strong>Get your dinner invitation</strong><p>We’ll share the date and restaurant details when your dinner is arranged.</p></div></li>
-        </ol>
-      </section>
-
-      <section class="dash-card profile-card">
-        <div class="dash-card-heading"><div><p class="dash-eyebrow">A LITTLE ABOUT YOU</p><h2>Your profile</h2></div><span class="verified-pill"><span aria-hidden="true">✓</span> Verified</span></div>
-        <div class="profile-heading">
-          <div class="profile-avatar" id="profileAvatar" aria-hidden="true">FC</div>
-          <div><strong id="profileName">Your account</strong><span id="profileEmail">Loading profile…</span></div>
-        </div>
-        <div id="profileDetails" class="profile-details"></div>
-        <button class="btn secondary profile-edit-button" id="editProfileBtn" type="button">Update your preferences <span aria-hidden="true">→</span></button>
-      </section>
-
       <section class="dash-card invite-card">
-        <p class="dash-eyebrow">GOOD THINGS ARE BETTER SHARED</p>
-        <h2>Know someone who’d enjoy a seat at the table?</h2>
-        <p>Invite a friend to take a look at FourCourse. More people hearing about it means more possibilities for good conversations.</p>
-        <button class="btn secondary" id="inviteFriendBtn" type="button">Create my invite link <span aria-hidden="true">↗</span></button>
+        <p class="dash-eyebrow">INVITE A FRIEND</p>
+        <h2>Know someone who'd enjoy dinner?</h2>
+        <p>Share FourCourse with a friend. More people, more good conversations.</p>
+        <button class="btn secondary" id="inviteFriendBtn" type="button">Create invite link <span aria-hidden="true">↗</span></button>
         <div class="invite-link-wrap" id="inviteLinkWrap" hidden>
-          <label class="q-help" for="inviteLinkField">Your personal FourCourse invite link</label>
-          <div class="invite-link-row"><input id="inviteLinkField" type="text" readonly aria-label="Your personal FourCourse invite link"><button class="btn" id="copyInviteLinkBtn" type="button">Copy link</button></div>
+          <label class="q-help" for="inviteLinkField">Your personal invite link</label>
+          <div class="invite-link-row"><input id="inviteLinkField" type="text" readonly aria-label="Your personal FourCourse invite link"><button class="btn" id="copyInviteLinkBtn" type="button">Copy</button></div>
         </div>
         <p class="invite-feedback" id="inviteFeedback" role="status" aria-live="polite"></p>
       </section>
     </aside>
   </div>
-
+  <section class="organizer-panel" id="organizerPanel" hidden>
+    <div class="organizer-head"><div><p class="dash-eyebrow">PRIVATE ADMINISTRATOR AREA</p><h2>Organizer workspace</h2><p class="dashboard-lede">Build four-person tables, review every roster, and publish only when you approve.</p></div><button class="btn secondary" id="closeOrganizerBtn" type="button" style="width:auto;margin:0">Back to student view</button></div>
+    <div class="organizer-grid">
+      <div class="organizer-metric"><strong id="orgParticipantCount">—</strong><span>Student profiles</span></div>
+      <div class="organizer-metric"><strong id="orgAvailableCount">—</strong><span>Available for selected date</span></div>
+      <div class="organizer-metric"><strong id="orgPublishedCount">—</strong><span>Published invitations</span></div>
+      <div class="organizer-metric"><strong id="orgFeedbackCount">—</strong><span>Feedback responses</span></div>
+    </div>
+    <div class="organizer-card">
+      <h3>1. Create a dinner run</h3>
+      <div class="organizer-form">
+        <label>Dinner date<input id="orgDinnerDate" type="date"></label>
+        <label>Dinner time<input id="orgDinnerTime" type="time" value="19:00"></label>
+        <label>Restaurant<input id="orgRestaurant" type="text" maxlength="140" placeholder="Restaurant name"></label>
+        <label>Address<input id="orgRestaurantAddress" type="text" maxlength="240" placeholder="Street address"></label>
+      </div>
+      <div class="organizer-actions"><button class="btn" id="orgCreateEventBtn" type="button">Create draft dinner run</button></div>
+      <p class="organizer-note">A draft is private. Creating it does not contact students. You can add restaurant details now or edit them before publishing.</p>
+      <p class="organizer-status" id="orgCreateStatus" role="status" aria-live="polite"></p>
+    </div>
+    <div class="organizer-card">
+      <h3>2. Build and review tables</h3>
+      <div class="organizer-form"><label>Choose a dinner run<select id="orgEventSelect"><option value="">Choose a draft dinner run</option></select></label><label>Participant pool<select id="orgPoolSelect"><option value="all">All eligible students on this date</option></select></label></div>
+      <div class="organizer-actions"><button class="btn" id="orgGenerateBtn" type="button" disabled>Generate four-person tables</button><button class="btn secondary" id="orgRefreshBtn" type="button">Refresh participants</button></div>
+      <p class="organizer-note">Every generated table has exactly four people with the selected date in their availability. Existing questionnaire answers are used to score compatibility. Dietary restrictions and accessibility needs are not yet collected in the current signup form, so check those directly before approving.</p>
+      <p class="organizer-status" id="orgBuildStatus" role="status" aria-live="polite"></p>
+      <div id="orgParticipantTable" class="organizer-table-wrap"></div>
+      <div id="orgGroupsWrap"></div>
+      <div class="organizer-actions"><button class="btn secondary" id="orgApproveBtn" type="button" disabled>Approve tables</button><button class="btn" id="orgPublishBtn" type="button" disabled>Publish invitations</button></div>
+      <p class="organizer-note">Approval and publication are separate actions. Only publication creates student-visible dinner invitations in the app. This build does not send outbound invitation emails yet. Any remaining students are kept unmatched; FourCourse will not create a table with fewer than four.</p>
+    </div>
+    <div class="organizer-card">
+      <h3>3. Pilot and referral overview</h3>
+      <div id="orgAnalyticsSummary" class="dash-muted">Run the database migration to enable organizer analytics.</div>
+    </div>
+  </section>
+  <section class="student-feedback" id="studentFeedbackSection" hidden>
+    <div class="dash-card"><p class="dash-eyebrow">AFTER DINNER</p><h2 style="margin:0 0 6px">How was your dinner?</h2><p class="dash-muted" style="margin:0 0 15px">A quick check-in helps us make future tables better.</p><div id="studentFeedbackForms"></div></div>
+  </section>
   <footer class="dashboard-footer"><span>Good food. New faces. Room for a new perspective.</span><span>Need help? <a href="mailto:four.course.dining@gmail.com">Contact FourCourse</a></span></footer>
 </section>
 
@@ -1360,6 +1575,7 @@ const initialTheme=document.documentElement.getAttribute('data-theme')==='dark'?
 setTheme(initialTheme,false);
 $$('[data-theme-toggle]').forEach(button=>button.addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')));
 let authMode='signup', currentUser=null, cur=0, pendingEmail='', editingMode='new', activeProfile=null;
+let dashboardDates=[], dashboardAssignments=[], dashboardCalendarMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
 const S={school:'',days:new Set(),gender:'No preference',groupPreference:'No preference',participantGender:'',genderSelfDescribe:'',size:'4',answers:[]};
 const authShell=$('#authShell'),dashboard=$('#dashboard'),app=$('#dinnerApp'),confirmationView=$('#confirmationView'),emailPendingView=$('#emailPendingView');
 function showView(which){
@@ -1369,7 +1585,7 @@ function showView(which){
  confirmationView.style.display=which==='confirmation'?'block':'none';
  emailPendingView.style.display=which==='pending'?'block':'none';
 }
-function setAuthMode(mode){authMode=mode;$('#tabSignup').classList.toggle('active',mode==='signup');$('#tabLogin').classList.toggle('active',mode==='login');$('#nameField').style.display=mode==='signup'?'block':'none';$('#authName').required=mode==='signup';$('#authPassword').autocomplete=mode==='signup'?'new-password':'current-password';$('#authTitle').textContent=mode==='signup'?'Your campus is full of people you haven’t met yet.':'Good to have you back.';$('#authSubtitle').textContent=mode==='signup'?'FourCourse brings university students together for relaxed, small-group dinners. Choose evenings that work for you, share a few preferences, and make room for a conversation beyond your usual circle.':'Your table is still here. Log in to update your dates, revisit your preferences, and check for dinner invitations.';$('#authCardHeading').textContent=mode==='signup'?'Save your seat.':'Welcome back.';$('#authCardCopy').textContent=mode==='signup'?'Create your free account, then choose the evenings that work for you.':'Log in to pick up where you left off.';$('#authSubmit').textContent=mode==='signup'?'Create account':'Log in';$('#authError').textContent='';}
+function setAuthMode(mode){authMode=mode;$('#tabSignup').classList.toggle('active',mode==='signup');$('#tabLogin').classList.toggle('active',mode==='login');$('#nameField').style.display=mode==='signup'?'block':'none';$('#authName').required=mode==='signup';$('#authPassword').autocomplete=mode==='signup'?'new-password':'current-password';$('#authTitle').textContent=mode==='signup'?'Your campus is full of people you haven’t met yet.':'Good to have you back.';$('#authSubtitle').textContent=mode==='signup'?'Join a small-group dinner with students from your campus. Pick the evenings that work, share a few preferences, and look out for an invitation.':'Your table is still here. Log in to update your dates, revisit your preferences, and check for dinner invitations.';$('#authCardHeading').textContent=mode==='signup'?'Save your seat.':'Welcome back.';$('#authCardCopy').textContent=mode==='signup'?'Create your free account, then choose the evenings that work for you.':'Log in to pick up where you left off.';$('#authSubmit').textContent=mode==='signup'?'Create account':'Log in';$('#authError').textContent='';}
 function verificationRedirectUrl(){
  const url=new URL(window.location.href);
  url.search='';url.searchParams.set('fourcourse-confirmed','1');url.hash='';
@@ -1379,7 +1595,7 @@ function showEmailPending(email,note){
  pendingEmail=(email||'').trim().toLowerCase();
  $('#pendingEmail').textContent=pendingEmail;
  $('#verificationCode').value='';
- $('#pendingNote').textContent=note||'Check your inbox and spam folder. Enter the 8-digit code here. It expires after one hour.';
+ $('#pendingNote').textContent=note||'Check your inbox and spam folder. Enter the 6-digit code here. It expires after one hour.';
  showView('pending');
 }
 $('#passwordToggle').onclick=()=>{
@@ -1398,13 +1614,17 @@ async function getPersonalInviteUrl(){
  if(readError)throw readError;
  let code=profile?.referral_code;
  if(!code){
-  code=makeReferralCode();
-  const {data,error}=await supabase.from('profiles').update({referral_code:code,updated_at:new Date().toISOString()}).eq('id',currentUser.id).select('referral_code').maybeSingle();
-  if(error)throw error;
-  if(!data?.referral_code)throw new Error('We could not save your personal invite code. Please run the FourCourse referral database update and try again.');
-  code=data.referral_code;
+  // Retry a rare unique-index collision instead of leaving the button broken.
+  for(let attempt=0;attempt<3&&!code;attempt++){
+   const candidate=makeReferralCode();
+   const {data,error}=await supabase.from('profiles').update({referral_code:candidate,updated_at:new Date().toISOString()}).eq('id',currentUser.id).select('referral_code').maybeSingle();
+   if(!error&&data?.referral_code)code=data.referral_code;
+   else if(error&&error.code!=='23505')throw error;
+  }
+  if(!code)throw new Error('We could not create your invite link. Please try again.');
  }
- const url=new URL(window.location.href);url.search='';url.hash='';url.searchParams.set('ref',code);
+ const url=new URL('https://www.discoveringanson.com/fourcourse.html');
+ url.searchParams.set('ref',code);
  return url.toString();
 }
 async function copyText(text){
@@ -1445,6 +1665,8 @@ $('#authForm').addEventListener('submit',async e=>{
    if(referralCode)signupMetadata.referred_by_code=referralCode;
    const {data,error}=await supabase.auth.signUp({email,password,options:{data:signupMetadata}});
    if(error)throw error;
+   // Preserve attribution in auth user metadata as the durable source while the
+   // student verifies. Clear the local copy only after Supabase accepted signup.
    if(referralCode)clearPendingReferralCode();
    // Supabase deliberately returns an obfuscated user with an empty identities
    // array when this email already has an account. No new confirmation email
@@ -1462,7 +1684,7 @@ $('#authForm').addEventListener('submit',async e=>{
     // Never let a session created during signup bypass the email-verification gate.
     if(data.session)await supabase.auth.signOut();
     currentUser=null;
-    showEmailPending(email,'A verification code has been requested. Enter the 8-digit code from the email before logging in. If it does not arrive, check spam or request another code below.');
+    showEmailPending(email,'A verification code has been requested. Enter the 6-digit code from the email before logging in. If it does not arrive, check spam or request another code below.');
    }else if(data.session){
     currentUser=data.user;await ensureProfile();await openDashboard();
    }else{
@@ -1472,23 +1694,23 @@ $('#authForm').addEventListener('submit',async e=>{
    const {data,error}=await supabase.auth.signInWithPassword({email,password});
    if(error){
     if(error.code==='email_not_confirmed'||/email not confirmed/i.test(error.message||'')){
-     showEmailPending(email,'This account has not been verified yet. Enter the 8-digit code from your email, or request a new code below.');
+     showEmailPending(email,'This account has not been verified yet. Enter the 6-digit code from your email, or request a new code below.');
      return;
     }
     throw error;
    }
    const isVerified=!!(data.user?.email_confirmed_at||data.user?.confirmed_at);
-   if(!isVerified){await supabase.auth.signOut();currentUser=null;showEmailPending(email,'This account has not been verified yet. Enter the 8-digit code from your email, or request a new code below.');return;}
+   if(!isVerified){await supabase.auth.signOut();currentUser=null;showEmailPending(email,'This account has not been verified yet. Enter the 6-digit code from your email, or request a new code below.');return;}
    currentUser=data.user;await ensureProfile();await openDashboard();
   }
  }catch(err){$('#authError').style.color='#c2410c';$('#authError').textContent=err.message||'Something went wrong. Please try again.';}
  finally{$('#authSubmit').disabled=false;$('#authSubmit').textContent=authMode==='signup'?'Create account':'Log in';}
 });
-$('#verificationCode').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,8);});
+$('#verificationCode').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,6);});
 $('#verificationForm').addEventListener('submit',async e=>{
  e.preventDefault();
  const btn=$('#verifyCodeBtn');const code=$('#verificationCode').value.trim();
- if(!/^\d{8}$/.test(code)){ $('#pendingNote').textContent='Enter all 8 digits from the verification email.'; return; }
+ if(!/^\d{6}$/.test(code)){ $('#pendingNote').textContent='Enter all 6 digits from the verification email.'; return; }
  btn.disabled=true;btn.textContent='Verifying…';$('#pendingNote').textContent='Checking your verification code…';
  try{
   const {data,error}=await supabase.auth.verifyOtp({email:pendingEmail,token:code,type:'signup'});
@@ -1521,16 +1743,48 @@ async function ensureProfile(){
  if(!currentUser)return;
  const payload={id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||''};
  const referredBy=currentUser.user_metadata?.referred_by_code;
- if(typeof referredBy==='string'&&/^FC[A-F0-9]{12}$/i.test(referredBy))payload.referred_by_code=referredBy.toUpperCase();
+ if(typeof referredBy==='string'&&/^FC[A-F0-9]{12}$/i.test(referredBy)){
+  // Keep the first valid referral attribution; later logins must not overwrite it.
+  const {data:existing,error:readError}=await supabase.from('profiles').select('referred_by_code').eq('id',currentUser.id).maybeSingle();
+  if(readError)throw readError;
+  if(!existing?.referred_by_code&&referredBy.toUpperCase()!==currentUser.user_metadata?.referral_code){payload.referred_by_code=referredBy.toUpperCase();}
+ }
  const {error}=await supabase.from('profiles').upsert(payload,{onConflict:'id'});if(error)throw error;
 }
+function availabilityValues(value){
+ // Supabase normally returns Postgres date[] as a JSON array. Depending on the
+ // column's historical type/schema, it can also arrive as JSON text or as a
+ // Postgres array literal such as {2026-11-06,2026-11-13}. Accept all of these.
+ if(Array.isArray(value))return value;
+ if(value===null||value===undefined||value==='')return [];
+ if(typeof value==='string'){
+  const raw=value.trim();
+  if(!raw)return [];
+  if(raw.startsWith('[')){
+   try{const parsed=JSON.parse(raw);if(Array.isArray(parsed))return parsed;}catch(_e){}
+  }
+  if(raw.startsWith('{')&&raw.endsWith('}')){
+   const inner=raw.slice(1,-1).trim();
+   if(!inner)return [];
+   return inner.split(',').map(item=>item.trim().replace(/^"|"$/g,''));
+  }
+  return raw.split(',').map(item=>item.trim()).filter(Boolean);
+ }
+ return [];
+}
 function normalizeAvailability(profileDates, legacyDaysFree){
- // Current records store dates as a Postgres date[] on profiles. Older signups
- // stored the same ISO dates as a comma-separated string in dinner_signups.days_free.
- const fromProfile=Array.isArray(profileDates)?profileDates:[];
- const fromLegacy=typeof legacyDaysFree==='string'?legacyDaysFree.split(',').map(x=>x.trim()):[];
- const source=fromProfile.length?fromProfile:fromLegacy;
- return [...new Set(source.map(x=>String(x||'').trim().slice(0,10)).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x)))].sort();
+ // Current records store dates in profiles.availability. Older signups stored
+ // comma-separated ISO dates in dinner_signups.days_free. Be tolerant of the
+ // different representations PostgREST may return for a legacy column type.
+ const fromProfile=availabilityValues(profileDates);
+ const fromLegacy=availabilityValues(legacyDaysFree);
+ const source=(profileDates!==null&&profileDates!==undefined)?fromProfile:fromLegacy;
+ const normalized=source.map(value=>{
+  const text=String(value??'').trim().replace(/^"|"$/g,'');
+  const iso=text.match(/^(\d{4}-\d{2}-\d{2})/);
+  return iso?iso[1]:'';
+ }).filter(Boolean);
+ return [...new Set(normalized)].sort();
 }
 function renderAvailability(dates){
  const unique=normalizeAvailability(dates, null);
@@ -1548,24 +1802,344 @@ async function getLatestSignupDates(){
  return data||null;
 }
 async function resolveProfileAvailability(profile){
- // The profile array is the canonical current value whenever it contains dates.
- const profileDates=normalizeAvailability(profile?.availability,null);
- if(profileDates.length)return {dates:profileDates,latestSignup:null,savedAt:profile?.updated_at||null};
- // Older submissions (and accounts created before the profile field was populated)
- // may have dates only in dinner_signups.days_free. Also check an empty array rather
- // than only null: PostgreSQL date[] defaults can be [] for existing accounts.
+ // profiles.availability is authoritative whenever the column has a value,
+ // whether PostgREST returns it as an array or a serialized array string.
+ // An explicit empty value means the student removed all dates; do not resurrect old dates.
+ if(profile?.availability!==null&&profile?.availability!==undefined){
+  return {dates:normalizeAvailability(profile.availability,null),latestSignup:null,savedAt:profile?.updated_at||null};
+ }
+ // Backward compatibility for older profiles that predate the availability column value.
  let latestSignup=null;
- try{latestSignup=await getLatestSignupDates();}
- catch(error){console.warn('Could not read previous dinner signup dates:',error);}
+ try{latestSignup=await getLatestSignupDates();}catch(error){console.warn('Could not read previous dinner signup dates:',error);}
  const legacyDates=normalizeAvailability(null,latestSignup?.days_free);
- if(legacyDates.length)return {dates:legacyDates,latestSignup,savedAt:latestSignup?.created_at||profile?.updated_at||null};
- return {dates:[],latestSignup,savedAt:profile?.updated_at||latestSignup?.created_at||null};
+ return {dates:legacyDates,latestSignup,savedAt:latestSignup?.created_at||profile?.updated_at||null};
 }
+
+async function getMyDinnerAssignments(){
+ const {data,error}=await supabase.from('dinner_assignments')
+  .select('id,dinner_date,dinner_time,restaurant_name,restaurant_address,status')
+  .eq('user_id',currentUser.id)
+  .in('status',['invited','confirmed'])
+  .order('dinner_date',{ascending:true})
+  .limit(30);
+ if(error){
+  // Before the organizer workflow is installed, absence of the table should not break student login.
+  if(error.code==='42P01'||error.code==='PGRST205'||/dinner_assignments/i.test(error.message||'')){
+   console.warn('Dinner assignment table is not installed yet. Run the FourCourse calendar migration.');
+   return {items:[],ready:false};
+  }
+  throw error;
+ }
+ return {items:data||[],ready:true};
+}
+function localDateKey(date){return date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');}
+function formatDinnerTime(value){
+ if(!value)return '';
+ const parts=String(value).split(':').map(Number);if(parts.length<2||!Number.isFinite(parts[0]))return String(value);
+ const d=new Date();d.setHours(parts[0],parts[1]||0,0,0);return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+}
+function isActiveDinnerAssignment(item){return ['invited','confirmed'].includes(String(item?.status||'invited').toLowerCase());}
+function renderDashboardCalendar(){
+ const grid=$('#dashboardCalendarGrid'),label=$('#dashMonthLabel');if(!grid||!label)return;
+ const month=new Date(dashboardCalendarMonth.getFullYear(),dashboardCalendarMonth.getMonth(),1);
+ label.textContent=month.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+ const firstDow=month.getDay(),daysInMonth=new Date(month.getFullYear(),month.getMonth()+1,0).getDate();
+ const available=new Set(dashboardDates);
+ const assigned=new Map();
+ dashboardAssignments.forEach(item=>{const key=String(item.dinner_date||'').slice(0,10);if(key&&isActiveDinnerAssignment(item))assigned.set(key,item);});
+ grid.innerHTML='';
+ for(let i=0;i<firstDow;i++){const blank=document.createElement('div');blank.className='calendar-blank';grid.appendChild(blank);}
+ for(let day=1;day<=daysInMonth;day++){
+  const d=new Date(month.getFullYear(),month.getMonth(),day,12),key=localDateKey(d),assignment=assigned.get(key);
+  const cell=document.createElement('div');cell.className='dashboard-calendar-day';
+  if(assignment)cell.classList.add('is-assigned');else if(available.has(key))cell.classList.add('is-available');
+  const number=document.createElement('span');number.className='calendar-day-number';number.textContent=String(day);cell.appendChild(number);
+  if(assignment){const mark=document.createElement('span');mark.className='calendar-day-caption';mark.textContent='Dinner';cell.appendChild(mark);cell.title=(assignment.restaurant_name||'Dinner invitation')+' · '+key;cell.setAttribute('aria-label',key+' dinner invitation'+(assignment.restaurant_name?' at '+assignment.restaurant_name:''));}
+  else if(available.has(key)){const mark=document.createElement('span');mark.className='calendar-day-caption';mark.textContent='Free';cell.appendChild(mark);cell.title='Available for dinner';cell.setAttribute('aria-label',key+' available for dinner');}
+  else{cell.setAttribute('aria-label',key);}
+  grid.appendChild(cell);
+ }
+ const prev=$('#dashPrevMonth'),next=$('#dashNextMonth');
+ const now=new Date();const current=new Date(now.getFullYear(),now.getMonth(),1);const max=new Date(current.getFullYear(),current.getMonth()+6,1);
+ if(prev)prev.disabled=month<=current;if(next)next.disabled=month>=max;
+ const list=$('#assignedDinnerList');
+ if(list){
+  const upcoming=dashboardAssignments.filter(x=>String(x.dinner_date||'')>=localDateKey(new Date())&&isActiveDinnerAssignment(x));
+  if(!upcoming.length){list.innerHTML=`<p class="assigned-dinner-empty">No dinner invitations yet. When you're assigned to a dinner, its date will be highlighted here.</p>`;}
+  else{list.innerHTML='<h3>Your dinner invitations</h3>'+upcoming.map(item=>{
+   const d=new Date(String(item.dinner_date).slice(0,10)+'T12:00:00');
+   const dateText=d.toLocaleDateString('en-US',{weekday:'short',month:'long',day:'numeric'});
+   const details=[formatDinnerTime(item.dinner_time),item.restaurant_address].filter(Boolean).map(esc).join(' · ');
+   return '<article class="assigned-dinner-row"><div class="assigned-dinner-date">'+esc(dateText)+'</div><div class="assigned-dinner-copy"><strong>'+esc(item.restaurant_name||'Dinner invitation')+'</strong><span>'+esc(details||'Dinner details will be shared soon.')+'</span></div><span class="assigned-status">'+(item.status==='confirmed'?'Confirmed':'Invitation')+'</span>'+(item.status==='invited'?'<div class="invite-response-actions"><button type="button" data-assignment-accept="'+esc(item.id)+'">Accept</button><button type="button" data-assignment-decline="'+esc(item.id)+'">Decline</button></div>':'')+'</article>';
+  }).join('');}
+  list.querySelectorAll('[data-assignment-accept],[data-assignment-decline]').forEach(btn=>btn.addEventListener('click',async()=>{const status=btn.hasAttribute('data-assignment-accept')?'confirmed':'declined';btn.disabled=true;try{const {error}=await supabase.from('dinner_assignments').update({status}).eq('id',btn.dataset.assignmentAccept||btn.dataset.assignmentDecline).eq('user_id',currentUser.id);if(error)throw error;await openDashboard(status==='confirmed'?'Dinner confirmed':'Invitation declined');}catch(e){btn.disabled=false;alert(e.message||'Could not update invitation.');}}));
+ }
+}
+function updateDashboardDinnerSummary(ready){
+ const hasDates=dashboardDates.length>0;
+ const upcoming=dashboardAssignments.filter(x=>String(x.dinner_date||'')>=localDateKey(new Date())&&isActiveDinnerAssignment(x)).sort((a,b)=>String(a.dinner_date).localeCompare(String(b.dinner_date)));
+ const target=$('#upcomingDinnerDetails');
+ const status=$('#dinnerStatus');
+ const datesStep=$('#calendarProgressDates');
+ const inviteStep=$('#calendarProgressInvite');
+ if(upcoming.length){
+  const item=upcoming[0],d=new Date(String(item.dinner_date).slice(0,10)+'T12:00:00');
+  const when=d.toLocaleDateString('en-US',{weekday:'short',month:'long',day:'numeric'});
+  const details=[when,item.dinner_time?formatDinnerTime(item.dinner_time):'',item.restaurant_name||''].filter(Boolean).join(' · ');
+  target.innerHTML='<div><strong>'+esc(item.restaurant_name||'Your dinner invitation is ready.')+'</strong><p>'+esc(details)+(item.restaurant_address?' · '+esc(item.restaurant_address):'')+'</p></div>';
+  if(status)status.textContent=item.status==='confirmed'?'Confirmed':'Invitation ready';
+ }else{
+  target.innerHTML='<div><strong>'+(hasDates?'Your dates are saved.':'Choose a few evenings to get started.')+'</strong><p>'+(hasDates?'We’ll add your dinner invitation here when a table is arranged.':'Pick the evenings that work for you.')+'</p></div>';
+  if(status)status.textContent=hasDates?'Dates saved':'Choose dates';
+ }
+ if(datesStep){
+  datesStep.classList.toggle('is-complete',hasDates);
+  datesStep.classList.toggle('is-current',!hasDates);
+ }
+ if(inviteStep){
+  inviteStep.classList.toggle('is-complete',upcoming.length>0);
+  inviteStep.classList.toggle('is-current',hasDates&&upcoming.length===0);
+ }
+}
+
+function organizerStatus(message,isError=false){const el=$('#orgBuildStatus');if(el){el.textContent=message||'';el.classList.toggle('error',!!isError);}}
+function scorePair(a,b){
+ const aa=Array.isArray(a.questionnaire_answers)?a.questionnaire_answers:[],bb=Array.isArray(b.questionnaire_answers)?b.questionnaire_answers:[];
+ let total=0,weight=0;
+ QUESTIONS.forEach(q=>{const x=Number(aa[q.id-1]),y=Number(bb[q.id-1]);if(!Number.isFinite(x)||!Number.isFinite(y)||x<1||x>5||y<1||y>5)return;const w=q.weight||1;const fit=q.mode==='diverse'?Math.abs(x-y)/4:1-Math.abs(x-y)/4;total+=fit*w;weight+=w;});
+ return weight?100*total/weight:50;
+}
+function scoreGroup(group){let sum=0,pairs=0;for(let i=0;i<group.length;i++)for(let j=i+1;j<group.length;j++){sum+=scorePair(group[i],group[j]);pairs++;}return pairs?sum/pairs:50;}
+function genderIdentityKey(p){
+ const g=String(p.participant_gender||'').trim();
+ if(!g||g==='Prefer not to say')return null;
+ if(g==='Another identity'){const description=String(p.gender_self_description||'').trim().toLowerCase();return description?'another:'+description:null;}
+ return g.toLowerCase();
+}
+function quartetGenderEligible(group){
+ const prefs=group.map(p=>String(p.gender_preference||'').trim().toLowerCase());
+ const identities=group.map(genderIdentityKey);
+ if(prefs.includes('same-gender group')){
+  return identities.every(Boolean)&&new Set(identities).size===1;
+ }
+ if(prefs.includes('mixed-gender group')){
+  const known=identities.filter(Boolean);
+  return new Set(known).size>=2;
+ }
+ return true;
+}
+function bestFour(candidates){
+ // Version 2 compatibility scoring and the same gender eligibility rules as the database.
+ let pool=[...candidates],groups=[];
+ while(pool.length>=4){
+  let best=null,bestScore=-1;
+  const window=pool.slice(0,Math.min(pool.length,42));
+  for(let a=0;a<window.length-3;a++)for(let b=a+1;b<window.length-2;b++)for(let c=b+1;c<window.length-1;c++)for(let d=c+1;d<window.length;d++){
+   const quartet=[window[a],window[b],window[c],window[d]];
+   if(!quartetGenderEligible(quartet))continue;
+   const score=scoreGroup(quartet);
+   if(score>bestScore){bestScore=score;best=quartet;}
+  }
+  if(!best)break;
+  groups.push({members:best,score:bestScore});
+  const ids=new Set(best.map(x=>x.id));pool=pool.filter(x=>!ids.has(x.id));
+ }
+ return {groups,unmatched:pool};
+}
+let organizerIsAdmin = false;
+let organizerActiveEvent = null;
+let organizerEvents = [];
+let organizerCandidates = [];
+let organizerGroupAssigned = new Set();
+async function checkOrganizerAccess(){
+ organizerIsAdmin=false;$('#organizerAccessBtn').hidden=true;
+ try{const {data,error}=await supabase.from('fourcourse_admins').select('user_id').eq('user_id',currentUser.id).maybeSingle();if(error)throw error;organizerIsAdmin=!!data;}
+ catch(e){console.warn('Organizer access is not configured or migration has not been run:',e.message);}
+ $('#organizerAccessBtn').hidden=!organizerIsAdmin;
+ if(organizerIsAdmin)await loadOrganizerMetrics();
+}
+async function loadOrganizerMetrics(){
+ try{
+  const [profiles,assignments,feedback]=await Promise.all([
+   supabase.from('profiles').select('id',{count:'exact',head:true}),
+   supabase.from('dinner_assignments').select('id,user_id,status'),
+   supabase.from('dinner_feedback').select('id,attended,rating')
+  ]);
+  if(profiles.error)throw profiles.error;
+  if(assignments.error)throw assignments.error; if(feedback.error)throw feedback.error;
+  const assignmentRows=assignments.data||[],feedbackRows=feedback.data||[];
+  $('#orgParticipantCount').textContent=profiles.count??'—';$('#orgPublishedCount').textContent=assignmentRows.length;$('#orgFeedbackCount').textContent=feedbackRows.length;
+  const confirmed=assignmentRows.filter(a=>a.status==='confirmed').length;const attendance=feedbackRows.filter(f=>f.attended).length;const rated=feedbackRows.filter(f=>f.attended&&Number.isFinite(Number(f.rating)));const avg=rated.length?(rated.reduce((n,f)=>n+Number(f.rating),0)/rated.length).toFixed(1):'—';
+  const repeatUsers=new Map();assignmentRows.forEach(a=>repeatUsers.set(a.user_id,(repeatUsers.get(a.user_id)||0)+1));const repeats=[...repeatUsers.values()].filter(n=>n>1).length;
+  const {data:referrals,error:refError}=await supabase.from('profiles').select('id,referred_by_code,referral_code');
+  if(!refError&&referrals){const referred=referrals.filter(p=>p.referred_by_code).length;const codes=referrals.filter(p=>p.referral_code).length;$('#orgAnalyticsSummary').textContent=`${confirmed} invitations accepted · ${attendance} attendees reported · average dinner rating ${avg}/5 · ${repeats} repeat participants · ${referred} referred signups from ${codes} invite-code holders · ${feedbackRows.length} feedback responses. These figures update as students respond and submit feedback.`;}
+ }catch(e){console.warn('Organizer metrics unavailable:',e.message);$('#orgAnalyticsSummary').textContent='Some analytics are unavailable until the organizer migration is installed.';}
+}
+async function loadOrganizerEvents(){
+ const select=$('#orgEventSelect');select.innerHTML='<option value="">Loading dinner runs…</option>';
+ const {data,error}=await supabase.from('dinner_events').select('*').order('dinner_date',{ascending:true}).limit(100);
+ if(error)throw error;organizerEvents=data||[];select.innerHTML='<option value="">Choose a dinner run</option>'+organizerEvents.map(e=>`<option value="${esc(e.id)}">${esc(e.dinner_date)} · ${esc(e.restaurant_name||'Restaurant to be set')} · ${esc(e.status)}</option>`).join('');
+}
+async function loadOrganizerCandidates(event){
+ organizerCandidates=[];$('#orgAvailableCount').textContent='…';$('#orgParticipantTable').innerHTML='<p class="dash-muted">Loading participants…</p>';
+ const {data:profiles,error}=await supabase.from('profiles').select('id,full_name,email,school,availability,questionnaire_answers,gender_preference,participant_gender,gender_self_description').order('full_name',{ascending:true});
+ if(error)throw error;
+ const legacyNeeded=(profiles||[]).filter(p=>p.availability===null||p.availability===undefined).map(p=>p.id);
+ let legacyByUser=new Map();
+ if(legacyNeeded.length){const {data:signups,error:signupError}=await supabase.from('dinner_signups').select('user_id,days_free,created_at').in('user_id',legacyNeeded).order('created_at',{ascending:false});if(!signupError)(signups||[]).forEach(x=>{if(!legacyByUser.has(x.user_id))legacyByUser.set(x.user_id,x.days_free);});}
+ organizerCandidates=(profiles||[]).map(p=>({...p,display_name:p.full_name||p.email||'Student',available_dates:normalizeAvailability(p.availability,legacyByUser.get(p.id))}));
+ const eligible=organizerCandidates.filter(p=>organizerActiveEvent&&p.available_dates.includes(organizerActiveEvent.dinner_date));
+ $('#orgAvailableCount').textContent=String(eligible.length);
+ $('#orgParticipantTable').innerHTML=eligible.length?'<table class="organizer-table"><thead><tr><th>Student</th><th>School</th><th>Group setting</th><th>Availability</th></tr></thead><tbody>'+eligible.map(p=>`<tr><td>${esc(p.display_name)}<br><span class="dash-muted">${esc(p.email||'')}</span></td><td>${esc(p.school||'—')}</td><td>${esc(p.gender_preference||'Not specified')}<br><span class="dash-muted">Manual review</span></td><td>Available</td></tr>`).join('')+'</tbody></table>':'<div class="org-unmatched">No students currently have this date saved. Ask students to update availability or choose another date.</div>';
+ return eligible;
+}
+function renderOrganizerGroups(groups,unmatched){
+ const host=$('#orgGroupsWrap');if(!groups.length){host.innerHTML='<div class="org-unmatched">No four-person tables can be formed yet. Four eligible students are needed for the first table.</div>';return;}
+ organizerGroupAssigned=new Set(groups.flatMap(g=>g.members.map(m=>m.id)));
+ host.innerHTML=groups.map((g,idx)=>`<div class="org-group"><div class="org-group-head"><strong>Table ${idx+1}</strong><span class="org-chip">${g.members.length}/4 · ${Math.round(g.score)}% compatibility</span></div><table class="organizer-table"><tbody>${g.members.map(m=>`<tr><td>${esc(m.display_name)}</td><td><select ${g.status!=='draft'?'disabled':''} data-group-id="${esc(g.id)}" data-old-user="${esc(m.id)}" aria-label="Replace ${esc(m.display_name)}">${organizerCandidates.filter(p=>p.available_dates.includes(organizerActiveEvent.dinner_date)&&(!organizerGroupAssigned.has(p.id)||p.id===m.id)).map(p=>`<option value="${esc(p.id)}" ${p.id===m.id?'selected':''}>${esc(p.display_name)}</option>`).join('')}</select></td><td>${esc(m.gender_preference||'No group preference')}</td></tr>`).join('')}</tbody></table></div>`).join('')+(unmatched.length?`<div class="org-unmatched"><strong>${unmatched.length} unmatched</strong> — these students are not assigned to a smaller table: ${unmatched.map(p=>esc(p.display_name)).join(', ')}. They can be placed in a later run or when more participants become available.</div>`:'');
+ host.querySelectorAll('select[data-group-id]').forEach(sel=>sel.addEventListener('change',async()=>{
+  const next=sel.value,old=sel.dataset.oldUser;if(next===old)return;sel.disabled=true;organizerStatus('Updating table…');
+  try{const {error}=await supabase.rpc('fourcourse_replace_group_member',{p_group_id:sel.dataset.groupId,p_old_user_id:old,p_new_user_id:next});if(error)throw error;organizerStatus('Table updated. Review the roster before approval.');await loadOrganizerGroups();}
+  catch(e){organizerStatus(e.message||'Could not update this table.',true);sel.value=old;sel.disabled=false;}
+ }));
+}
+async function loadOrganizerGroups(){
+ if(!organizerActiveEvent)return;
+ const {data:groups,error}=await supabase.from('dinner_groups').select('id,group_number,status,compatibility_score,review_note').eq('event_id',organizerActiveEvent.id).order('group_number');if(error)throw error;
+ const result=[];
+ for(const g of groups||[]){const {data:members,error:memberError}=await supabase.from('dinner_group_members').select('user_id,compatibility_score').eq('group_id',g.id);if(memberError)throw memberError;const mapped=(members||[]).map(m=>({...organizerCandidates.find(p=>p.id===m.user_id),id:m.user_id})).filter(x=>x.display_name);result.push({...g,members:mapped,score:mapped.length===4?scoreGroup(mapped):Number(g.compatibility_score||0)});}
+ const assignedIds=new Set(result.flatMap(g=>g.members.map(m=>m.id)));
+ const unmatched=organizerCandidates.filter(p=>p.available_dates.includes(organizerActiveEvent.dinner_date)&&!assignedIds.has(p.id));
+ renderOrganizerGroups(result,unmatched);
+ const statuses=(groups||[]).map(g=>g.status);const approved=statuses.length>0&&statuses.every(x=>x==='approved'||x==='published');const published=statuses.length>0&&statuses.every(x=>x==='published');
+ $('#orgApproveBtn').disabled=!groups?.length||approved||published||result.some(g=>g.members.length!==4);
+ $('#orgPublishBtn').disabled=!approved||published||result.some(g=>g.members.length!==4);
+}
+async function createOrganizerEvent(){
+ const status=$('#orgCreateStatus'),btn=$('#orgCreateEventBtn');status.textContent='';btn.disabled=true;btn.textContent='Creating…';
+ try{const date=$('#orgDinnerDate').value,time=$('#orgDinnerTime').value;if(!date||!time)throw new Error('Choose a date and time first.');
+  const {data,error}=await supabase.from('dinner_events').insert({dinner_date:date,dinner_time:time,restaurant_name:$('#orgRestaurant').value.trim()||null,restaurant_address:$('#orgRestaurantAddress').value.trim()||null,status:'draft',created_by:currentUser.id}).select('*').single();if(error)throw error;
+  status.textContent='Draft dinner run created. It is not visible to students.';await loadOrganizerEvents();$('#orgEventSelect').value=data.id;await selectOrganizerEvent(data.id);
+ }catch(e){status.textContent=e.message||'Could not create dinner run.';status.classList.add('error');}
+ finally{btn.disabled=false;btn.textContent='Create draft dinner run';}
+}
+async function selectOrganizerEvent(id){
+ organizerActiveEvent=organizerEvents.find(e=>e.id===id)||null;$('#orgGenerateBtn').disabled=!organizerActiveEvent||organizerActiveEvent.status!=='draft';$('#orgApproveBtn').disabled=true;$('#orgPublishBtn').disabled=true;
+ if(!organizerActiveEvent){organizerCandidates=[];$('#orgGroupsWrap').innerHTML='';$('#orgParticipantTable').innerHTML='';return;}
+ try{await loadOrganizerCandidates(organizerActiveEvent);await loadOrganizerGroups();organizerStatus('Selected '+organizerActiveEvent.dinner_date+'. Draft tables remain private.');}
+ catch(e){organizerStatus(e.message||'Could not load dinner run.',true);}
+}
+async function generateOrganizerGroups(){
+ if(!organizerActiveEvent||organizerActiveEvent.status!=='draft')return;
+ const btn=$('#orgGenerateBtn');btn.disabled=true;btn.textContent='Building…';
+ try{
+  // Replace only unpublished draft tables for this event; approved/published tables are never silently overwritten.
+  const {data:existing,error:existingError}=await supabase.from('dinner_groups').select('id,status').eq('event_id',organizerActiveEvent.id);if(existingError)throw existingError;
+  if((existing||[]).some(g=>g.status!=='draft'))throw new Error('This dinner run has approved or published tables. Create a new draft to rebuild it.');
+  if(existing?.length){const {error:delError}=await supabase.from('dinner_groups').delete().eq('event_id',organizerActiveEvent.id);if(delError)throw delError;}
+  const eligible=organizerCandidates.filter(p=>p.available_dates.includes(organizerActiveEvent.dinner_date));
+  const currentVersionCandidates=eligible.filter(p=>Array.isArray(p.questionnaire_answers)&&p.questionnaire_answers.length===QUESTIONS.length);
+  if(currentVersionCandidates.length!==eligible.length)throw new Error(`${eligible.length-currentVersionCandidates.length} eligible student(s) need to complete the 10-question version 2 questionnaire before matching. No tables were generated.`);
+  const built=bestFour(eligible);if(!built.groups.length)throw new Error(`Only ${eligible.length} eligible students. Four are needed to create a table.`);
+  for(let i=0;i<built.groups.length;i++){
+   const g=built.groups[i];const {data:row,error}=await supabase.from('dinner_groups').insert({event_id:organizerActiveEvent.id,group_number:i+1,status:'draft',compatibility_score:g.score,review_note:'Generated from shared availability and questionnaire compatibility. Organizer review required.'}).select('id').single();if(error)throw error;
+   const members=g.members.map(m=>({event_id:organizerActiveEvent.id,group_id:row.id,user_id:m.id,compatibility_score:scoreGroup(g.members.filter(x=>x.id!==m.id))}));
+   const {error:memberError}=await supabase.from('dinner_group_members').insert(members);if(memberError)throw memberError;
+  }
+  renderOrganizerGroups(built.groups.map((g,i)=>({...g,id:'pending-'+i})),built.unmatched);
+  // Reload persisted groups so manual swaps and approval are attached to real row IDs.
+  await loadOrganizerGroups();$('#orgApproveBtn').disabled=false;organizerStatus(`${built.groups.length} complete table(s) generated from ${eligible.length} eligible students. ${built.unmatched.length} student(s) left unmatched.`);
+ }catch(e){organizerStatus(e.message||'Could not generate tables.',true);}
+ finally{btn.disabled=false;btn.textContent='Generate four-person tables';}
+}
+async function approveOrganizerEvent(){
+ const btn=$('#orgApproveBtn');btn.disabled=true;try{const {error}=await supabase.rpc('fourcourse_approve_event',{p_event_id:organizerActiveEvent.id});if(error)throw error;organizerStatus('Tables approved. Nothing has been sent to students.');await loadOrganizerEvents();await selectOrganizerEvent(organizerActiveEvent.id);}catch(e){organizerStatus(e.message||'Could not approve tables.',true);btn.disabled=false;}
+}
+async function publishOrganizerEvent(){
+ if(!organizerActiveEvent||!window.confirm('Publish these approved four-person tables? This creates invitations on student dashboards.'))return;
+ const btn=$('#orgPublishBtn');btn.disabled=true;try{const {data,error}=await supabase.rpc('fourcourse_publish_event',{p_event_id:organizerActiveEvent.id});if(error)throw error;organizerStatus(`${data} student invitation(s) published. Students can now see their dinner details.`);await loadOrganizerEvents();await selectOrganizerEvent(organizerActiveEvent.id);await loadOrganizerMetrics();}catch(e){organizerStatus(e.message||'Could not publish invitations.',true);btn.disabled=false;}
+}
+async function openOrganizerWorkspace(){
+ if(!organizerIsAdmin)return;$('#organizerPanel').hidden=false;$('#studentFeedbackSection').hidden=true;$('#organizerPanel').scrollIntoView({behavior:'smooth',block:'start'});
+ try{await loadOrganizerEvents();organizerStatus('Choose a draft dinner run or create a new one.');await loadOrganizerMetrics();}catch(e){organizerStatus(e.message||'Could not load organizer workspace.',true);}
+}
+async function renderStudentFeedback(assignments){
+ const section=$('#studentFeedbackSection'),host=$('#studentFeedbackForms');if(!section||!host)return;
+ const past=(assignments||[]).filter(a=>String(a.dinner_date||'')<localDateKey(new Date()));
+ if(!past.length){section.hidden=true;return;}
+ const {data:responses,error}=await supabase.from('dinner_feedback').select('assignment_id').eq('user_id',currentUser.id);if(error){console.warn('Feedback lookup unavailable:',error.message);section.hidden=true;return;}
+ const done=new Set((responses||[]).map(x=>x.assignment_id)),pending=past.filter(a=>!done.has(a.id));
+ if(!pending.length){section.hidden=true;return;}
+ section.hidden=false;host.innerHTML=pending.map(a=>`<form class="feedback-form" data-feedback-assignment="${esc(a.id)}" style="padding:13px 0;border-top:1px solid var(--line)"><strong style="grid-column:1/-1;font-size:13px">${esc(a.restaurant_name||'FourCourse dinner')} · ${esc(a.dinner_date)}</strong><label>Did you attend?<select name="attended"><option value="yes">Yes</option><option value="no">No</option></select></label><label>How was it?<select name="rating"><option value="5">5 — Great</option><option value="4">4 — Good</option><option value="3">3 — Okay</option><option value="2">2 — Not great</option><option value="1">1 — Poor</option></select></label><label style="grid-column:1/-1">Would you recommend FourCourse?<select name="recommend"><option value="yes">Yes</option><option value="no">No</option></select></label><textarea name="comments" maxlength="1200" placeholder="Anything we could improve? (optional)"></textarea><button class="btn" type="submit">Send feedback</button></form>`).join('');
+ host.querySelectorAll('form[data-feedback-assignment]').forEach(form=>form.addEventListener('submit',async e=>{e.preventDefault();const b=form.querySelector('button');b.disabled=true;b.textContent='Sending…';const fd=new FormData(form),attended=fd.get('attended')==='yes';try{const {error}=await supabase.from('dinner_feedback').insert({assignment_id:form.dataset.feedbackAssignment,user_id:currentUser.id,attended,rating:attended?Number(fd.get('rating')):null,would_recommend:fd.get('recommend')==='yes',comments:String(fd.get('comments')||'').trim()||null});if(error)throw error;form.innerHTML='<p class="organizer-status">Thank you — your feedback has been saved.</p>'; }catch(err){b.disabled=false;b.textContent='Send feedback';alert(err.message||'Could not save feedback.');}}));
+}
+
+function renderProfilePreferenceSliders(rawAnswers){
+ const host=$('#profilePreferenceSliders');
+ const saveButton=$('#saveProfilePreferencesBtn');
+ if(!host)return;
+ const saved=parseSavedAnswers(rawAnswers);
+ const values=new Map(saved.map(answer=>[answer.id,answer.value]));
+ if(!saved.length){
+  host.innerHTML='<p class="profile-preferences-empty">You have not completed the 10-question preferences yet. Complete them to see and adjust your answers here.</p>';
+  if(saveButton)saveButton.disabled=true;
+  return;
+ }
+ if(saveButton)saveButton.disabled=false;
+ // Show only answers the student actually submitted. Unanswered questions stay blank
+ // rather than being silently converted to a neutral score when the sliders are saved.
+ host.innerHTML=QUESTIONS.filter(q=>values.has(q.id)).map(q=>{
+  const value=Number(values.get(q.id));
+  const valueLabel=value===1?'Strongly left':value===2?'Leaning left':value===3?'In the middle':value===4?'Leaning right':'Strongly right';
+  return `<div class="profile-preference-item" data-pref-item="${q.id}">
+   <div class="profile-preference-top"><strong>${q.id}. ${esc(q.left)} ↔ ${esc(q.right)}</strong><span data-pref-value="${q.id}">${valueLabel}</span></div>
+   <div class="profile-preference-ends"><span>${esc(q.left)}</span><span>${esc(q.right)}</span></div>
+   <input type="range" min="1" max="5" step="1" value="${value}" data-pref-slider="${q.id}" aria-label="Question ${q.id}: ${esc(q.left)} to ${esc(q.right)}">
+  </div>`;
+ }).join('');
+ host.querySelectorAll('[data-pref-slider]').forEach(slider=>slider.addEventListener('input',()=>{
+  const value=Number(slider.value),id=Number(slider.dataset.prefSlider);
+  const label=value===1?'Strongly left':value===2?'Leaning left':value===3?'In the middle':value===4?'Leaning right':'Strongly right';
+  const output=host.querySelector(`[data-pref-value="${id}"]`);if(output)output.textContent=label;
+  $('#profilePreferencesFeedback').textContent='Unsaved changes';
+ }));
+}
+async function saveProfileQuestionnairePreferences(){
+ const button=$('#saveProfilePreferencesBtn'),feedback=$('#profilePreferencesFeedback');
+ if(!currentUser||!button)return;
+ const sliders=$$('#profilePreferenceSliders [data-pref-slider]');
+ if(!sliders.length){feedback.textContent='Complete the questionnaire first to add preferences.';return;}
+ button.disabled=true;button.textContent='Saving…';feedback.textContent='';
+ try{
+  const values=Array(10).fill(null);
+  const existing=parseSavedAnswers(activeProfile?.questionnaire_answers);
+  existing.forEach(a=>{if(a.id>=1&&a.id<=10)values[a.id-1]=a.value;});
+  sliders.forEach(slider=>{const id=Number(slider.dataset.prefSlider);if(id>=1&&id<=10)values[id-1]=Number(slider.value);});
+  const updatedAt=new Date().toISOString();
+  const {data,error}=await supabase.from('profiles').update({questionnaire_answers:values,updated_at:updatedAt}).eq('id',currentUser.id).select('questionnaire_answers,updated_at').maybeSingle();
+  if(error)throw error;
+  if(!data)throw new Error('We could not find your profile. Please log out and back in.');
+  activeProfile={...activeProfile,questionnaire_answers:data.questionnaire_answers,updated_at:data.updated_at};
+  // Keep the student's latest signup snapshot in sync for the organizer's matching workflow.
+  const {data:latestSignup,error:signupReadError}=await supabase.from('dinner_signups').select('id,questionnaire_version').eq('user_id',currentUser.id).eq('questionnaire_version',QUESTIONNAIRE_VERSION).order('created_at',{ascending:false}).limit(1).maybeSingle();
+  if(signupReadError)throw signupReadError;
+  if(latestSignup?.id){
+   const {error:signupUpdateError}=await supabase.from('dinner_signups').update({questionnaire_answers:values,questionnaire_version:QUESTIONNAIRE_VERSION}).eq('id',latestSignup.id);
+   if(signupUpdateError)throw signupUpdateError;
+  }
+  feedback.textContent='Your preferences have been saved.';
+  renderProfilePreferenceSliders(data.questionnaire_answers);
+ }catch(error){
+  console.error('Could not save questionnaire preferences:',error);
+  feedback.textContent=error.message||'We could not save your changes. Please try again.';
+ }finally{button.disabled=false;button.textContent='Save preference changes';}
+}
+
 async function openDashboard(message=''){
  showView('dashboard');
+ $('#organizerPanel').hidden=true;
  $('#profileDetails').textContent='Loading profile…';
- $('#availabilityDetails').textContent='Loading your dates…';
- $('#availabilityMeta').textContent='';
+ $('#availabilityMeta').textContent='Loading your dates…';
  try{
   const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_self_description,gender_preference,questionnaire_answers,availability,updated_at').eq('id',currentUser.id).maybeSingle();
   if(error)throw error;
@@ -1573,31 +2147,41 @@ async function openDashboard(message=''){
   const welcomeName=(profile?.full_name||currentUser.user_metadata?.full_name||'').trim().split(/\s+/)[0]||'there';
   $('#welcomeTitle').textContent='Good to see you, '+welcomeName+'.';
   const availabilityState=await resolveProfileAvailability(profile||{});
-  const dates=availabilityState.dates;
+  dashboardDates=availabilityState.dates;
+  const assignmentState=await getMyDinnerAssignments();
+  dashboardAssignments=assignmentState.items;
   const fullName=profile?.full_name||currentUser.user_metadata?.full_name||'FourCourse student';
   const initials=fullName.split(/\s+/).filter(Boolean).slice(0,2).map(part=>part[0]).join('').toUpperCase()||'FC';
-  $('#profileName').textContent=fullName;
-  $('#profileEmail').textContent=profile?.email||currentUser.email||'';
-  $('#profileAvatar').textContent=initials;
+  $('#profileName').textContent=fullName;$('#profileEmail').textContent=profile?.email||currentUser.email||'';
+  $('#profileAvatar').textContent=initials;$('#profileAvatarLarge').textContent=initials;
   const profileRows=[['School',profile?.school],['Gender',profile?.participant_gender],['Group preference',profile?.gender_preference]].filter(row=>row[1]);
   $('#profileDetails').innerHTML=profileRows.map(row=>'<div class="profile-detail-row"><span>'+esc(row[0])+'</span><span>'+esc(row[1])+'</span></div>').join('')||'<div class="availability-empty">Complete your profile to add your preferences.</div>';
-  $('#availabilityCount').textContent=dates.length+' '+(dates.length===1?'date':'dates');
-  $('#summaryDateCount').textContent=dates.length;
-  $('#availabilityDetails').innerHTML=renderAvailability(dates);
+  renderProfilePreferenceSliders(profile?.questionnaire_answers);
+  $('#profilePreferencesFeedback').textContent='';
+  $('#availabilityCount').textContent=dashboardDates.length+' '+(dashboardDates.length===1?'date':'dates');
+  $('#summaryDateCount').textContent=dashboardDates.length;
+  $('#calendarSummaryCount').textContent=dashboardDates.length?dashboardDates.length+' evenings available':'No evenings selected yet';
   $('#availabilityMeta').textContent=formatSavedDate(availabilityState.savedAt)+(message?' · '+message:'');
-  const hasAvailability=dates.length>0;
-  $('#joinDinnerBtn').innerHTML=hasAvailability?'Edit available dates <span aria-hidden="true">→</span>':'Choose available dates <span aria-hidden="true">→</span>';
-  $('#upcomingDinnerDetails').innerHTML='<div><strong>'+(hasAvailability?'Nothing you need to do right now.':'Start by choosing a few evenings.')+'</strong><p>'+(hasAvailability?'Your dates are saved. When a dinner is arranged for one of the evenings you selected, your invitation and all the details will appear here. If your plans change, you can update your dates below.':'Pick a few dates that could work for you. When a dinner is arranged, your invitation and details will appear here.')+'</p>'+(hasAvailability?'<div class="dinner-progress"><span class="progress-dot complete"></span><span>Dates saved</span><i></i><span class="progress-dot"></span><span>Dinner invitation</span></div>':'')+'</div>';
-  $('#dinnerStatus').textContent=hasAvailability?'Dates saved':'Choose dates';
+  $('#availabilitySavedMeta').textContent='Update these dates whenever your plans change.';
+  const hasAvailability=dashboardDates.length>0;
+  $('#joinDinnerBtn').innerHTML=hasAvailability?'Edit availability <span aria-hidden="true">→</span>':'Choose available dates <span aria-hidden="true">→</span>';
+  dashboardCalendarMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
+  renderDashboardCalendar();updateDashboardDinnerSummary(assignmentState.ready);
+  await renderStudentFeedback(assignmentState.items);
+  await checkOrganizerAccess();
+  const panel=$('#dashboardCalendarPanel'),toggle=$('#toggleDashboardCalendar');
+  if(panel&&toggle){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.innerHTML='View calendar <span aria-hidden="true">⌄</span>';}
+  const profileMenu=$('#profileDropdown');if(profileMenu)profileMenu.open=false;
  }catch(error){
   console.error('FourCourse dashboard load failed:',error);
   $('#profileName').textContent='Profile unavailable';$('#profileEmail').textContent='Please refresh or log in again.';$('#profileDetails').textContent='We could not load your profile. Please refresh the page or log in again.';
-  $('#availabilityDetails').innerHTML='<div class="availability-empty">We could not load your saved dates. Please refresh the page. If the problem continues, contact FourCourse support.</div>';
+  $('#calendarSummaryCount').textContent='Your calendar is unavailable';
   $('#availabilityMeta').textContent='';
+  $('#upcomingDinnerDetails').innerHTML='<div class="availability-empty">We could not load your saved dates. Please refresh the page or contact FourCourse support.</div>';
  }
 }
 function parseSavedAnswers(raw){
- if(!Array.isArray(raw))return [];
+ if(!Array.isArray(raw)||raw.length>QUESTIONS.length)return [];
  return raw.map((item,index)=>{
   if(item===null||item===undefined)return null;
   if(typeof item==='number'){
@@ -1644,9 +2228,10 @@ async function openApp(mode='profile'){
  show(mode==='availability'?2:0);
 }
 async function syncCurrentDinnerSignup(payload){
- const {data:existing,error:findError}=await supabase.from('dinner_signups').select('id').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
+ const {data:existing,error:findError}=await supabase.from('dinner_signups').select('id,questionnaire_version').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
  if(findError)throw findError;
- if(existing?.id){
+ // Version 1 is a historical 20-question snapshot: preserve it and create a separate v2 row.
+ if(existing?.id&&Number(existing.questionnaire_version)===QUESTIONNAIRE_VERSION){
   const {data:updated,error}=await supabase.from('dinner_signups').update(payload).eq('id',existing.id).select('id').maybeSingle();
   if(error)throw error;
   if(!updated?.id)throw new Error('Your dinner availability could not be updated. Please check your database update permissions.');
@@ -1663,9 +2248,21 @@ async function saveAvailabilityOnly(){
   const {data:savedProfile,error:pErr}=await supabase.from('profiles').update({availability:dates,updated_at:savedAt}).eq('id',currentUser.id).select('availability,updated_at').maybeSingle();
   if(pErr)throw pErr;
   if(!savedProfile)throw new Error('We could not find your student profile to update. Please log out and back in.');
-  const persistedDates=normalizeAvailability(savedProfile.availability,null);
-  if(persistedDates.join('|')!==dates.join('|'))throw new Error('Your new dates did not match what was saved. Please try again.');
-  const signupPayload={user_id:currentUser.id,school:activeProfile?.school||S.school||null,days_free:dates.join(', '),participant_gender:activeProfile?.participant_gender||S.participantGender||null,gender_self_description:activeProfile?.gender_self_description||S.genderSelfDescribe||null,gender_preference:activeProfile?.gender_preference||S.groupPreference||'No preference',questionnaire_answers:activeProfile?.questionnaire_answers||[]};
+  let persistedDates=normalizeAvailability(savedProfile.availability,null);
+  const expectedDates=normalizeAvailability(dates,null);
+  const sameDates=(a,b)=>a.length===b.length&&a.every((date,index)=>date===b[index]);
+  // Do one fresh read before declaring a mismatch. This avoids false failures
+  // caused by serialized Postgres arrays or a just-committed response shape.
+  if(!sameDates(persistedDates,expectedDates)){
+   const {data:reloadedProfile,error:reloadError}=await supabase.from('profiles').select('availability,updated_at').eq('id',currentUser.id).maybeSingle();
+   if(reloadError)throw reloadError;
+   if(reloadedProfile)persistedDates=normalizeAvailability(reloadedProfile.availability,null);
+   if(!sameDates(persistedDates,expectedDates)){
+    console.error('Availability verification mismatch',{expectedDates,persistedDates,rawSavedValue:savedProfile.availability});
+    throw new Error('Supabase did not return the same dates that were selected. Your previous dates have not been replaced in the dashboard. Please refresh and try again, or contact support if it continues.');
+   }
+  }
+  const signupPayload={user_id:currentUser.id,school:activeProfile?.school||S.school||null,days_free:dates.join(', '),participant_gender:activeProfile?.participant_gender||S.participantGender||null,gender_self_description:activeProfile?.gender_self_description||S.genderSelfDescribe||null,gender_preference:activeProfile?.gender_preference||S.groupPreference||'No preference',questionnaire_answers:activeProfile?.questionnaire_answers||[],questionnaire_version:QUESTIONNAIRE_VERSION};
   await syncCurrentDinnerSignup(signupPayload);
   await openDashboard('Availability saved');
  }catch(error){alert('We could not update your availability: '+error.message);}
@@ -1673,10 +2270,29 @@ async function saveAvailabilityOnly(){
 }
 $('#logoutBtn').onclick=async()=>{await supabase.auth.signOut();currentUser=null;setAuthMode('login');showView('auth');};
 $('#joinDinnerBtn').onclick=()=>openApp('availability');
+$('#toggleDashboardCalendar').onclick=()=>{
+ const panel=$('#dashboardCalendarPanel'),button=$('#toggleDashboardCalendar');
+ const opening=panel.hidden;panel.hidden=!opening;button.setAttribute('aria-expanded',String(opening));
+ button.innerHTML=opening?'Hide calendar <span aria-hidden=\"true\">⌃</span>':'View calendar <span aria-hidden=\"true\">⌄</span>';
+ if(opening)renderDashboardCalendar();
+};
+$('#dashPrevMonth').onclick=()=>{if(!$('#dashPrevMonth').disabled){dashboardCalendarMonth=new Date(dashboardCalendarMonth.getFullYear(),dashboardCalendarMonth.getMonth()-1,1);renderDashboardCalendar();}};
+$('#dashNextMonth').onclick=()=>{if(!$('#dashNextMonth').disabled){dashboardCalendarMonth=new Date(dashboardCalendarMonth.getFullYear(),dashboardCalendarMonth.getMonth()+1,1);renderDashboardCalendar();}};
+
 $('#editProfileBtn').onclick=()=>openApp('profile');
+$('#saveProfilePreferencesBtn').onclick=saveProfileQuestionnairePreferences;
 $('#backToDashboard').onclick=()=>openDashboard();
 $('#saveAvailabilityOnly').onclick=saveAvailabilityOnly;
 $('#doneDashboardBtn').onclick=()=>openDashboard('Your preferences are saved');
+$('#organizerAccessBtn').onclick=openOrganizerWorkspace;
+$('#closeOrganizerBtn').onclick=()=>{$('#organizerPanel').hidden=true;window.scrollTo({top:0,behavior:'smooth'});};
+$('#orgCreateEventBtn').onclick=createOrganizerEvent;
+$('#orgEventSelect').addEventListener('change',e=>selectOrganizerEvent(e.target.value));
+$('#orgGenerateBtn').onclick=generateOrganizerGroups;
+$('#orgRefreshBtn').onclick=async()=>{try{await loadOrganizerMetrics();if(organizerActiveEvent){await loadOrganizerCandidates(organizerActiveEvent);await loadOrganizerGroups();}organizerStatus('Participant list refreshed.');}catch(e){organizerStatus(e.message,true);}};
+$('#orgApproveBtn').onclick=approveOrganizerEvent;
+$('#orgPublishBtn').onclick=publishOrganizerEvent;
+
 async function boot(){
  if(!configured){showView('auth');$('#authError').textContent='Setup required: add your Supabase project URL and publishable/anon key to this file, then run the included SQL setup.';return;}
  const {data:{session}}=await supabase.auth.getSession();
@@ -1703,8 +2319,19 @@ $('#continueAfterConfirm').onclick=async()=>{try{const {data:{session}}=await su
 function show(n){cur=n;$$('.step').forEach(el=>el.classList.toggle('active',+el.dataset.step===n));const p=$('#progress');p.hidden=(n===0||n===5);$$('#progress i').forEach((i,k)=>i.classList.toggle('on',k<=n));window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQ();if(n===4)$('#summary').innerHTML=summary();if(n===5){$('#summary2').innerHTML=availabilityReceipt();$('#doneMsg').textContent='Thanks for making room for a new conversation. Your availability and preferences are saved. You can change them anytime from your dashboard.';}}
 $$('[data-back]').forEach(b=>b.onclick=()=>show(cur-1));
 const school=$('#school'),go0=$('#go0');school.addEventListener('input',()=>{S.school=school.value.trim();go0.disabled=S.school.length<2});school.addEventListener('keydown',e=>{if(e.key==='Enter'&&!go0.disabled)show(1)});go0.onclick=()=>show(1);
+const QUESTIONNAIRE_VERSION=2;
 const QUESTIONS=[
-{id:1,left:'I prefer light, casual chat',right:'Deep, personal conversation',mode:'similar',weight:20},{id:2,left:'I’m uncomfortable with alcohol at social events',right:'I’m very comfortable with it',mode:'similar',weight:19},{id:3,left:'After a long week I want a quiet night',right:'A lively night',mode:'similar',weight:18},{id:4,left:'I avoid hearing views different from mine',right:'I love hearing them',mode:'similar',weight:17},{id:5,left:'I avoid debate',right:'I enjoy being challenged and debating',mode:'similar',weight:16},{id:6,left:'I keep personal things private',right:'I’m open with people I’ve just met',mode:'similar',weight:15},{id:7,left:'I’m a listener in groups',right:'I tend to drive the conversation',mode:'diverse',weight:14},{id:8,left:'I rarely follow politics or news',right:'I follow them closely',mode:'similar',weight:13},{id:9,left:'Religion/spirituality is not part of my identity',right:'It’s central to my identity',mode:'similar',weight:12},{id:10,left:'I’m ready to head home early',right:'Happy to stay past 10pm',mode:'similar',weight:11},{id:11,left:'My humor is wholesome',right:'Sarcastic and irreverent',mode:'similar',weight:10},{id:12,left:'I prefer familiar food',right:'I love trying unfamiliar cuisines',mode:'similar',weight:9},{id:13,left:'My interests lean STEM',right:'My interests lean humanities/arts',mode:'diverse',weight:8},{id:14,left:'I’ve lived mostly in one place',right:'Lived or traveled in many places',mode:'diverse',weight:7},{id:15,left:'Career ambition is a small part of my identity',right:'It’s a huge part of my identity',mode:'similar',weight:6},{id:16,left:'Arts, music, and culture aren’t my thing',right:'A big part of my life',mode:'similar',weight:5},{id:17,left:'I’m a homebody',right:'Very active, sporty, or outdoorsy',mode:'similar',weight:4},{id:18,left:'I’m spontaneous',right:'A planner who likes structure',mode:'similar',weight:3},{id:19,left:'Gaming, tech, and nerd culture aren’t my thing',right:'Very much my thing',mode:'similar',weight:2},{id:20,left:'I’m barely involved in campus life',right:'Involved in many clubs and activities',mode:'diverse',weight:1}];
+{id:1,left:"I prefer light, casual conversation",right:"I enjoy deep, meaningful conversation",mode:"similar",weight:20},
+{id:2,left:"I prefer a quiet, relaxed evening",right:"I prefer a lively, energetic evening",mode:"similar",weight:18},
+{id:3,left:"I tend to listen in group conversations",right:"I tend to lead group conversations",mode:"diverse",weight:15},
+{id:4,left:"I prefer discussing familiar topics",right:"I enjoy exploring unfamiliar ideas and perspectives",mode:"similar",weight:13},
+{id:5,left:"I prefer avoiding disagreement",right:"I enjoy friendly disagreement and debate",mode:"similar",weight:10},
+{id:6,left:"I prefer keeping conversations relatively light",right:"I enjoy sharing personal stories and experiences",mode:"similar",weight:8},
+{id:7,left:"I prefer familiar restaurants and foods",right:"I enjoy trying unfamiliar cuisines",mode:"similar",weight:5},
+{id:8,left:"I prefer an early dinner and heading home",right:"I enjoy staying out late",mode:"similar",weight:4},
+{id:9,left:"I prefer a spontaneous evening without much structure",right:"I prefer a planned evening",mode:"similar",weight:4},
+{id:10,left:"I prefer conversations centered on everyday experiences",right:"I enjoy conversations about ideas, culture, and current events",mode:"diverse",weight:3}
+];
 let qi=0,lock=false;
 function renderQ(){
  const q=QUESTIONS[qi],a=S.answers.find(x=>x.id===q.id);
@@ -1768,10 +2395,10 @@ function availabilityReceipt(){const groups=new Map();[...S.days].sort().forEach
 async function submit(){
  const btn=$('#go3');btn.disabled=true;btn.textContent='Saving…';
  try{
-  const values=Array(20).fill(null);S.answers.forEach(a=>{values[a.id-1]=a.value});
+  const values=Array(10).fill(null);S.answers.forEach(a=>{values[a.id-1]=a.value});
   const profilePayload={id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||activeProfile?.full_name||'',school:S.school,participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values,availability:[...S.days].sort(),updated_at:new Date().toISOString()};
   const {error:pErr}=await supabase.from('profiles').upsert(profilePayload,{onConflict:'id'});if(pErr)throw pErr;
-  const signupPayload={user_id:currentUser.id,school:S.school,days_free:[...S.days].sort().join(', '),participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values};
+  const signupPayload={user_id:currentUser.id,school:S.school,days_free:[...S.days].sort().join(', '),participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values,questionnaire_version:QUESTIONNAIRE_VERSION};
   await syncCurrentDinnerSignup(signupPayload);
   activeProfile={...activeProfile,...profilePayload};
   $('#doneMsg').textContent='Your preferences are saved. You can update your dates or profile whenever your plans change.';
