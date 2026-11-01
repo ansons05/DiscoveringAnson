@@ -3,9 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FourCourse — Dinner with people you haven’t met yet</title>
+<title>FourCourse — Meet over dinner</title>
+<meta name="description" content="Meet university students beyond your usual circle. Choose the evenings that work for you and make room for a good conversation over dinner.">
+<link rel="canonical" href="https://www.discoveringanson.com/fourcourse.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FourCourse — Meet over dinner">
+<meta property="og:description" content="A better way to meet, one dinner at a time. Connect with university students over relaxed small-group dinners.">
+<meta property="og:url" content="https://www.discoveringanson.com/fourcourse.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FourCourse — Meet over dinner">
+<meta name="twitter:description" content="Meet university students beyond your usual circle, one dinner at a time.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#faf6f0;--card:#fff;--ink:#241a16;--mute:#7a6c63;--line:#e8dfd5;
@@ -207,6 +216,507 @@ body{transition:background-color .2s ease,color .2s ease}
 .dashboard .availability-chip span{font-size:10px}
 @media(max-width:760px){.dashboard{padding:19px 16px 38px}.dashboard-header{margin-bottom:25px;padding-bottom:20px}.dashboard-welcome{align-items:flex-start;flex-direction:column;margin-bottom:20px}.availability-stat{width:100%;min-width:0}.dashboard-layout{grid-template-columns:1fr}.dashboard-aside{grid-template-columns:1fr 1fr}.dashboard-footer{flex-direction:column;gap:6px}}
 @media(max-width:520px){.dashboard-aside{grid-template-columns:1fr}.dashboard .dash-card{padding:18px}.dashboard-header-right{gap:10px}.dashboard-nav-active{font-size:12px}.dashboard-welcome h1{font-size:39px}.availability-card-footer{align-items:flex-start;flex-direction:column}.availability-card-footer .btn{width:100%}.dashboard-footer{font-size:10px}.theme-toggle{width:38px;min-width:38px;height:38px;padding:0;gap:0}.theme-label{display:none}.app-header-actions{gap:9px}.auth-shell,.email-pending,.confirmation{padding-left:16px;padding-right:16px}}
+
+
+.verification-steps{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:22px auto 0;padding-top:17px;border-top:1px solid var(--line);max-width:440px}
+.verification-steps span{font-size:10px;color:var(--mute);padding:6px 9px;border-radius:999px;background:var(--surface2)}
+.verification-steps span.current{color:var(--accent);background:var(--soft);font-weight:700}
+
+/* FourCourse editorial polish — shared across auth, verification, questionnaire and dashboard */
+:root{
+  --bg:#faf6f0;--card:#fffdfa;--ink:#281c17;--mute:#83746b;--line:#e9ded3;
+  --accent:#315f9c;--accent-ink:#fff;--soft:#e8eff9;--ok:#42795c;
+  --surface2:#f4eee6;--shadow:0 18px 50px rgba(55,35,19,.07);
+}
+:root:not([data-theme="light"]){
+  --bg:#171310;--card:#211b17;--ink:#f6eee6;--mute:#b5a69a;--line:#41352d;
+  --accent:#8eb9f2;--accent-ink:#171310;--soft:#26374d;--ok:#8fc9a2;
+  --surface2:#2b221d;--shadow:0 18px 50px rgba(0,0,0,.20);color-scheme:dark;
+}
+:root[data-theme="dark"]{
+  --bg:#171310;--card:#211b17;--ink:#f6eee6;--mute:#b5a69a;--line:#41352d;
+  --accent:#8eb9f2;--accent-ink:#171310;--soft:#26374d;--ok:#8fc9a2;
+  --surface2:#2b221d;--shadow:0 18px 50px rgba(0,0,0,.20);color-scheme:dark;
+}
+:root[data-theme="light"]{color-scheme:light}
+body{background:radial-gradient(ellipse at 7% 0%,color-mix(in srgb,var(--accent) 6%,transparent),transparent 40%),var(--bg);transition:background-color .22s,color .22s}
+button,input{transition:background-color .18s,border-color .18s,color .18s,box-shadow .18s,transform .14s}
+button:focus-visible,input:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 38%,transparent);outline-offset:2px}
+.logo,.auth-brand{letter-spacing:-.045em}
+.logo span,.auth-brand span{color:var(--accent)}
+.btn{box-shadow:0 8px 18px -13px color-mix(in srgb,var(--accent) 70%,transparent);font-weight:600;letter-spacing:-.01em}
+.btn:hover:not(:disabled){filter:brightness(1.035);box-shadow:0 10px 22px -13px color-mix(in srgb,var(--accent) 72%,transparent);transform:translateY(-1px)}
+.btn.secondary{box-shadow:none}
+.card,.dash-card{box-shadow:var(--shadow)}
+.card{border-radius:22px}
+.auth-shell{max-width:1120px;margin:0 auto;padding:24px 28px 60px}
+.auth-shell>.auth-topbar{padding:5px 0 24px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.auth-brand{font-size:26px}
+.auth-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:clamp(34px,7vw,88px);align-items:center;max-width:980px;margin:0 auto}
+.auth-intro{padding:16px 0 28px}
+.auth-kicker{font-size:10px;letter-spacing:.16em;font-weight:700;color:var(--mute);margin:0 0 15px}
+.auth-intro h1{max-width:520px;font-size:clamp(42px,5.7vw,66px);line-height:1.02;letter-spacing:-.045em;margin:0 0 17px}
+.auth-intro .sub{max-width:470px;font-size:16px;line-height:1.7;margin:0;color:var(--mute)}
+.auth-benefits{display:grid;gap:13px;margin:30px 0 0;padding:0;list-style:none;color:var(--mute);font-size:13px}
+.auth-benefits li{display:flex;align-items:center;gap:10px}
+.auth-benefits li span{display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:var(--soft);color:var(--accent);font-size:12px;flex:none}
+.auth-mantra{margin-top:38px;padding:16px 18px;border-left:2px solid var(--accent);background:color-mix(in srgb,var(--card) 76%,transparent);border-radius:0 14px 14px 0;color:var(--mute);font:500 17px/1.45 Fraunces,Georgia,serif;max-width:380px}
+.auth-card-wrap{min-width:0}
+.auth-card-wrap .card{padding:26px;box-shadow:0 24px 65px -38px rgba(57,38,23,.28)}
+.auth-tabs{padding:5px;background:var(--surface2);border-radius:13px;margin:0 0 22px}
+.auth-tabs button{border:1px solid transparent;border-radius:10px;background:transparent;padding:12px 10px}
+.auth-tabs button.active{background:var(--card);border-color:var(--line);box-shadow:0 3px 12px rgba(55,35,19,.06)}
+.auth-field{margin:16px 0}
+.auth-field label{font-size:12px;letter-spacing:.01em;color:var(--mute)}
+.auth-field input{background:var(--bg);border-radius:12px;padding:15px 14px}
+.auth-field input:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 11%,transparent)}
+.auth-note{line-height:1.65}
+.auth-trust{display:flex;gap:14px;flex-wrap:wrap;margin-top:17px;color:var(--mute);font-size:11px}
+.auth-trust span:before{content:"✓";color:var(--ok);font-weight:700;margin-right:6px}
+.auth-footer{max-width:980px;margin:38px auto 0;padding-top:16px;border-top:1px solid var(--line);color:var(--mute);font-size:11px;display:flex;justify-content:space-between;gap:16px}
+.email-pending,.confirmation{max-width:680px;margin:0 auto;padding:24px 24px 60px}
+.email-pending>.auth-topbar,.confirmation>.auth-topbar{padding:5px 0 22px;border-bottom:1px solid var(--line);margin-bottom:52px}
+.email-pending .card,.confirmation .card{max-width:560px;margin:0 auto;padding:34px;text-align:center}
+.email-pending .mail-icon{width:64px;height:64px;margin-bottom:22px}
+.email-pending h1,.confirmation h1{font-size:clamp(34px,5vw,44px)!important;letter-spacing:-.035em}
+.email-pending .sub,.confirmation .sub{font-size:15px;line-height:1.65;margin-bottom:8px}
+.email-pending .pending-address{font-size:16px;padding:10px 14px;background:var(--surface2);border-radius:11px;display:inline-block;margin:3px auto 12px}
+.email-pending .auth-field{text-align:left;max-width:360px;margin:20px auto 0}
+.email-pending .auth-note{max-width:430px;margin:13px auto 0}
+.email-pending .verification-code{letter-spacing:.42em;font-size:27px!important;padding:17px 14px}
+.confirmation .check{width:62px;height:62px;margin:0 auto 21px;background:var(--greenbg,var(--soft));color:var(--ok)}
+.dashboard{max-width:1160px;padding:26px 30px 60px}
+.dashboard-header{height:58px;padding:0 0 19px;margin-bottom:0}
+.dashboard-header .logo{font-size:25px;letter-spacing:-.045em}
+.dashboard-header-right{gap:16px}
+.dashboard-nav-active{border:0;padding:8px 2px;font-size:12px;color:var(--mute);letter-spacing:.02em}
+.logout-button{background:var(--card);padding:9px 15px;font-size:12px}
+.dashboard-welcome{align-items:flex-end;padding:38px 0 27px;margin-bottom:0}
+.welcome-copy{min-width:0}
+.dashboard-welcome h1{font-size:clamp(39px,5vw,52px);letter-spacing:-.045em;line-height:1.05;margin-bottom:11px}
+.dashboard-lede{font-size:14px;max-width:500px;line-height:1.65}
+.welcome-side{display:flex;align-items:center;gap:12px;flex:none}
+.welcome-note{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--mute);font-size:11px;line-height:1.5;white-space:nowrap}
+.welcome-spark{width:31px;height:31px;border-radius:10px;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-size:17px;flex:none}
+.welcome-note strong{color:var(--ink);font-weight:600}
+.availability-stat{min-width:150px;padding:12px 14px;border-radius:14px;box-shadow:none;background:var(--card)}
+.stat-mark{background:var(--soft);border-radius:10px}
+.availability-stat strong{font-size:23px}
+.dashboard-layout{grid-template-columns:minmax(0,1.55fr) minmax(285px,.82fr);gap:18px}
+.dashboard-main,.dashboard-aside{gap:18px}
+.dashboard .dash-card{padding:23px;border-radius:19px;box-shadow:var(--shadow)}
+.dashboard .dash-card h2{font-size:22px;letter-spacing:-.025em}
+.dashboard .dash-card-heading{margin-bottom:17px}
+.next-dinner-card{position:relative;overflow:hidden;border:1px solid var(--line)!important;background:linear-gradient(120deg,var(--card) 0%,var(--card) 69%,var(--soft) 155%)}
+.next-dinner-card:after{content:"";position:absolute;right:-65px;top:-112px;width:220px;height:220px;border:1px solid color-mix(in srgb,var(--line) 82%,transparent);border-radius:50%;box-shadow:0 0 0 22px color-mix(in srgb,var(--line) 25%,transparent),0 0 0 48px color-mix(in srgb,var(--line) 16%,transparent);pointer-events:none}
+.next-dinner-card>.dash-card-heading,.next-dinner-card>#upcomingDinnerDetails{position:relative;z-index:1}
+.next-dinner-empty{background:color-mix(in srgb,var(--bg) 78%,transparent);border-style:solid;padding:17px}
+.next-dinner-icon{background:var(--soft);border-radius:12px}
+.dinner-progress{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:13px;font-size:10px;color:var(--mute)}
+.dinner-progress i{width:24px;height:1px;background:var(--line);display:inline-block}
+.progress-dot{width:7px;height:7px;border-radius:50%;background:var(--line);display:inline-block}
+.progress-dot.complete{background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 13%,transparent)}
+.verified-pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:6px 10px;background:var(--greenbg,var(--soft));color:var(--ok);font-size:10px;font-weight:700;white-space:nowrap}
+.dashboard .availability-intro{font-size:12px;line-height:1.5;max-width:420px}
+.availability-month h3{font-size:14px!important;letter-spacing:-.01em}
+.availability-chip{background:var(--surface2);border-color:transparent;min-width:80px;padding:10px 12px}
+.availability-chip strong{font-size:12px}
+.availability-chip span{font-size:9px;letter-spacing:.01em}
+.availability-card-footer{margin-top:17px;padding-top:15px}
+.availability-card-footer .btn{box-shadow:none}
+.dashboard-aside .how-card{order:0}
+.dashboard-aside .profile-card{order:1}
+.how-card{background:color-mix(in srgb,var(--card) 88%,var(--surface2))}
+.how-card h2{font-size:23px!important}
+.how-steps{gap:17px}
+.how-steps li>span{background:var(--soft);border-color:transparent;width:27px;height:27px;flex-basis:27px}
+.how-steps strong{font-size:12px}
+.how-steps p{font-size:11px;line-height:1.6}
+.profile-avatar{background:var(--soft);border:1px solid color-mix(in srgb,var(--accent) 16%,var(--line))}
+.profile-edit-button{box-shadow:none!important}
+.dashboard-footer{font-size:10px;margin-top:30px;padding-top:18px}
+.wrap{max-width:620px;padding:22px 22px 54px}
+#dinnerApp>header{border-bottom:1px solid var(--line);padding:5px 0 19px;margin-bottom:30px}
+#dinnerApp .logo{font-size:24px}
+#dinnerApp .step h1,#dinnerApp .step h2{letter-spacing:-.035em}
+#dinnerApp .step>.sub{font-size:15px;line-height:1.65;max-width:540px}
+#dinnerApp .card{padding:26px;border-radius:20px}
+#dinnerApp .q{font-size:14px}
+#dinnerApp .opt{padding:14px 10px;border-radius:13px}
+#dinnerApp .cal button{border-radius:12px}
+#dinnerApp .progress{gap:7px;margin-bottom:27px}
+#dinnerApp .progress i{height:4px}
+#dinnerApp .step[data-step="0"] h1{max-width:570px}
+#dinnerApp .trust{padding:12px 0 0;justify-content:flex-start;gap:8px 16px}
+#dinnerApp .trust span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:10px}
+#dinnerApp .trust span:before{margin-right:4px}
+.step.active{animation:fcRise .32s cubic-bezier(.2,.7,.2,1)}
+@keyframes fcRise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.auth-layout{grid-template-columns:1fr;gap:20px;max-width:560px}.auth-intro{padding:5px 0 0}.auth-benefits{grid-template-columns:1fr 1fr;margin-top:20px}.auth-mantra{display:none}.auth-shell>.auth-topbar{margin-bottom:28px}.welcome-side{width:100%;flex-wrap:wrap}.welcome-note{flex:1}.dashboard-welcome{align-items:flex-start}}
+@media(max-width:760px){.dashboard{padding:19px 20px 42px}.dashboard-header{padding-bottom:16px}.dashboard-welcome{padding:29px 0 22px}.dashboard-layout{grid-template-columns:1fr}.dashboard-aside{grid-template-columns:1fr 1fr}.dashboard .dash-card{padding:20px}.dashboard-footer{margin-top:24px}}
+@media(max-width:560px){.auth-shell{padding:17px 16px 42px}.auth-shell>.auth-topbar{margin-bottom:25px}.auth-intro h1{font-size:43px}.auth-benefits{grid-template-columns:1fr;gap:9px}.auth-card-wrap .card{padding:21px}.auth-footer{flex-direction:column;margin-top:27px}.email-pending,.confirmation{padding:17px 16px 42px}.email-pending>.auth-topbar,.confirmation>.auth-topbar{margin-bottom:30px}.email-pending .card,.confirmation .card{padding:26px 20px}.dashboard{padding:16px 15px 38px}.dashboard-header{gap:10px}.dashboard-header .logo{font-size:23px}.dashboard-header-right{gap:9px}.dashboard-nav-active{display:none}.dashboard-welcome{padding:25px 0 20px}.dashboard-welcome h1{font-size:40px}.welcome-side{gap:9px}.welcome-note{width:100%;white-space:normal}.availability-stat{width:100%;min-width:0}.dashboard-aside{grid-template-columns:1fr}.dashboard .dash-card{padding:18px}.availability-card-footer{align-items:flex-start;flex-direction:column}.availability-card-footer .btn{width:100%}.dashboard-footer{font-size:10px}.wrap{padding:16px 15px 42px}#dinnerApp>header{margin-bottom:25px;padding-bottom:15px}#dinnerApp .card{padding:19px}.app-header-actions{gap:8px}.app-header-actions .hint-top{display:none}.theme-toggle{width:38px;min-width:38px;height:38px;padding:0;gap:0}.theme-label{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+/* FourCourse visual system — one consistent plate / shared-table geometry */
+:root{
+  --decor-blue:color-mix(in srgb,var(--accent) 11%,transparent);
+  --decor-blue-line:color-mix(in srgb,var(--accent) 28%,var(--line));
+  --decor-peach:color-mix(in srgb,#d7a184 17%,transparent);
+  --decor-gold:color-mix(in srgb,#d4b875 15%,transparent);
+  --decor-green:color-mix(in srgb,#83a98b 12%,transparent);
+  --plate-ring:color-mix(in srgb,var(--accent) 17%,var(--line));
+  --plate-wash:color-mix(in srgb,var(--accent) 7%,transparent);
+}
+:root[data-theme="dark"]{
+  --decor-blue:color-mix(in srgb,#7eabe8 15%,transparent);
+  --decor-blue-line:color-mix(in srgb,#8eb9f2 28%,var(--line));
+  --decor-peach:color-mix(in srgb,#b8795b 12%,transparent);
+  --decor-gold:color-mix(in srgb,#c4a25b 11%,transparent);
+  --decor-green:color-mix(in srgb,#6d9c78 10%,transparent);
+  --plate-ring:color-mix(in srgb,#8eb9f2 20%,var(--line));
+  --plate-wash:color-mix(in srgb,#8eb9f2 9%,transparent);
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --decor-blue:color-mix(in srgb,#7eabe8 15%,transparent);
+    --decor-blue-line:color-mix(in srgb,#8eb9f2 28%,var(--line));
+    --decor-peach:color-mix(in srgb,#b8795b 12%,transparent);
+    --decor-gold:color-mix(in srgb,#c4a25b 11%,transparent);
+    --decor-green:color-mix(in srgb,#6d9c78 10%,transparent);
+    --plate-ring:color-mix(in srgb,#8eb9f2 20%,var(--line));
+    --plate-wash:color-mix(in srgb,#8eb9f2 9%,transparent);
+  }
+}
+body{
+  background:
+    radial-gradient(circle at 88% 5%,var(--plate-wash) 0 13rem,transparent 13.1rem),
+    radial-gradient(circle at 5% 82%,color-mix(in srgb,var(--decor-peach) 65%,transparent) 0 10rem,transparent 10.1rem),
+    var(--bg);
+}
+/* Shared plate motif: circular geometry, three evenly spaced rings, and a quiet center. */
+.auth-intro,.dashboard-welcome,#dinnerApp .step[data-step="0"]{position:relative;isolation:isolate}
+.auth-intro::before,.dashboard-welcome::before,#dinnerApp .step[data-step="0"]::before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle at center,transparent 0 31%,var(--plate-ring) 31.4% 31.9%,transparent 32.3% 48%,var(--plate-ring) 48.4% 48.9%,transparent 49.3% 65%,var(--plate-ring) 65.4% 65.9%,transparent 66.3%),
+    radial-gradient(circle at center,var(--decor-blue) 0 30%,transparent 70%);
+}
+.auth-intro::before{width:clamp(230px,28vw,330px);aspect-ratio:1;right:1%;top:-18px;opacity:.9}
+.dashboard-welcome::before{width:205px;aspect-ratio:1;right:5%;top:-5px;opacity:.82}
+#dinnerApp .step[data-step="0"]::before{width:174px;aspect-ratio:1;right:-8px;top:-15px;opacity:.72}
+/* Small companion dot is repeated at the same scale wherever a plate appears. */
+.auth-intro::after,.dashboard-welcome::after,#dinnerApp .step[data-step="0"]::after{
+  content:"";position:absolute;z-index:-1;width:17px;height:17px;border-radius:50%;
+  background:var(--decor-gold);border:1px solid var(--plate-ring);pointer-events:none;
+}
+.auth-intro::after{right:13%;bottom:5%}
+.dashboard-welcome::after{right:25%;top:24px;width:13px;height:13px}
+#dinnerApp .step[data-step="0"]::after{right:18px;top:17px;width:11px;height:11px}
+.auth-kicker::before,.dash-eyebrow::before{
+  content:"";display:inline-block;width:7px;height:7px;margin:0 9px 1px 0;
+  border-radius:50%;background:var(--accent);opacity:.78;
+}
+/* Cards use consistent corner markers and restrained color washes, not competing shapes. */
+.auth-card-wrap{position:relative;isolation:isolate}
+.auth-card-wrap::before{content:"";position:absolute;z-index:-1;top:-12px;left:-12px;width:29px;height:29px;border-radius:50%;background:var(--decor-gold);border:1px solid var(--plate-ring);pointer-events:none}
+.auth-card-wrap::after{content:"";position:absolute;z-index:-1;right:-10px;bottom:-10px;width:27px;height:27px;border:1px solid var(--plate-ring);border-radius:50%;pointer-events:none}
+.email-pending,.confirmation{position:relative;isolation:isolate}
+.email-pending::before,.confirmation::before{
+  content:"";position:absolute;z-index:-1;top:100px;left:50%;width:min(78vw,420px);aspect-ratio:1;
+  transform:translateX(-50%);border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at center,transparent 0 35%,var(--plate-ring) 35.4% 35.9%,transparent 36.3% 53%,var(--plate-ring) 53.4% 53.9%,transparent 54.3%),radial-gradient(circle,var(--decor-blue),transparent 70%);
+}
+.email-pending .mail-icon,.confirmation .check{position:relative}
+.email-pending .mail-icon::after,.confirmation .check::after{content:"";position:absolute;inset:-8px;border:1px solid var(--plate-ring);border-radius:50%;pointer-events:none}
+.next-dinner-card{position:relative;overflow:hidden;background:linear-gradient(105deg,var(--card) 0%,var(--card) 82%,var(--plate-wash) 100%)}
+.next-dinner-card::after{content:"";position:absolute;right:-54px;top:-66px;width:148px;aspect-ratio:1;border:1px solid var(--plate-ring);border-radius:50%;box-shadow:0 0 0 11px color-mix(in srgb,var(--plate-ring) 24%,transparent),0 0 0 23px color-mix(in srgb,var(--plate-ring) 14%,transparent);pointer-events:none}
+.next-dinner-card>.dash-card-heading,.next-dinner-card>#upcomingDinnerDetails{position:relative;z-index:1}
+.next-dinner-icon{border-radius:50%;background:var(--soft);border:1px solid color-mix(in srgb,var(--accent) 10%,var(--line))}
+.availability-card{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--card),color-mix(in srgb,var(--card) 96%,var(--decor-blue)))}
+.availability-card::before{content:"";position:absolute;right:-42px;bottom:-57px;width:122px;aspect-ratio:1;border-radius:50%;border:1px solid var(--plate-ring);box-shadow:0 0 0 10px color-mix(in srgb,var(--plate-ring) 18%,transparent),0 0 0 21px color-mix(in srgb,var(--plate-ring) 10%,transparent);pointer-events:none}
+.how-card{position:relative;overflow:hidden;background:color-mix(in srgb,var(--card) 94%,var(--surface2))}
+.how-card::after{content:"";position:absolute;right:17px;top:18px;width:9px;height:9px;border-radius:50%;background:var(--decor-green);border:1px solid color-mix(in srgb,var(--ok) 28%,var(--line));pointer-events:none}
+.profile-card{background:linear-gradient(145deg,var(--card),color-mix(in srgb,var(--card) 97%,var(--decor-peach)))}
+.profile-avatar{position:relative;isolation:isolate;border:1px solid var(--plate-ring)}
+.profile-avatar::after{content:"";position:absolute;inset:-4px;border:1px solid color-mix(in srgb,var(--plate-ring) 75%,transparent);border-radius:50%;z-index:-1}
+/* Consistent tactile transitions; no decorative element intercepts clicks. */
+.dash-card,.auth-card-wrap .card,#dinnerApp .card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.availability-chip{transition:transform .16s ease,background-color .18s ease}
+.availability-chip:hover{transform:translateY(-2px)}
+.theme-toggle .theme-icon{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--soft);color:var(--accent)}
+@media(max-width:900px){
+  .auth-intro::before{right:0;top:-4%;width:230px}
+  .dashboard-welcome::before{right:2%;width:174px}
+}
+@media(max-width:560px){
+  .auth-intro::before{width:148px;right:0;top:3%;opacity:.62}
+  .auth-intro::after{right:10%;bottom:0;width:12px;height:12px}
+  .auth-card-wrap::before{width:22px;height:22px;left:-6px;top:-7px}
+  .auth-card-wrap::after{width:20px;height:20px;right:-6px;bottom:-7px}
+  .email-pending::before,.confirmation::before{top:105px;width:88vw}
+  .dashboard-welcome::before{width:112px;right:1%;top:5px;opacity:.58}
+  .dashboard-welcome::after{right:21%;top:14px;width:10px;height:10px}
+  #dinnerApp .step[data-step="0"]::before{width:112px;right:-4px;top:-8px;opacity:.56}
+  #dinnerApp .step[data-step="0"]::after{right:12px;top:9px;width:9px;height:9px}
+}
+@media(prefers-reduced-motion:reduce){.dash-card,.auth-card-wrap .card,#dinnerApp .card,.availability-chip{transition:none!important}}
+
+
+
+/* FourCourse clean geometry system
+   One motif, exact concentric geometry, repeatable scale and alignment. */
+:root{
+  --fc-plate-line:color-mix(in srgb,var(--accent) 24%,var(--line));
+  --fc-plate-fill:color-mix(in srgb,var(--accent) 6%,var(--card));
+}
+body{background:var(--bg)!important}
+
+/* Remove previous scattered dots, corner ornaments, and independent ring treatments. */
+.auth-intro::after,
+.dashboard-welcome::after,
+#dinnerApp .step[data-step="0"]::after,
+.auth-card-wrap::before,
+.auth-card-wrap::after,
+.email-pending::before,
+.confirmation::before,
+.email-pending .mail-icon::after,
+.confirmation .check::after,
+.next-dinner-card::after,
+.availability-card::before,
+.how-card::after,
+.profile-avatar::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Hero motif: three perfectly concentric rings, same size and placement on every entry screen. */
+.auth-intro,
+.dashboard-welcome,
+#dinnerApp .step[data-step="0"]{
+  position:relative;
+  isolation:isolate;
+}
+.auth-intro::before,
+.dashboard-welcome::before,
+#dinnerApp .step[data-step="0"]::before{
+  content:"";
+  display:block;
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  width:148px;
+  height:148px;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  border:1px solid var(--fc-plate-line);
+  border-radius:50%;
+  opacity:.52;
+  background:
+    radial-gradient(circle at center,
+      var(--fc-plate-fill) 0 23%,
+      transparent 23.6% 35%,
+      var(--fc-plate-line) 35.6% 36.2%,
+      transparent 36.8% 53%,
+      var(--fc-plate-line) 53.6% 54.2%,
+      transparent 54.8% 71%,
+      var(--fc-plate-line) 71.6% 72.2%,
+      transparent 72.8%);
+}
+
+/* Keep text readable and create a consistent clear zone beside the hero motif. */
+.auth-intro{padding-right:156px}
+.dashboard-welcome{padding-right:0}
+#dinnerApp .step[data-step="0"] h1,
+#dinnerApp .step[data-step="0"]>.sub{position:relative;z-index:1}
+
+/* Feature cards share the same plate geometry at one smaller, repeatable scale. */
+.next-dinner-card,
+.availability-card{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.next-dinner-card::after,
+.availability-card::before{
+  content:"";
+  display:block;
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  width:108px;
+  height:108px;
+  right:-35px;
+  top:-35px;
+  border:1px solid var(--fc-plate-line);
+  border-radius:50%;
+  opacity:.42;
+  background:
+    radial-gradient(circle at center,
+      var(--fc-plate-fill) 0 23%,
+      transparent 23.6% 35%,
+      var(--fc-plate-line) 35.6% 36.2%,
+      transparent 36.8% 53%,
+      var(--fc-plate-line) 53.6% 54.2%,
+      transparent 54.8% 71%,
+      var(--fc-plate-line) 71.6% 72.2%,
+      transparent 72.8%);
+}
+.next-dinner-card>.dash-card-heading,
+.next-dinner-card>#upcomingDinnerDetails,
+.availability-card>.dash-card-heading,
+.availability-card>#availabilityDetails,
+.availability-card>.availability-card-footer{
+  position:relative;
+  z-index:1;
+}
+
+/* Content surfaces stay flat and quiet; hierarchy comes from typography and spacing. */
+.auth-card-wrap::before,.auth-card-wrap::after{display:none!important}
+.next-dinner-card{background:var(--card)!important}
+.availability-card{background:var(--card)!important}
+.how-card,.profile-card{background:var(--card)!important}
+.profile-avatar{border:1px solid var(--fc-plate-line)}
+
+@media(max-width:900px){
+  .auth-intro{padding-right:132px}
+  .auth-intro::before,.dashboard-welcome::before,#dinnerApp .step[data-step="0"]::before{width:124px;height:124px;right:8px}
+}
+@media(max-width:560px){
+  .auth-intro{padding-right:0}
+  .auth-intro::before,.dashboard-welcome::before,#dinnerApp .step[data-step="0"]::before{width:88px;height:88px;right:2px;top:14px;transform:none;opacity:.30}
+  .next-dinner-card::after,.availability-card::before{width:82px;height:82px;right:-29px;top:-29px;opacity:.30}
+}
+
+
+
+/* FourCourse card motif system: one small, purposeful illustration per content box.
+   Shared footprint, alignment, palette and stroke weight; motif changes by meaning. */
+:root{
+  --fc-motif-line:color-mix(in srgb,var(--accent) 28%,var(--line));
+  --fc-motif-fill:color-mix(in srgb,var(--accent) 12%,var(--card));
+  --fc-motif-warm:color-mix(in srgb,#d9a889 25%,var(--card));
+  --fc-motif-green:color-mix(in srgb,var(--ok) 18%,var(--card));
+}
+.fc-motif-box{
+  position:relative!important;
+  isolation:isolate;
+  overflow:hidden;
+}
+.fc-motif-box::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  right:18px;
+  bottom:16px;
+  width:72px;
+  height:72px;
+  display:block;
+  pointer-events:none;
+  opacity:.60;
+}
+.fc-motif-box>*{position:relative;z-index:1}
+
+/* Plate: a quiet concentric motif for the welcome and dinner moments. */
+.auth-card-wrap .card.fc-motif-box::after,
+#dinnerApp .step[data-step="0"] .card.fc-motif-box::after,
+.dashboard .next-dinner-card.fc-motif-box::after{
+  border:1px solid var(--fc-motif-line);
+  border-radius:50%;
+  background:
+    radial-gradient(circle,var(--fc-motif-warm) 0 5px,transparent 5.7px),
+    radial-gradient(circle,transparent 0 20px,var(--fc-motif-line) 20.7px 21.5px,transparent 22px 29px,var(--fc-motif-line) 29.7px 30.5px,transparent 31px);
+}
+
+/* Envelope: a clear visual cue on the verification card. */
+.email-pending .card.fc-motif-box::after{
+  width:66px;height:46px;bottom:18px;right:20px;
+  border:1px solid var(--fc-motif-line);
+  border-radius:10px;
+  background:
+    linear-gradient(140deg,transparent 48.8%,var(--fc-motif-line) 49.5% 50.7%,transparent 51.4%) left center/50% 100% no-repeat,
+    linear-gradient(220deg,transparent 48.8%,var(--fc-motif-line) 49.5% 50.7%,transparent 51.4%) right center/50% 100% no-repeat,
+    linear-gradient(180deg,var(--fc-motif-fill),transparent);
+}
+
+/* Verified: a crisp check nested inside two balanced rings. */
+.confirmation .card.fc-motif-box::after{
+  border:1px solid var(--fc-motif-line);border-radius:50%;
+  background:
+    radial-gradient(circle,transparent 0 19px,var(--fc-motif-line) 19.7px 20.5px,transparent 21px 29px,var(--fc-motif-line) 29.7px 30.5px,transparent 31px),
+    radial-gradient(circle at 50% 50%,var(--fc-motif-green) 0 8px,transparent 8.7px);
+}
+
+/* Remove the earlier generic availability ornament so this card has one motif only. */
+.dashboard .availability-card::before{content:none!important;display:none!important}
+
+/* Calendar: same 72px footprint, with a header and evenly spaced date marks. */
+.dashboard .availability-card.fc-motif-box::after,
+#dinnerApp .step[data-step="2"] .card.fc-motif-box::after{
+  width:68px;height:60px;right:18px;bottom:16px;border:1px solid var(--fc-motif-line);border-radius:10px;
+  background:
+    radial-gradient(circle,var(--accent) 0 2.2px,transparent 2.8px) 12px 27px/18px 15px repeat,
+    linear-gradient(var(--fc-motif-fill),var(--fc-motif-fill)) 0 0/100% 15px no-repeat,
+    linear-gradient(var(--fc-motif-line),var(--fc-motif-line)) 14px -3px/2px 10px no-repeat,
+    linear-gradient(var(--fc-motif-line),var(--fc-motif-line)) 52px -3px/2px 10px no-repeat,
+    var(--card);
+}
+
+/* Conversation: two aligned speech cards, offset by a fixed 10px. */
+.dashboard .how-card.fc-motif-box::after{
+  width:58px;height:42px;right:20px;bottom:18px;border:1px solid var(--fc-motif-line);border-radius:12px 12px 12px 3px;
+  background:var(--fc-motif-fill);
+  box-shadow:-10px -9px 0 -1px var(--card),-10px -9px 0 0 var(--fc-motif-line);
+}
+
+/* Profile: three equal circles for a small community / people motif. */
+.dashboard .profile-card.fc-motif-box::after,
+#dinnerApp .step[data-step="3"] .card.fc-motif-box::after{
+  width:24px;height:24px;right:42px;bottom:37px;border-radius:50%;
+  border:1px solid var(--fc-motif-line);background:var(--fc-motif-fill);
+  box-shadow:-18px 7px 0 -1px var(--fc-motif-warm),-18px 7px 0 0 var(--fc-motif-line),18px 7px 0 -1px var(--fc-motif-green),18px 7px 0 0 var(--fc-motif-line);
+}
+
+/* Personality: five equally sized marks, a restrained nod to the questionnaire scale. */
+#dinnerApp .step[data-step="1"] .card.fc-motif-box::after{
+  width:68px;height:16px;right:20px;bottom:22px;
+  background:
+    radial-gradient(circle,var(--fc-motif-line) 0 6px,transparent 6.7px) 0 50%/14px 14px no-repeat,
+    radial-gradient(circle,var(--accent) 0 6px,transparent 6.7px) 14px 50%/14px 14px no-repeat,
+    radial-gradient(circle,var(--fc-motif-warm) 0 6px,transparent 6.7px) 28px 50%/14px 14px no-repeat,
+    radial-gradient(circle,var(--accent) 0 6px,transparent 6.7px) 42px 50%/14px 14px no-repeat,
+    radial-gradient(circle,var(--fc-motif-line) 0 6px,transparent 6.7px) 56px 50%/14px 14px no-repeat;
+}
+
+/* Group preference: three overlapping, evenly spaced circles. */
+#dinnerApp .step[data-step="3"] .card.fc-motif-box::after{bottom:24px;right:34px}
+
+/* Review: a compact, aligned checklist motif. */
+#dinnerApp .step[data-step="4"] .card.fc-motif-box::after{
+  width:62px;height:66px;right:20px;bottom:17px;border:1px solid var(--fc-motif-line);border-radius:10px;
+  background:
+    linear-gradient(var(--fc-motif-line),var(--fc-motif-line)) 25px 18px/25px 1px no-repeat,
+    linear-gradient(var(--fc-motif-line),var(--fc-motif-line)) 25px 32px/25px 1px no-repeat,
+    linear-gradient(var(--fc-motif-line),var(--fc-motif-line)) 25px 46px/25px 1px no-repeat,
+    radial-gradient(circle,var(--ok) 0 3px,transparent 3.7px) 10px 14px/10px 10px no-repeat,
+    radial-gradient(circle,var(--ok) 0 3px,transparent 3.7px) 10px 28px/10px 10px no-repeat,
+    radial-gradient(circle,var(--ok) 0 3px,transparent 3.7px) 10px 42px/10px 10px no-repeat,
+    linear-gradient(var(--fc-motif-fill),var(--fc-motif-fill));
+}
+
+/* Save confirmation: a centered table/plate mark with the success tint. */
+#dinnerApp .step[data-step="5"]>.check{position:relative;isolation:isolate}
+#dinnerApp .step[data-step="5"]>.check::after{
+  content:"";position:absolute;inset:-9px;border:1px solid var(--fc-motif-line);border-radius:50%;
+  box-shadow:0 0 0 7px color-mix(in srgb,var(--fc-motif-line) 24%,transparent);z-index:-1;
+}
+
+/* Keep the motifs tucked into the same corner, with lower contrast on narrow screens. */
+@media(max-width:560px){
+  .fc-motif-box::after{right:13px;bottom:12px;transform:scale(.82);transform-origin:bottom right;opacity:.38}
+}
+@media(prefers-reduced-motion:reduce){.fc-motif-box::after{transition:none!important}}
+
 </style>
 <script>
 (function(){
@@ -220,32 +730,350 @@ body{transition:background-color .2s ease,color .2s ease}
   document.documentElement.setAttribute('data-theme', theme);
 })();
 </script>
+
+<style id="fourcourse-welcoming-no-shapes">
+/* FourCourse: welcoming through clear copy, calm surfaces and generous spacing — no decorative shapes. */
+body{background:var(--bg)!important}
+.auth-intro::before,.auth-intro::after,.dashboard-welcome::before,.dashboard-welcome::after,
+#dinnerApp .step[data-step="0"]::before,#dinnerApp .step[data-step="0"]::after,
+.auth-card-wrap::before,.auth-card-wrap::after,.email-pending::before,.confirmation::before,
+.email-pending .mail-icon::after,.confirmation .check::after,
+.next-dinner-card::after,.availability-card::before,.how-card::after,.profile-avatar::after,
+.fc-motif-box::before,.fc-motif-box::after{content:none!important;display:none!important;background:none!important;box-shadow:none!important}
+.auth-intro,.dashboard-welcome,#dinnerApp .step[data-step="0"]{background:none!important;padding-right:0!important}
+.auth-card-wrap,.auth-card-wrap .card,.email-pending .card,.confirmation .card,
+.dashboard .dash-card,#dinnerApp .step .card{background:var(--card)!important}
+.auth-card-wrap .card,.email-pending .card,.confirmation .card,.dashboard .dash-card,#dinnerApp .step .card{border:1px solid var(--line);box-shadow:var(--shadow)}
+.auth-mantra{background:var(--surface2)!important;border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 18px}
+.auth-benefits{gap:15px;margin-top:28px;color:var(--ink)}
+.auth-benefits li{line-height:1.5}
+.auth-benefits li span{background:var(--surface2);color:var(--ok)}
+.auth-footer,.dashboard-footer{line-height:1.7}
+.dashboard-welcome{padding:0 0 26px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.dashboard-lede{max-width:580px;line-height:1.7}
+.welcome-note{color:var(--mute);line-height:1.65}
+.availability-stat{background:var(--surface2);box-shadow:none;border-color:transparent}
+.stat-mark{background:var(--card);border:1px solid var(--line)}
+.next-dinner-card{border-top:1px solid var(--line)!important}
+.next-dinner-empty{background:var(--surface2);border:1px solid var(--line);line-height:1.7}
+.next-dinner-empty p{max-width:62ch;line-height:1.7}
+.dashboard .availability-intro{max-width:62ch;line-height:1.65;font-size:14px}
+.how-card{background:var(--surface2)!important}
+.how-steps{gap:18px}
+.how-steps p{font-size:12px;line-height:1.65}
+.how-steps li>span{border:1px solid var(--line);background:var(--card)}
+.profile-card{background:var(--card)!important}
+.profile-avatar{border:1px solid var(--line);background:var(--surface2)}
+.auth-note,.q-help,.receipt-note{line-height:1.7}
+.q-help{max-width:66ch}
+.sub{line-height:1.65}
+.btn{min-height:48px}
+.opt,.cal button,.scale button{min-height:48px}
+.auth-card-wrap .card{padding:clamp(22px,3vw,30px)}
+.dash-card{transition:border-color .18s,box-shadow .18s,transform .18s}
+.dash-card:hover{border-color:color-mix(in srgb,var(--accent) 32%,var(--line));box-shadow:0 16px 42px -30px rgba(45,31,20,.32)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+
+
+<style id="fourcourse-welcome-finish">
+/* Welcoming finish: typography, rhythm, and useful states—not decorative shapes. */
+:root{--fc-focus:color-mix(in srgb,var(--accent) 22%,transparent)}
+.auth-intro h1{max-width:560px;line-height:1.01;letter-spacing:-.052em}
+.auth-intro .sub{max-width:490px;font-size:16.5px;line-height:1.72}
+.auth-kicker,.dash-eyebrow{letter-spacing:.15em}
+.auth-benefits{gap:14px;margin-top:27px}
+.auth-benefits li{font-size:13px;line-height:1.55}
+.auth-benefits li span{width:25px;height:25px;flex:0 0 25px}
+.auth-mantra{margin-top:31px;font-size:16px;line-height:1.55;max-width:410px}
+.auth-card-intro{margin:0 0 17px}
+.auth-card-intro h2{font-size:25px;margin:0 0 5px}
+.auth-card-intro p{font-size:13px;color:var(--mute);line-height:1.6;margin:0}
+.auth-tabs{margin-top:0}
+.auth-field input::placeholder,input[type=text]::placeholder,input[type=email]::placeholder{color:color-mix(in srgb,var(--mute) 68%,transparent)}
+.auth-trust{gap:9px 13px;line-height:1.6}
+.auth-footer{align-items:center}
+.email-pending .card,.confirmation .card{box-shadow:var(--shadow)}
+.email-pending .pending-address{font-weight:600;color:var(--ink)}
+.email-pending .verification-code{text-align:center;font-variant-numeric:tabular-nums;letter-spacing:.34em;font-weight:600}
+#verificationForm .btn{margin-top:8px}
+#resendVerification{margin-top:10px}
+.dashboard-welcome{border-bottom:1px solid var(--line)}
+.dashboard-welcome h1{letter-spacing:-.05em}
+.dashboard-lede{font-size:15px;line-height:1.72}
+.welcome-note{border-color:color-mix(in srgb,var(--accent) 15%,var(--line));background:var(--card);white-space:normal;max-width:270px}
+.dashboard .dash-card{border-radius:17px;box-shadow:0 12px 34px -30px rgba(48,34,22,.34)}
+.dashboard .dash-card-heading{gap:14px}
+.dashboard .dash-card h2{letter-spacing:-.035em}
+.next-dinner-empty{padding:18px;line-height:1.7}
+.next-dinner-empty strong{font-size:14px;letter-spacing:-.01em}
+.next-dinner-empty p{font-size:13px}
+.availability-chip{background:var(--surface2);border:1px solid color-mix(in srgb,var(--line) 75%,transparent)}
+.availability-card-footer .availability-meta{line-height:1.6}
+.how-steps li>span{font:600 12px Inter,sans-serif}
+.how-steps strong{font-size:12px}
+.profile-detail-row{padding:10px 0}
+#dinnerApp .step h1,#dinnerApp .step h2{letter-spacing:-.045em}
+#dinnerApp .step>.sub{font-size:15.5px;line-height:1.72}
+#dinnerApp .card{box-shadow:var(--shadow)}
+#dinnerApp .qmeta{font-size:12px}
+#dinnerApp .anchors{font-size:17px;line-height:1.4}
+#dinnerApp .scale button{min-height:58px}
+#dinnerApp .opt:hover:not([aria-pressed=true]),.cal button:hover:not(:disabled):not([aria-pressed=true]),.scale button:hover:not([aria-pressed=true]){background:var(--soft);border-color:var(--accent)}
+#dinnerApp .trust{margin-top:18px}
+#dinnerApp .trust span{font-size:11px}
+.btn:focus-visible,.opt:focus-visible,.cal button:focus-visible,.scale button:focus-visible,.theme-toggle:focus-visible{outline:3px solid var(--fc-focus);outline-offset:3px}
+.btn:disabled{box-shadow:none;filter:saturate(.7)}
+@media(max-width:900px){.auth-intro .sub{max-width:560px}.auth-mantra{max-width:100%}}
+@media(max-width:560px){
+ .auth-intro h1{font-size:clamp(39px,11vw,48px)}
+ .auth-intro .sub{font-size:15px;line-height:1.68}
+ .auth-card-intro h2{font-size:23px}
+ .auth-mantra{font-size:15px;margin-top:22px}
+ .dashboard-welcome h1{font-size:clamp(36px,10vw,43px)}
+ .welcome-note{max-width:none}
+ #dinnerApp .step>.sub{font-size:14px}
+ .anchors{font-size:15px;gap:12px}
+}
+</style>
+
+
+<style id="fourcourse-professional-conversion-refresh">
+/* FourCourse professional system: crisp typography, cooler contrast, practical detail. */
+:root{
+  --bg:#f3f6fb;--card:#ffffff;--ink:#14233b;--mute:#596a82;--line:#dce5f0;
+  --accent:#2859d9;--accent-ink:#ffffff;--soft:#eaf0ff;--ok:#16835d;
+  --surface2:#edf2f9;--shadow:0 16px 42px rgba(22,43,77,.085);
+  color-scheme:light;
+}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{
+  --bg:#0d1728;--card:#15243a;--ink:#f1f5fc;--mute:#afbdd1;--line:#2b3d57;
+  --accent:#84a5ff;--accent-ink:#0d1930;--soft:#24395d;--ok:#67d0a5;
+  --surface2:#1b2d47;--shadow:0 20px 48px rgba(0,0,0,.28);
+  color-scheme:dark;
+}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,-apple-system,sans-serif!important;background:var(--bg)!important;color:var(--ink);letter-spacing:-.008em}
+h1,h2,h3,.logo,.auth-brand,.anchors,.availability-stat strong,.availability-month h3,.receipt-title{
+  font-family:"Manrope",system-ui,sans-serif!important;font-weight:750;letter-spacing:-.045em;
+}
+h1{font-weight:800;letter-spacing:-.055em}
+h2{font-weight:750}
+button,input,select,textarea{font-family:"DM Sans",system-ui,sans-serif}
+.auth-brand,.logo{font-weight:800;letter-spacing:-.06em}
+.auth-intro h1{font-size:clamp(44px,6vw,68px);line-height:1.02;max-width:620px}
+.auth-intro .sub{font-size:17px;line-height:1.72;color:var(--mute);max-width:500px}
+.auth-kicker,.dash-eyebrow{color:var(--accent);font-weight:800;letter-spacing:.13em}
+.auth-mantra{font-family:"DM Sans",system-ui,sans-serif;font-weight:600;color:var(--ink);background:var(--soft)!important;border-left:3px solid var(--accent);}
+.auth-card-wrap .card,.email-pending .card,.confirmation .card,.dashboard .dash-card,#dinnerApp .step .card{
+  background:var(--card)!important;border-color:var(--line)!important;box-shadow:var(--shadow)!important;
+}
+.card,.dash-card{border-radius:20px}
+.btn{background:var(--accent);color:var(--accent-ink);font-weight:700;letter-spacing:0;border-radius:12px;box-shadow:0 7px 18px -12px color-mix(in srgb,var(--accent) 78%,transparent)}
+.btn:hover:not(:disabled){filter:brightness(1.06);transform:translateY(-1px)}
+.btn.secondary{background:var(--soft);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));box-shadow:none}
+.opt[aria-pressed=true],.scale button[aria-pressed=true],.cal button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+input[type=text],input[type=email],input[type=password],.auth-field input{background:var(--bg);border-color:var(--line);color:var(--ink)}
+input::placeholder{color:color-mix(in srgb,var(--mute) 72%,transparent)}
+.auth-tabs{background:var(--surface2)}
+.auth-tabs button.active{background:var(--card);border-color:var(--line);color:var(--ink)}
+.auth-intro::before,.auth-intro::after,.dashboard-welcome::before,.dashboard-welcome::after,
+#dinnerApp .step[data-step="0"]::before,#dinnerApp .step[data-step="0"]::after,
+.auth-card-wrap::before,.auth-card-wrap::after,.email-pending::before,.confirmation::before,
+.email-pending .mail-icon::after,.confirmation .check::after,.next-dinner-card::after,
+.availability-card::before,.how-card::after,.profile-avatar::after,.fc-motif-box::before,.fc-motif-box::after{
+  content:none!important;display:none!important;background:none!important;box-shadow:none!important;
+}
+.auth-intro,.dashboard-welcome,#dinnerApp .step[data-step="0"]{padding-right:0!important;background:none!important}
+.auth-extra,.auth-faq{max-width:980px;margin:58px auto 0}
+.auth-extra-heading{max-width:620px;margin-bottom:22px}
+.auth-extra-heading h2,.auth-faq-heading h2{font-size:clamp(27px,3.5vw,37px);line-height:1.13;margin:0 0 10px}
+.auth-extra-heading>p:last-child{margin:0;color:var(--mute);line-height:1.7;font-size:15px;max-width:570px}
+.auth-how-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.auth-how-item{padding:21px 20px 22px;border:1px solid var(--line);border-radius:16px;background:var(--card);box-shadow:0 8px 25px rgba(22,43,77,.035)}
+.auth-how-number{display:inline-flex;align-items:center;justify-content:center;width:31px;height:31px;border-radius:9px;background:var(--soft);color:var(--accent);font:800 12px "Manrope",sans-serif;margin-bottom:17px}
+.auth-how-item h3{font-size:17px;line-height:1.3;margin:0 0 8px;letter-spacing:-.03em}
+.auth-how-item p{font-size:13px;line-height:1.65;color:var(--mute);margin:0}
+.auth-faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:start;padding-top:28px;border-top:1px solid var(--line)}
+.auth-faq-heading h2{max-width:330px}
+.auth-faq-list{border-top:1px solid var(--line)}
+.auth-faq-list details{border-bottom:1px solid var(--line);padding:16px 2px}
+.auth-faq-list summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:15px;font-weight:700;font-size:14px;color:var(--ink)}
+.auth-faq-list summary::-webkit-details-marker{display:none}
+.auth-faq-list summary::after{content:"+";font-size:20px;font-weight:400;color:var(--accent)}
+.auth-faq-list details[open] summary::after{content:"−"}
+.auth-faq-list details p{margin:10px 26px 0 0;color:var(--mute);font-size:13px;line-height:1.7}
+.auth-footer{max-width:980px}
+.auth-password-wrap{position:relative;display:flex;align-items:center}
+.auth-password-wrap input{padding-right:72px!important}
+.password-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;border-radius:8px;padding:7px 9px;background:transparent;color:var(--accent);font-size:12px;font-weight:800;cursor:pointer}
+.password-toggle:hover{background:var(--soft)}
+.invite-card{background:linear-gradient(140deg,var(--card),color-mix(in srgb,var(--soft) 42%,var(--card)))!important}
+.invite-card h2{max-width:330px;margin:0 0 9px!important}
+.invite-card>p:not(.dash-eyebrow):not(.invite-feedback){font-size:13px;line-height:1.7;color:var(--mute);margin:0 0 12px;max-width:42ch}
+.invite-card .btn{width:100%;margin-top:8px}
+.invite-feedback{min-height:18px;margin:9px 0 0;color:var(--ok);font-size:12px;line-height:1.5}
+.dashboard .dash-card{border-color:var(--line);box-shadow:var(--shadow)}
+.dashboard-welcome{border-bottom:1px solid var(--line)}
+.dashboard-welcome h1{font-size:clamp(42px,5.3vw,58px);font-weight:800}
+.dashboard-lede{font-size:15px;line-height:1.7;color:var(--mute)}
+.next-dinner-card{background:var(--card)!important}
+.next-dinner-empty{background:var(--surface2);border:1px solid var(--line);border-radius:14px}
+.how-card{background:var(--surface2)!important}
+.theme-toggle{font-family:"DM Sans",sans-serif;font-weight:700;border-color:var(--line);background:var(--card);color:var(--ink)}
+.logout-button{font-family:"DM Sans",sans-serif;font-weight:700;background:var(--card);color:var(--mute)}
+#dinnerApp .step h1,#dinnerApp .step h2{font-family:"Manrope",sans-serif!important;font-weight:800}
+#dinnerApp .anchors{font-family:"Manrope",sans-serif!important;font-weight:650}
+#dinnerApp .q-help,.auth-note,.receipt-note{color:var(--mute)}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 48%,transparent);outline-offset:3px}
+@media(max-width:760px){.auth-how-grid{grid-template-columns:1fr}.auth-faq{grid-template-columns:1fr;gap:16px;margin-top:42px}.auth-faq-heading h2{max-width:520px}.auth-extra{margin-top:42px}}
+@media(max-width:520px){.auth-shell{padding-left:18px;padding-right:18px}.auth-intro h1{font-size:clamp(39px,11vw,52px)}.auth-extra,.auth-faq{margin-top:36px}.auth-how-item{padding:17px}.auth-faq-list summary{font-size:13px}.auth-password-wrap input{font-size:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover:not(:disabled){transform:none}}
+</style>
+
+\n<style id="fourcourse-original-theme-restore">
+/* FourCourse original visual identity: warm cream, rich cocoa, and calm blue. */
+:root{
+  --bg:#faf6f0;
+  --card:#fffdfa;
+  --ink:#281c17;
+  --mute:#83746b;
+  --line:#e9ded3;
+  --accent:#315f9c;
+  --accent-ink:#ffffff;
+  --soft:#e8eff9;
+  --ok:#42795c;
+  --surface2:#f4eee6;
+  --shadow:0 18px 50px rgba(55,35,19,.07);
+  --fc-focus:color-mix(in srgb,var(--accent) 28%,transparent);
+  color-scheme:light;
+}
+:root[data-theme="light"]{color-scheme:light}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#171310;--card:#211b17;--ink:#f6eee6;--mute:#b5a69a;
+    --line:#41352d;--accent:#8eb9f2;--accent-ink:#171310;
+    --soft:#26374d;--ok:#8fc9a2;--surface2:#2b221d;
+    --shadow:0 18px 50px rgba(0,0,0,.20);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#171310;--card:#211b17;--ink:#f6eee6;--mute:#b5a69a;
+  --line:#41352d;--accent:#8eb9f2;--accent-ink:#171310;
+  --soft:#26374d;--ok:#8fc9a2;--surface2:#2b221d;
+  --shadow:0 18px 50px rgba(0,0,0,.20);color-scheme:dark;
+}
+html{scroll-behavior:smooth}
+body,button,input,select,textarea{font-family:Inter,system-ui,-apple-system,sans-serif!important}
+h1,h2,h3,.logo,.auth-brand,.anchors,.availability-stat strong,
+.availability-month h3,.receipt-title,.auth-how-item h3,.auth-faq-heading h2{
+  font-family:Fraunces,Georgia,serif!important;
+  font-weight:600!important;
+  letter-spacing:-.025em!important;
+}
+h1{font-weight:600!important;letter-spacing:-.035em!important}
+h2{font-weight:600!important;letter-spacing:-.02em!important}
+.auth-intro h1{font-size:clamp(42px,6vw,64px);line-height:1.05;max-width:620px}
+.dashboard-welcome h1{font-size:clamp(39px,5.3vw,56px);font-weight:600!important}
+.auth-kicker,.dash-eyebrow{color:var(--accent);font-family:Inter,system-ui,sans-serif!important;font-weight:700;letter-spacing:.11em}
+.auth-mantra{font-family:Inter,system-ui,sans-serif!important;color:var(--ink)}
+.btn,.opt,.scale button,.auth-tabs button,.theme-toggle,.logout-button,
+.auth-how-number,.password-toggle{font-family:Inter,system-ui,sans-serif!important}
+.card,.dash-card,.auth-how-item{box-shadow:var(--shadow)}
+.card,.dash-card{border-color:var(--line)}
+.btn{background:var(--accent);color:var(--accent-ink);border-radius:12px;box-shadow:0 7px 18px -12px color-mix(in srgb,var(--accent) 72%,transparent)}
+.btn:hover:not(:disabled){filter:brightness(1.04);transform:translateY(-1px)}
+.opt[aria-pressed=true],.scale button[aria-pressed=true],.cal button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.auth-tabs button.active{background:var(--soft);border-color:var(--accent);color:var(--ink)}
+input,select,textarea{color:var(--ink)}
+.auth-how-number{background:var(--soft);color:var(--accent)}
+.invite-card{background:linear-gradient(140deg,var(--card),color-mix(in srgb,var(--soft) 38%,var(--card)))!important}
+.next-dinner-empty,.how-card{background:var(--surface2)!important}
+.availability-chip{background:var(--surface2);border-color:var(--line)}
+.status-pill{background:var(--soft);color:var(--accent)}
+.profile-tag{background:var(--surface2);border-color:var(--line)}
+@media(max-width:560px){
+  .auth-intro h1{font-size:clamp(38px,10vw,49px)}
+  .dashboard-welcome h1{font-size:clamp(35px,9vw,44px)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Practical interaction refinements */
+.invite-link-wrap{margin-top:14px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface2)}
+.invite-link-row{display:flex;gap:8px;align-items:center;margin-top:7px}
+.invite-link-row input{min-width:0;flex:1;font-size:12px;padding:10px 11px;background:var(--card)}
+.invite-link-row .btn{white-space:nowrap;width:auto;margin:0;padding:10px 13px;font-size:12px}
+.scale button:focus:not(:focus-visible){outline:none;box-shadow:none}
+.scale button[aria-pressed="false"]:focus:not(:focus-visible){background:var(--bg);border-color:var(--line);color:var(--ink)}
+@media(max-width:520px){.invite-link-row{align-items:stretch;flex-direction:column}.invite-link-row .btn{width:100%}}
+</style>
+
 </head>
 <body>
 <section class="auth-shell" id="authShell">
   <div class="auth-topbar"><div class="auth-brand">Four<span>Course</span></div><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button></div>
-  <h1 id="authTitle">Your table is waiting.</h1>
-  <p class="sub" id="authSubtitle">Create an account to join FourCourse dinners and keep your profile in one place.</p>
-  <div class="card">
+  <div class="auth-layout">
+    <div class="auth-intro">
+      <p class="auth-kicker">A BETTER WAY TO MEET, ONE DINNER AT A TIME.</p>
+      <h1 id="authTitle">Your campus is full of people you haven’t met yet.</h1>
+      <p class="sub" id="authSubtitle">FourCourse brings university students together for relaxed, small-group dinners. Choose evenings that work for you, share a few preferences, and make room for a conversation beyond your usual circle.</p>
+      <ul class="auth-benefits">
+        <li><span>✓</span>Small groups that make it easier to connect</li>
+        <li><span>✓</span>Choose evenings that work for you</li>
+        <li><span>✓</span>Free to create an account</li>
+      </ul>
+      <div class="auth-mantra">No swiping. No forced networking. Just a good meal and a few new faces.</div>
+    </div>
+    <div class="auth-card-wrap"><div class="card">
+    <div class="auth-card-intro"><h2 id="authCardHeading">Save your seat.</h2><p id="authCardCopy">Create your free account, then choose the evenings that work for you.</p></div>
     <div class="auth-tabs"><button id="tabSignup" class="active" type="button">Create account</button><button id="tabLogin" type="button">Log in</button></div>
     <form id="authForm">
       <div class="auth-field" id="nameField"><label for="authName">Your name</label><input id="authName" type="text" autocomplete="name" placeholder="First and last name" required></div>
       <div class="auth-field"><label for="authEmail">School email</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@duke.edu" required></div>
-      <div class="auth-field"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required></div>
+      <div class="auth-field"><label for="authPassword">Password</label><div class="auth-password-wrap"><input id="authPassword" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required><button class="password-toggle" id="passwordToggle" type="button" aria-pressed="false">Show</button></div></div>
       <button class="btn" id="authSubmit" type="submit">Create account</button>
       <div class="auth-error" id="authError" role="alert"></div>
     </form>
-    <p class="auth-note">Use your university email. Your password is securely managed by our authentication provider; FourCourse never sees or stores it.</p>
+    <p class="auth-note">Your university email verifies your student address and lets us send account and dinner updates.</p>
+    <div class="auth-trust"><span>University email verification</span><span>No public profiles or swiping</span><span>Free for students</span></div>
+  </div></div>
   </div>
+
+  <section class="auth-extra" aria-label="How FourCourse works">
+    <div class="auth-extra-heading">
+      <p class="auth-kicker">A SIMPLE IDEA, MADE EASY</p>
+      <h2>More good conversations. Fewer hoops to jump through.</h2>
+      <p>FourCourse makes it easier to meet people outside your usual circles, without adding another packed event to your calendar.</p>
+    </div>
+    <div class="auth-how-grid">
+      <article class="auth-how-item"><span class="auth-how-number">01</span><h3>Choose your evenings</h3><p>Mark the dates you could comfortably make. You can update them whenever your schedule changes.</p></article>
+      <article class="auth-how-item"><span class="auth-how-number">02</span><h3>Share what you enjoy</h3><p>A few thoughtful preferences help organizers plan dinners that feel comfortable and interesting.</p></article>
+      <article class="auth-how-item"><span class="auth-how-number">03</span><h3>Look out for an invitation</h3><p>When a dinner is arranged, you’ll receive the details and can decide whether to confirm.</p></article>
+    </div>
+  </section>
+
+  <section class="auth-faq" aria-label="Frequently asked questions">
+    <div class="auth-faq-heading"><p class="auth-kicker">GOOD TO KNOW</p><h2>A few things you might be wondering.</h2></div>
+    <div class="auth-faq-list">
+      <details><summary>Is it free to join?</summary><p>Creating a FourCourse account is free. Any expected meal or reservation costs will be explained before you confirm a dinner invitation.</p></details>
+      <details><summary>Does choosing a date mean I’m committed?</summary><p>No. Your selected dates tell us when you may be available. You’ll have a chance to review and confirm an actual dinner invitation before making a commitment.</p></details>
+      <details><summary>Can I change my availability later?</summary><p>Yes. Sign in to your dashboard to add or remove dates and keep your schedule up to date.</p></details>
+      <details><summary>When will I hear about a dinner?</summary><p>Dinner invitations depend on organizer-led group planning and restaurant arrangements. We’ll share the details once a dinner is confirmed; submitting availability alone is not a reservation.</p></details>
+      <details><summary>Will I have a public profile?</summary><p>No. FourCourse is not a public profile or swiping app. Your account and preferences are used to help organize the dinner experience.</p></details>
+    </div>
+  </section>
+
+  <footer class="auth-footer"><span>Good food. New faces. A table where everyone starts as a stranger.</span><span>Questions? <a href="mailto:four.course.dining@gmail.com" style="color:var(--accent);text-decoration:none">Contact FourCourse</a></span></footer>
 </section>
 <section class="email-pending" id="emailPendingView" aria-live="polite">
   <div class="auth-topbar"><div class="auth-brand">Four<span>Course</span></div><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button></div>
   <div class="card">
     <div class="mail-icon" aria-hidden="true">✉</div>
-    <h1 style="font-size:36px">Check your email.</h1>
-    <p class="sub">We sent a verification code to:</p>
+    <h1 style="font-size:36px">Check your university inbox.</h1>
+    <p class="sub">Your FourCourse verification code is on its way to:</p>
     <p class="pending-address" id="pendingEmail"></p>
-    <p class="auth-note" style="font-size:15px;line-height:1.6">Enter the 8-digit code from the email below to verify your university address. You must verify before you can log in or join a dinner.</p>
+    <p class="auth-note" style="font-size:15px;line-height:1.6">Enter the 8-digit code below and you’ll be ready to set up your first dinner. It’s a quick check that helps keep FourCourse for university students.</p>
     <form id="verificationForm" class="pending-actions">
       <div class="auth-field">
         <label for="verificationCode">8-digit verification code</label>
@@ -256,7 +1084,8 @@ body{transition:background-color .2s ease,color .2s ease}
     <div class="pending-actions">
       <button class="btn secondary" id="resendVerification" type="button">Resend verification code</button>
       <button class="link" id="pendingBackToLogin" type="button">Back to log in</button>
-      <p class="auth-note" id="pendingNote">Check your inbox and spam folder. The code expires after one hour.</p>
+      <p class="auth-note" id="pendingNote">Can’t find it? Check Spam or Junk, then request a new code below. Each code is valid for one hour.</p>
+      <div class="verification-steps"><span class="current">1&nbsp; Check your inbox</span><span>2&nbsp; Enter your code</span><span>3&nbsp; Take your seat</span></div>
     </div>
   </div>
 </section>
@@ -264,8 +1093,8 @@ body{transition:background-color .2s ease,color .2s ease}
   <div class="auth-topbar"><div class="auth-brand">Four<span>Course</span></div><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button></div>
   <div class="card">
     <div class="check">✓</div>
-    <h1 style="font-size:38px">Your email is confirmed.</h1>
-    <p class="sub">Welcome to FourCourse. Your account is ready. Continue to your profile to get started.</p>
+    <h1 style="font-size:38px">You’re in. Welcome to FourCourse.</h1>
+    <p class="sub">Your university email is verified. Next, choose the evenings that work and tell us what makes a dinner enjoyable for you.</p>
     <button class="btn" id="continueAfterConfirm" type="button">Continue to FourCourse</button>
     <p class="auth-note" id="confirmationNote">You can now access your FourCourse account.</p>
   </div>
@@ -275,39 +1104,42 @@ body{transition:background-color .2s ease,color .2s ease}
     <div class="logo">Four<span>Course</span></div>
     <div class="dashboard-header-right">
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button>
-      <span class="dashboard-nav-active">Dashboard</span>
+      <span class="dashboard-nav-active">My FourCourse</span>
       <button class="logout-button" id="logoutBtn" type="button">Log out <span aria-hidden="true">↗</span></button>
     </div>
   </header>
 
-  <div class="dashboard-welcome">
-    <div>
-      <p class="dash-eyebrow">YOUR FOURCOURSE ACCOUNT</p>
-      <h1 id="welcomeTitle">Welcome to FourCourse.</h1>
-      <p class="dashboard-lede">A good dinner starts with an open date. Here's where everything stands.</p>
+  <section class="dashboard-welcome">
+    <div class="welcome-copy">
+      <p class="dash-eyebrow">YOUR FOURCOURSE HOME</p>
+      <h1 id="welcomeTitle">Good to see you.</h1>
+      <p class="dashboard-lede">Your availability is saved. Keep it current, and we’ll let you know when a dinner is ready for you.</p>
     </div>
-    <div class="availability-stat" aria-live="polite">
-      <div class="stat-mark" aria-hidden="true">✳</div>
-      <div><strong id="summaryDateCount">0</strong><span>dates that work for you</span></div>
+    <div class="welcome-side">
+      <div class="welcome-note"><span>Good food brings people together.<br><strong>Come curious. We’ll handle the planning.</strong></span></div>
+      <div class="availability-stat" aria-live="polite">
+        <div class="stat-mark" aria-hidden="true">▦</div>
+        <div><strong id="summaryDateCount">0</strong><span>dates that work for you</span></div>
+      </div>
     </div>
-  </div>
+  </section>
 
   <div class="dashboard-layout">
     <main class="dashboard-main">
       <section class="dash-card next-dinner-card">
         <div class="dash-card-heading">
-          <div><p class="dash-eyebrow">UP NEXT</p><h2>Your next dinner</h2></div>
+          <div><p class="dash-eyebrow">WHAT’S NEXT</p><h2>Your next dinner</h2></div>
           <span class="status-pill" id="dinnerStatus">Not matched yet</span>
         </div>
         <div id="upcomingDinnerDetails" class="next-dinner-empty">
-          <div class="next-dinner-icon" aria-hidden="true">✦</div>
-          <div><strong>No dinner assigned just yet</strong><p>Once dinner groups are arranged, your date, restaurant, and table details will appear here. We'll let you know by email.</p></div>
+          
+          <div><strong>Nothing you need to do right now.</strong><p>Your dates are saved. When a dinner is arranged for one of the evenings you selected, your invitation and all the details will appear here.</p></div>
         </div>
       </section>
 
       <section class="dash-card availability-card">
         <div class="dash-card-heading">
-          <div><p class="dash-eyebrow">YOUR SCHEDULE</p><h2>Your availability</h2><p class="availability-intro">The dates you've told us work for dinner.</p></div>
+          <div><p class="dash-eyebrow">YOUR CALENDAR</p><h2>When are you free?</h2><p class="availability-intro">These are the evenings you shared with us. Add or remove dates whenever your schedule changes—nothing is final until you confirm a dinner invitation.</p></div>
           <span class="count-pill" id="availabilityCount">0 dates</span>
         </div>
         <div id="availabilityDetails" class="dash-muted">Loading your dates…</div>
@@ -319,29 +1151,41 @@ body{transition:background-color .2s ease,color .2s ease}
     </main>
 
     <aside class="dashboard-aside">
+      <section class="dash-card how-card">
+        <p class="dash-eyebrow">WHAT TO EXPECT</p>
+        <h2>Simple from start to dinner.</h2>
+        <ol class="how-steps">
+          <li><span>1</span><div><strong>Pick the dates that work</strong><p>Choose a few evenings when you could comfortably make dinner.</p></div></li>
+          <li><span>2</span><div><strong>Share a little about yourself</strong><p>Your preferences help us plan a table you’ll feel good joining.</p></div></li>
+          <li><span>3</span><div><strong>Get your dinner invitation</strong><p>We’ll share the date and restaurant details when your dinner is arranged.</p></div></li>
+        </ol>
+      </section>
+
       <section class="dash-card profile-card">
-        <div class="dash-card-heading"><div><p class="dash-eyebrow">AT A GLANCE</p><h2>Your profile</h2></div></div>
+        <div class="dash-card-heading"><div><p class="dash-eyebrow">A LITTLE ABOUT YOU</p><h2>Your profile</h2></div><span class="verified-pill"><span aria-hidden="true">✓</span> Verified</span></div>
         <div class="profile-heading">
           <div class="profile-avatar" id="profileAvatar" aria-hidden="true">FC</div>
           <div><strong id="profileName">Your account</strong><span id="profileEmail">Loading profile…</span></div>
         </div>
         <div id="profileDetails" class="profile-details"></div>
-        <button class="btn secondary profile-edit-button" id="editProfileBtn" type="button">Edit profile & preferences <span aria-hidden="true">→</span></button>
+        <button class="btn secondary profile-edit-button" id="editProfileBtn" type="button">Update your preferences <span aria-hidden="true">→</span></button>
       </section>
 
-      <section class="dash-card how-card">
-        <p class="dash-eyebrow">HOW IT WORKS</p>
-        <h2>Good dinners, made simple.</h2>
-        <ol class="how-steps">
-          <li><span>1</span><div><strong>Share your dates</strong><p>Tell us when you're free to meet.</p></div></li>
-          <li><span>2</span><div><strong>We'll arrange the table</strong><p>We use your availability and preferences to plan groups.</p></div></li>
-          <li><span>3</span><div><strong>Meet over dinner</strong><p>Your dinner details will appear here when assigned.</p></div></li>
-        </ol>
+      <section class="dash-card invite-card">
+        <p class="dash-eyebrow">GOOD THINGS ARE BETTER SHARED</p>
+        <h2>Know someone who’d enjoy a seat at the table?</h2>
+        <p>Invite a friend to take a look at FourCourse. More people hearing about it means more possibilities for good conversations.</p>
+        <button class="btn secondary" id="inviteFriendBtn" type="button">Create my invite link <span aria-hidden="true">↗</span></button>
+        <div class="invite-link-wrap" id="inviteLinkWrap" hidden>
+          <label class="q-help" for="inviteLinkField">Your personal FourCourse invite link</label>
+          <div class="invite-link-row"><input id="inviteLinkField" type="text" readonly aria-label="Your personal FourCourse invite link"><button class="btn" id="copyInviteLinkBtn" type="button">Copy link</button></div>
+        </div>
+        <p class="invite-feedback" id="inviteFeedback" role="status" aria-live="polite"></p>
       </section>
     </aside>
   </div>
 
-  <footer class="dashboard-footer"><span>Good dinners. New perspectives. Real connections.</span><span>Need help? <a href="mailto:four.course.dining@gmail.com">Contact FourCourse</a></span></footer>
+  <footer class="dashboard-footer"><span>Good food. New faces. Room for a new perspective.</span><span>Need help? <a href="mailto:four.course.dining@gmail.com">Contact FourCourse</a></span></footer>
 </section>
 
 <div class="wrap" id="dinnerApp" style="display:none">
@@ -354,25 +1198,25 @@ body{transition:background-color .2s ease,color .2s ease}
 
   <!-- 1: School -->
   <section class="step active" data-step="0">
-    <h1>Dinner with people you haven’t met yet.</h1>
-    <p class="sub">Tell us a bit about yourself and when you’re free. We’ll seat you with students from your school and email you the plan.</p>
+    <h1>Let’s start with your campus.</h1>
+    <p class="sub">FourCourse brings students together around a small dinner table. First, tell us where you study—we’ll take it one easy step at a time.</p>
     <div class="card">
       <label class="q" for="school">What school do you go to?</label>
       <input id="school" type="text" list="schools" placeholder="Start typing your school…" autocomplete="off">
       <datalist id="schools">
         <option value="Duke University"><option value="UNC Chapel Hill"><option value="NC State University"><option value="Harvard University"><option value="Stanford University"><option value="NYU"><option value="UCLA"><option value="University of Michigan"><option value="University of Texas at Austin"><option value="Georgia Tech"><option value="Boston University"><option value="Northwestern University">
       </datalist>
-      <button class="btn" id="go0" disabled>Find my dinner →</button>
+      <button class="btn" id="go0" disabled>Continue →</button>
     </div>
-    <div class="trust"><span>Takes about 3 minutes</span><span>Students only</span><span>No profiles or swiping</span></div>
+    <div class="trust"><span>About 3 minutes</span><span>Free for students</span><span>No public profiles</span></div>
   </section>
 
   <!-- 2: Compatibility questions -->
   <section class="step" data-step="1">
-    <h2>A little about you.</h2>
-    <p class="sub">So we can seat you with people you’ll actually click with. There are no wrong answers.</p>
+    <h2>What makes a good conversation for you?</h2>
+    <p class="sub">A few quick questions help us get a feel for the company you enjoy. There are no right or wrong answers—go with what feels most like you.</p>
     <div class="card">
-      <div class="qmeta"><span id="qnum">Question 1 of 20</span><span>Tap to answer</span></div>
+      <div class="qmeta"><span id="qnum">Question 1 of 20</span><span>Go with your first instinct</span></div>
       <div class="qbar"><i id="qfill"></i></div>
       <div class="q qprompt">Which sounds more like you?</div>
       <div class="anchors"><span id="anchL"></span><span id="anchR"></span></div>
@@ -389,13 +1233,13 @@ body{transition:background-color .2s ease,color .2s ease}
 
   <!-- 3: Days -->
   <section class="step" data-step="2">
-    <h2>When are you free for dinner?</h2>
-    <p class="sub">Pick every day that works. More days means a faster match.</p>
+    <h2>Which evenings could you make?</h2>
+    <p class="sub">Choose the dates you could realistically make. A few options give us more flexibility when planning, and you can change these anytime.</p>
     <div class="card">
       <div class="cal-nav"><button type="button" id="calPrev" aria-label="Previous month">‹</button><strong id="calMonth"></strong><button type="button" id="calNext" aria-label="Next month">›</button></div>
       <div class="cal-head"><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div>
       <div class="cal" id="cal"></div>
-      <div class="count" id="count">Tap every date that works for you. Selected dates are highlighted.</div>
+      <div class="count" id="count">Select all the dates you could make. You can change your availability later.</div>
       <button class="btn" id="go1" disabled>Continue →</button>
       <button class="btn secondary" id="saveAvailabilityOnly" type="button" hidden>Save availability changes</button>
       <button class="link" data-back>← Back</button>
@@ -404,8 +1248,8 @@ body{transition:background-color .2s ease,color .2s ease}
 
   <!-- 3: Preferences -->
   <section class="step" data-step="3">
-    <h2>Set the table.</h2>
-    <p class="sub">Tell us a little about yourself and the kind of dinner group you would feel comfortable joining.</p>
+    <h2>Help us make the table feel right.</h2>
+    <p class="sub">A couple of preferences help us plan a group setting where you can feel at ease. Share only what you’re comfortable sharing.</p>
     <div class="card">
       <div class="group">
         <label class="q" for="participantGender">How do you describe your gender?</label>
@@ -439,8 +1283,8 @@ body{transition:background-color .2s ease,color .2s ease}
 
   <!-- 4: Review and save -->
   <section class="step" data-step="4">
-    <h2>Your dinner preferences.</h2>
-    <p class="sub">Review your choices. We'll save them to your FourCourse profile.</p>
+    <h2>Ready to save your choices?</h2>
+    <p class="sub">Take a quick look. These details help us plan around your schedule and preferences, and you can update them later.</p>
     <div class="card">
       <div id="summary" style="margin-bottom:20px"></div>
       <button class="btn" id="go3" style="margin-top:4px">Save my dinner preferences</button>
@@ -455,9 +1299,9 @@ body{transition:background-color .2s ease,color .2s ease}
     <h2>You’re on the list.</h2>
     <p class="sub" id="doneMsg"></p>
     <div class="card">
-      <p class="receipt-title">The dates you’re available</p>
+      <p class="receipt-title">The evenings you shared</p>
       <div id="summary2"></div>
-      <p class="receipt-note">We’ll use your availability to find a dinner that fits. Keep an eye on your inbox for your invitation.</p>
+      <p class="receipt-note">Thanks for making room for a new conversation. Your evenings are saved, and you can change them anytime from your dashboard. We’ll share the dinner details when a table is arranged for you.</p>
     </div>
     <button class="btn" id="doneDashboardBtn" type="button">Back to my dashboard</button>
   </section>
@@ -472,6 +1316,15 @@ const SUPABASE_ANON_KEY = 'sb_publishable_5kBTFCLBvaoIGE7_MKf9mg_QnNYAWKL';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// A referral code is an attribution label, not an authentication credential.
+// Keep it locally while a referred student completes email-code verification.
+function captureReferralCode(){
+ const candidate=new URLSearchParams(window.location.search).get('ref');
+ if(candidate&&/^FC[A-F0-9]{12}$/i.test(candidate)){try{localStorage.setItem('fourcourse-pending-referral',candidate.toUpperCase());}catch(e){console.warn('Could not retain referral code:',e);}}
+}
+function pendingReferralCode(){try{const code=localStorage.getItem('fourcourse-pending-referral')||'';return /^FC[A-F0-9]{12}$/i.test(code)?code.toUpperCase():'';}catch(e){return '';}}
+function clearPendingReferralCode(){try{localStorage.removeItem('fourcourse-pending-referral');}catch(e){}}
+captureReferralCode();
 function setTheme(theme,save=true){
  const next=theme==='dark'?'dark':'light';
  document.documentElement.setAttribute('data-theme',next);
@@ -497,7 +1350,7 @@ function showView(which){
  confirmationView.style.display=which==='confirmation'?'block':'none';
  emailPendingView.style.display=which==='pending'?'block':'none';
 }
-function setAuthMode(mode){authMode=mode;$('#tabSignup').classList.toggle('active',mode==='signup');$('#tabLogin').classList.toggle('active',mode==='login');$('#nameField').style.display=mode==='signup'?'block':'none';$('#authName').required=mode==='signup';$('#authPassword').autocomplete=mode==='signup'?'new-password':'current-password';$('#authTitle').textContent=mode==='signup'?'Your table is waiting.':'Welcome back.';$('#authSubtitle').textContent=mode==='signup'?'Create an account to join FourCourse dinners and keep your profile in one place.':'Log in to see your profile and dinner activity.';$('#authSubmit').textContent=mode==='signup'?'Create account':'Log in';$('#authError').textContent='';}
+function setAuthMode(mode){authMode=mode;$('#tabSignup').classList.toggle('active',mode==='signup');$('#tabLogin').classList.toggle('active',mode==='login');$('#nameField').style.display=mode==='signup'?'block':'none';$('#authName').required=mode==='signup';$('#authPassword').autocomplete=mode==='signup'?'new-password':'current-password';$('#authTitle').textContent=mode==='signup'?'Your campus is full of people you haven’t met yet.':'Good to have you back.';$('#authSubtitle').textContent=mode==='signup'?'FourCourse brings university students together for relaxed, small-group dinners. Choose evenings that work for you, share a few preferences, and make room for a conversation beyond your usual circle.':'Your table is still here. Log in to update your dates, revisit your preferences, and check for dinner invitations.';$('#authCardHeading').textContent=mode==='signup'?'Save your seat.':'Welcome back.';$('#authCardCopy').textContent=mode==='signup'?'Create your free account, then choose the evenings that work for you.':'Log in to pick up where you left off.';$('#authSubmit').textContent=mode==='signup'?'Create account':'Log in';$('#authError').textContent='';}
 function verificationRedirectUrl(){
  const url=new URL(window.location.href);
  url.search='';url.searchParams.set('fourcourse-confirmed','1');url.hash='';
@@ -510,6 +1363,55 @@ function showEmailPending(email,note){
  $('#pendingNote').textContent=note||'Check your inbox and spam folder. Enter the 8-digit code here. It expires after one hour.';
  showView('pending');
 }
+$('#passwordToggle').onclick=()=>{
+ const input=$('#authPassword'),button=$('#passwordToggle');
+ const reveal=input.type==='password';input.type=reveal?'text':'password';
+ button.textContent=reveal?'Hide':'Show';button.setAttribute('aria-pressed',String(reveal));
+};
+function makeReferralCode(){
+ const bytes=new Uint8Array(6);
+ if(window.crypto?.getRandomValues)window.crypto.getRandomValues(bytes);else for(let i=0;i<bytes.length;i++)bytes[i]=Math.floor(Math.random()*256);
+ return 'FC'+Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+}
+async function getPersonalInviteUrl(){
+ if(!currentUser)throw new Error('Please log in again to create your invite link.');
+ const {data:profile,error:readError}=await supabase.from('profiles').select('referral_code').eq('id',currentUser.id).maybeSingle();
+ if(readError)throw readError;
+ let code=profile?.referral_code;
+ if(!code){
+  code=makeReferralCode();
+  const {data,error}=await supabase.from('profiles').update({referral_code:code,updated_at:new Date().toISOString()}).eq('id',currentUser.id).select('referral_code').maybeSingle();
+  if(error)throw error;
+  if(!data?.referral_code)throw new Error('We could not save your personal invite code. Please run the FourCourse referral database update and try again.');
+  code=data.referral_code;
+ }
+ const url=new URL(window.location.href);url.search='';url.hash='';url.searchParams.set('ref',code);
+ return url.toString();
+}
+async function copyText(text){
+ if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);return;}
+ const helper=document.createElement('textarea');helper.value=text;helper.setAttribute('readonly','');helper.style.position='fixed';helper.style.opacity='0';document.body.appendChild(helper);helper.select();
+ const copied=document.execCommand('copy');helper.remove();if(!copied)throw new Error('Copy is not available in this browser.');
+}
+$('#inviteFriendBtn').onclick=async()=>{
+ const button=$('#inviteFriendBtn'),feedback=$('#inviteFeedback'),wrap=$('#inviteLinkWrap');
+ button.disabled=true;button.textContent='Creating link…';feedback.textContent='';
+ try{
+  const url=await getPersonalInviteUrl();
+  $('#inviteLinkField').value=url;wrap.hidden=false;
+  const message='I’m trying FourCourse — a simple way to meet university students over dinner. Join me: '+url;
+  if(navigator.share){
+   try{await navigator.share({title:'Join me on FourCourse',text:'Meet new people over dinner with FourCourse.',url});feedback.textContent='Your personal invite link is ready to share.';}
+   catch(error){if(error&&error.name==='AbortError'){feedback.textContent='Your personal invite link is ready below whenever you want to share it.';}else{await copyText(url);feedback.textContent='Your invite link has been copied. Send it to a friend.';}}
+  }else{await copyText(url);feedback.textContent='Your personal invite link has been copied. Send it to a friend.';}
+ }catch(error){feedback.textContent=error.message||'We could not create your invite link. Please try again.';}
+ finally{button.disabled=false;button.innerHTML='Create my invite link <span aria-hidden="true">↗</span>';}
+};
+$('#copyInviteLinkBtn').onclick=async()=>{
+ const feedback=$('#inviteFeedback'),value=$('#inviteLinkField').value;
+ try{await copyText(value);feedback.textContent='Invite link copied. Send it to a friend.';}
+ catch(error){feedback.textContent='Select and copy the link above to share it.';$('#inviteLinkField').focus();$('#inviteLinkField').select();}
+};
 $('#tabSignup').onclick=()=>setAuthMode('signup');$('#tabLogin').onclick=()=>setAuthMode('login');
 function validStudentEmail(email){return /^[^@\s]+@[^@\s]+\.edu$/i.test(email)}
 $('#authForm').addEventListener('submit',async e=>{
@@ -519,8 +1421,12 @@ $('#authForm').addEventListener('submit',async e=>{
   const email=$('#authEmail').value.trim().toLowerCase(),password=$('#authPassword').value;
   if(!validStudentEmail(email))throw new Error('Please use your university .edu email address.');
   if(authMode==='signup'){
-   const {data,error}=await supabase.auth.signUp({email,password,options:{data:{full_name:$('#authName').value.trim()}}});
+   const referralCode=pendingReferralCode();
+   const signupMetadata={full_name:$('#authName').value.trim()};
+   if(referralCode)signupMetadata.referred_by_code=referralCode;
+   const {data,error}=await supabase.auth.signUp({email,password,options:{data:signupMetadata}});
    if(error)throw error;
+   if(referralCode)clearPendingReferralCode();
    // Supabase deliberately returns an obfuscated user with an empty identities
    // array when this email already has an account. No new confirmation email
    // is sent for that duplicate signup. Route the student to login instead of
@@ -592,7 +1498,13 @@ $('#resendVerification').onclick=async()=>{
  finally{btn.disabled=false;btn.textContent='Resend verification code';}
 };
 $('#pendingBackToLogin').onclick=()=>{showView('auth');setAuthMode('login');$('#authEmail').value=pendingEmail;};
-async function ensureProfile(){if(!currentUser)return;const {error}=await supabase.from('profiles').upsert({id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||''},{onConflict:'id'});if(error)throw error;}
+async function ensureProfile(){
+ if(!currentUser)return;
+ const payload={id:currentUser.id,email:currentUser.email,full_name:currentUser.user_metadata?.full_name||''};
+ const referredBy=currentUser.user_metadata?.referred_by_code;
+ if(typeof referredBy==='string'&&/^FC[A-F0-9]{12}$/i.test(referredBy))payload.referred_by_code=referredBy.toUpperCase();
+ const {error}=await supabase.from('profiles').upsert(payload,{onConflict:'id'});if(error)throw error;
+}
 function normalizeAvailability(profileDates, legacyDaysFree){
  // Current records store dates as a Postgres date[] on profiles. Older signups
  // stored the same ISO dates as a comma-separated string in dinner_signups.days_free.
@@ -618,7 +1530,6 @@ async function getLatestSignupDates(){
 }
 async function openDashboard(message=''){
  showView('dashboard');
- $('#welcomeTitle').textContent='Welcome, '+(currentUser.user_metadata?.full_name?.split(' ')[0]||'back')+'.';
  $('#profileDetails').textContent='Loading profile…';
  $('#availabilityDetails').textContent='Loading your dates…';
  $('#availabilityMeta').textContent='';
@@ -626,11 +1537,13 @@ async function openDashboard(message=''){
   const {data:profile,error}=await supabase.from('profiles').select('full_name,email,school,participant_gender,gender_self_description,gender_preference,questionnaire_answers,availability,updated_at').eq('id',currentUser.id).maybeSingle();
   if(error)throw error;
   activeProfile=profile||{};
+  const welcomeName=(profile?.full_name||currentUser.user_metadata?.full_name||'').trim().split(/\s+/)[0]||'there';
+  $('#welcomeTitle').textContent='Good to see you, '+welcomeName+'.';
   let dates=normalizeAvailability(profile?.availability,null);
   let latestSignup=null;
   // Backfill display from older signup records when the profile availability array
   // is empty. This is important for accounts created before availability was added.
-  if(!dates.length){
+  if(profile?.availability==null){
    try{latestSignup=await getLatestSignupDates();dates=normalizeAvailability(null,latestSignup?.days_free);}
    catch(signupError){console.warn('Could not read legacy dinner signup dates:',signupError);}
   }
@@ -647,8 +1560,8 @@ async function openDashboard(message=''){
   $('#availabilityMeta').textContent=formatSavedDate(profile?.updated_at||latestSignup?.created_at)+(message?' · '+message:'');
   const hasAvailability=dates.length>0;
   $('#joinDinnerBtn').innerHTML=hasAvailability?'Edit available dates <span aria-hidden="true">→</span>':'Choose available dates <span aria-hidden="true">→</span>';
-  $('#upcomingDinnerDetails').innerHTML='<div class="next-dinner-icon" aria-hidden="true">✦</div><div><strong>'+(hasAvailability?'Your dates are saved':'Your table is waiting')+'</strong><p>'+(hasAvailability?'You’re all set on availability. Once dinner groups are arranged, your date, restaurant, and table details will appear here. We’ll let you know by email.':'Choose the dates that work for you to get started. Once dinner groups are arranged, your date, restaurant, and table details will appear here.')+'</p></div>';
-  $('#dinnerStatus').textContent=hasAvailability?'Dates saved':'Getting started';
+  $('#upcomingDinnerDetails').innerHTML='<div><strong>'+(hasAvailability?'Nothing you need to do right now.':'Start by choosing a few evenings.')+'</strong><p>'+(hasAvailability?'Your dates are saved. When a dinner is arranged for one of the evenings you selected, your invitation and all the details will appear here. If your plans change, you can update your dates below.':'Pick a few dates that could work for you. When a dinner is arranged, your invitation and details will appear here.')+'</p>'+(hasAvailability?'<div class="dinner-progress"><span class="progress-dot complete"></span><span>Dates saved</span><i></i><span class="progress-dot"></span><span>Dinner invitation</span></div>':'')+'</div>';
+  $('#dinnerStatus').textContent=hasAvailability?'Dates saved':'Choose dates';
  }catch(error){
   console.error('FourCourse dashboard load failed:',error);
   $('#profileName').textContent='Profile unavailable';$('#profileEmail').textContent='Please refresh or log in again.';$('#profileDetails').textContent='We could not load your profile. Please refresh the page or log in again.';
@@ -678,7 +1591,7 @@ async function loadProfileIntoForm(){
  if(error)throw error;
  activeProfile=profile||{};
  let savedDates=normalizeAvailability(profile?.availability,null);
- if(!savedDates.length){const legacy=await getLatestSignupDates();savedDates=normalizeAvailability(null,legacy?.days_free);}
+ if(profile?.availability==null){const legacy=await getLatestSignupDates();savedDates=normalizeAvailability(null,legacy?.days_free);}
  S.school=profile?.school||'';S.days=new Set(savedDates);
  S.participantGender=profile?.participant_gender||'';S.genderSelfDescribe=profile?.gender_self_description||'';
  S.groupPreference=profile?.gender_preference||'No preference';S.gender=S.groupPreference;
@@ -689,7 +1602,7 @@ async function loadProfileIntoForm(){
  selectOption('[data-key="groupPreference"]',S.groupPreference);
  $('#go0').disabled=S.school.trim().length<2;
  $('#go1').disabled=S.days.size===0;
- const count=S.days.size;$('#count').innerHTML=count?'<b>'+count+' date'+(count===1?'':'s')+'</b> selected — tap dates to add or remove them.':'Tap every date that works for you.';
+ const count=S.days.size;$('#count').innerHTML=count?'<b>'+count+' date'+(count===1?'':'s')+'</b> selected — tap dates to add or remove them.':'Choose every evening you could realistically make.';
  renderCalendar();
 }
 async function openApp(mode='profile'){
@@ -707,8 +1620,9 @@ async function syncCurrentDinnerSignup(payload){
  const {data:existing,error:findError}=await supabase.from('dinner_signups').select('id').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(1).maybeSingle();
  if(findError)throw findError;
  if(existing?.id){
-  const {error}=await supabase.from('dinner_signups').update(payload).eq('id',existing.id);
+  const {data:updated,error}=await supabase.from('dinner_signups').update(payload).eq('id',existing.id).select('id').maybeSingle();
   if(error)throw error;
+  if(!updated?.id)throw new Error('Your dinner availability could not be updated. Please check your database update permissions.');
  }else{
   const {error}=await supabase.from('dinner_signups').insert(payload);
   if(error)throw error;
@@ -718,8 +1632,12 @@ async function saveAvailabilityOnly(){
  const btn=$('#saveAvailabilityOnly');btn.disabled=true;btn.textContent='Saving…';
  try{
   const dates=[...S.days].sort();
-  const {error:pErr}=await supabase.from('profiles').update({availability:dates,updated_at:new Date().toISOString()}).eq('id',currentUser.id);
+  const savedAt=new Date().toISOString();
+  const {data:savedProfile,error:pErr}=await supabase.from('profiles').update({availability:dates,updated_at:savedAt}).eq('id',currentUser.id).select('availability,updated_at').maybeSingle();
   if(pErr)throw pErr;
+  if(!savedProfile)throw new Error('We could not find your student profile to update. Please log out and back in.');
+  const persistedDates=normalizeAvailability(savedProfile.availability,null);
+  if(persistedDates.join('|')!==dates.join('|'))throw new Error('Your new dates did not match what was saved. Please try again.');
   const signupPayload={user_id:currentUser.id,school:activeProfile?.school||S.school||null,days_free:dates.join(', '),participant_gender:activeProfile?.participant_gender||S.participantGender||null,gender_self_description:activeProfile?.gender_self_description||S.genderSelfDescribe||null,gender_preference:activeProfile?.gender_preference||S.groupPreference||'No preference',questionnaire_answers:activeProfile?.questionnaire_answers||[]};
   await syncCurrentDinnerSignup(signupPayload);
   await openDashboard('Availability saved');
@@ -755,20 +1673,45 @@ async function boot(){
 $('#continueAfterConfirm').onclick=async()=>{try{const {data:{session}}=await supabase.auth.getSession();if(session){currentUser=session.user;await ensureProfile();await openDashboard();}else{showView('auth');setAuthMode('login');$('#authError').textContent='Your email is confirmed. Please log in to continue.';}}catch(e){$('#confirmationNote').textContent='Your email is confirmed, but we could not load your profile: '+e.message;}};
 
 // Existing FourCourse dinner questionnaire and availability flow.
-function show(n){cur=n;$$('.step').forEach(el=>el.classList.toggle('active',+el.dataset.step===n));const p=$('#progress');p.hidden=(n===0||n===5);$$('#progress i').forEach((i,k)=>i.classList.toggle('on',k<=n));window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQ();if(n===4)$('#summary').innerHTML=summary();if(n===5){$('#summary2').innerHTML=availabilityReceipt();$('#doneMsg').textContent='Your preferences are saved. We’ll use these dates to find a dinner that works for you.';}}
+function show(n){cur=n;$$('.step').forEach(el=>el.classList.toggle('active',+el.dataset.step===n));const p=$('#progress');p.hidden=(n===0||n===5);$$('#progress i').forEach((i,k)=>i.classList.toggle('on',k<=n));window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQ();if(n===4)$('#summary').innerHTML=summary();if(n===5){$('#summary2').innerHTML=availabilityReceipt();$('#doneMsg').textContent='Thanks for making room for a new conversation. Your availability and preferences are saved. You can change them anytime from your dashboard.';}}
 $$('[data-back]').forEach(b=>b.onclick=()=>show(cur-1));
 const school=$('#school'),go0=$('#go0');school.addEventListener('input',()=>{S.school=school.value.trim();go0.disabled=S.school.length<2});school.addEventListener('keydown',e=>{if(e.key==='Enter'&&!go0.disabled)show(1)});go0.onclick=()=>show(1);
 const QUESTIONS=[
 {id:1,left:'I prefer light, casual chat',right:'Deep, personal conversation',mode:'similar',weight:20},{id:2,left:'I’m uncomfortable with alcohol at social events',right:'I’m very comfortable with it',mode:'similar',weight:19},{id:3,left:'After a long week I want a quiet night',right:'A lively night',mode:'similar',weight:18},{id:4,left:'I avoid hearing views different from mine',right:'I love hearing them',mode:'similar',weight:17},{id:5,left:'I avoid debate',right:'I enjoy being challenged and debating',mode:'similar',weight:16},{id:6,left:'I keep personal things private',right:'I’m open with people I’ve just met',mode:'similar',weight:15},{id:7,left:'I’m a listener in groups',right:'I tend to drive the conversation',mode:'diverse',weight:14},{id:8,left:'I rarely follow politics or news',right:'I follow them closely',mode:'similar',weight:13},{id:9,left:'Religion/spirituality is not part of my identity',right:'It’s central to my identity',mode:'similar',weight:12},{id:10,left:'I’m ready to head home early',right:'Happy to stay past 10pm',mode:'similar',weight:11},{id:11,left:'My humor is wholesome',right:'Sarcastic and irreverent',mode:'similar',weight:10},{id:12,left:'I prefer familiar food',right:'I love trying unfamiliar cuisines',mode:'similar',weight:9},{id:13,left:'My interests lean STEM',right:'My interests lean humanities/arts',mode:'diverse',weight:8},{id:14,left:'I’ve lived mostly in one place',right:'Lived or traveled in many places',mode:'diverse',weight:7},{id:15,left:'Career ambition is a small part of my identity',right:'It’s a huge part of my identity',mode:'similar',weight:6},{id:16,left:'Arts, music, and culture aren’t my thing',right:'A big part of my life',mode:'similar',weight:5},{id:17,left:'I’m a homebody',right:'Very active, sporty, or outdoorsy',mode:'similar',weight:4},{id:18,left:'I’m spontaneous',right:'A planner who likes structure',mode:'similar',weight:3},{id:19,left:'Gaming, tech, and nerd culture aren’t my thing',right:'Very much my thing',mode:'similar',weight:2},{id:20,left:'I’m barely involved in campus life',right:'Involved in many clubs and activities',mode:'diverse',weight:1}];
-let qi=0,lock=false;function renderQ(){const q=QUESTIONS[qi],a=S.answers.find(x=>x.id===q.id);$('#qnum').textContent='Question '+(qi+1)+' of '+QUESTIONS.length;$('#qfill').style.width=(qi/QUESTIONS.length*100)+'%';$('#anchL').textContent=q.left;$('#anchR').textContent=q.right;$$('#scale button').forEach(b=>b.setAttribute('aria-pressed',String(!!a&&+b.dataset.v===a.value)));}
-$('#scale').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||lock)return;const q=QUESTIONS[qi],rec={id:q.id,value:+b.dataset.v,mode:q.mode,weight:q.weight};const i=S.answers.findIndex(x=>x.id===q.id);if(i>-1)S.answers[i]=rec;else S.answers.push(rec);$$('#scale button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));lock=true;setTimeout(()=>{lock=false;if(qi<QUESTIONS.length-1){qi++;renderQ()}else show(2)},220);});$('#qback').onclick=()=>{if(qi>0){qi--;renderQ()}else show(0)};
+let qi=0,lock=false;
+function renderQ(){
+ const q=QUESTIONS[qi],a=S.answers.find(x=>x.id===q.id);
+ $('#qnum').textContent='Question '+(qi+1)+' of '+QUESTIONS.length;
+ $('#qfill').style.width=((qi+1)/QUESTIONS.length*100)+'%';
+ $('#anchL').textContent=q.left;$('#anchR').textContent=q.right;
+ const buttons=$$('#scale button');
+ // Clear every control first, then restore at most the single saved response for this question.
+ buttons.forEach(button=>{button.setAttribute('aria-pressed','false');button.classList.remove('is-selected');});
+ if(a){const selected=buttons.find(button=>Number(button.dataset.v)===Number(a.value));if(selected){selected.setAttribute('aria-pressed','true');selected.classList.add('is-selected');}}
+}
+$('#scale').addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b||lock||!$('#scale').contains(b))return;
+ const value=Number(b.dataset.v);if(!Number.isInteger(value)||value<1||value>5)return;
+ const q=QUESTIONS[qi],rec={id:q.id,value,mode:q.mode,weight:q.weight};
+ const i=S.answers.findIndex(x=>x.id===q.id);if(i>-1)S.answers[i]=rec;else S.answers.push(rec);
+ // Enforce true single-selection: precisely the clicked option is selected.
+ $$('#scale button').forEach(button=>{const selected=button===b;button.setAttribute('aria-pressed',String(selected));button.classList.toggle('is-selected',selected);});
+ lock=true;
+ setTimeout(()=>{
+  b.blur();lock=false;
+  if(qi<QUESTIONS.length-1){qi++;renderQ();}
+  else show(2);
+ },320);
+});
+$('#qback').onclick=()=>{if(qi>0){qi--;renderQ()}else show(0)};
 const cal=$('#cal'),monthLabel=$('#calMonth'),prevMonth=$('#calPrev'),nextMonth=$('#calNext');
 const fmt=d=>d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
 const today=new Date();today.setHours(0,0,0,0);
 const firstAllowed=new Date(today);firstAllowed.setDate(firstAllowed.getDate()+1);
-const lastAllowed=new Date(2026,11,31);
+// Keep the date picker useful as the calendar advances: show the next six calendar months.
+const lastAllowed=new Date(today.getFullYear(),today.getMonth()+6,0);
 let shownMonth=new Date(firstAllowed.getFullYear(),firstAllowed.getMonth(),1);
-const monthEnd=new Date(2026,11,1);
+const monthEnd=new Date(lastAllowed.getFullYear(),lastAllowed.getMonth(),1);
 function renderCalendar(){
  cal.innerHTML='';monthLabel.textContent=shownMonth.toLocaleDateString('en-US',{month:'long',year:'numeric'});
  prevMonth.disabled=shownMonth.getFullYear()===firstAllowed.getFullYear()&&shownMonth.getMonth()===firstAllowed.getMonth();
@@ -804,7 +1747,7 @@ async function submit(){
   const signupPayload={user_id:currentUser.id,school:S.school,days_free:[...S.days].sort().join(', '),participant_gender:S.participantGender,gender_self_description:S.participantGender==='Another identity'?(S.genderSelfDescribe||null):null,gender_preference:S.groupPreference,questionnaire_answers:values};
   await syncCurrentDinnerSignup(signupPayload);
   activeProfile={...activeProfile,...profilePayload};
-  $('#doneMsg').textContent='Your preferences are saved. You can update these dates or your profile any time from your dashboard.';
+  $('#doneMsg').textContent='Your preferences are saved. You can update your dates or profile whenever your plans change.';
   $('#summary2').innerHTML=availabilityReceipt();
   show(5);
  }catch(e){alert('We could not save your preferences: '+e.message);}
